@@ -16,7 +16,7 @@
 [{"@context":"https://schema.org","@type":"WebApplication","name":"BotToBook – Character.AI chat to PDF and EPUB","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":[{"@type":"Offer","name":"Reader and text export","price":"0","priceCurrency":"USD"},{"@type":"Offer","name":"BotToBook Pro (PDF and EPUB books)","price":"4.99","priceCurrency":"USD"}]},
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"How do I turn my Character.AI chats into a PDF?","acceptedAnswer":{"@type":"Answer","text":"Request your data in Character.AI (Profile Settings, Account, Manage Account & Data, Export Data). When the email arrives, download the ZIP and drop it on BotToBook. Pick the chats, set the names, and press PDF book; your browser saves the book as a PDF."}},
-{"@type":"Question","name":"The Character.AI ZIP asks for a password. What is it?","acceptedAnswer":{"@type":"Answer","text":"The export ZIP is password-protected. Use the password from Character.AI's email. You can type it into BotToBook, which opens the ZIP in your browser; you don't need to unzip it first."}},
+{"@type":"Question","name":"The Character.AI ZIP asks for a password. What is it?","acceptedAnswer":{"@type":"Answer","text":"The password is the email address of your Character.AI account, typed in lowercase. Many built-in unzip tools can't open this kind of ZIP, so drop it on BotToBook instead and type your email when asked; it opens in your browser and nothing is uploaded."}},
 {"@type":"Question","name":"Why doesn't the export say who wrote each message?","acceptedAnswer":{"@type":"Answer","text":"Character.AI's official export lists each message's text, chat and time, but not whether you or the character wrote it, and not the character's name. BotToBook works out who spoke from the turn order and timing, and you can swap the sides and type the names with one click."}},
 {"@type":"Question","name":"Are my chats uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. The ZIP is opened and the book is made by JavaScript on this page. Your chats never leave your device."}},
 {"@type":"Question","name":"Can I read the book on a Kindle?","acceptedAnswer":{"@type":"Answer","text":"Yes. Send the EPUB to your Kindle with Amazon's Send to Kindle (email, app or web). Kobo, Apple Books, Google Play Books and most e-readers open EPUB directly."}}
@@ -142,8 +142,8 @@ footer{background:var(--cloth2);color:#dccfe8;font-size:14px;padding:28px 0}foot
       <input type="file" id="pick" accept=".zip,.json,.jsonl,.txt,application/zip,application/json" multiple hidden>
     </label>
     <div class="pw" id="pwBox" hidden>
-      <p><b>This ZIP is password-protected.</b> Type the password from Character.AI's email. It's used here in your browser only.</p>
-      <div class="pwrow"><input type="password" id="pw" autocomplete="off" aria-label="ZIP password"><button class="btn" id="pwGo" type="button">Open ZIP</button></div>
+      <p><b>This ZIP is password-protected.</b> The password is your Character.AI account's email address, in lowercase. It's used here in your browser only.</p>
+      <div class="pwrow"><input type="text" id="pw" autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="email" placeholder="you@example.com" aria-label="ZIP password (your account email)"><button class="btn" id="pwGo" type="button">Open ZIP</button></div>
     </div>
     <p class="msg" id="loadMsg" role="status"></p>
     <div class="listhead"><b id="listTitle">Chats</b><span><button class="linkbtn" id="allOn" type="button">Select all</button> · <button class="linkbtn" id="allOff" type="button">None</button></span></div>
@@ -196,7 +196,7 @@ footer{background:var(--cloth2);color:#dccfe8;font-size:14px;padding:28px 0}foot
   <h2>How to turn Character.AI chats into a PDF or EPUB</h2>
   <ol class="how">
     <li><h3>Request your export</h3>On character.ai: <em>Profile Settings → Account → Manage Account &amp; Data → Export Data</em>. In the app: <em>Settings → Legal &amp; Privacy → Export Data</em>. Character.AI says it can take 3–4 weeks, and the emailed link works for 7 days.</li>
-    <li><h3>Drop the ZIP here</h3>No need to unzip it — type the password from the email. Every chat appears on the left, longest first, with its first line so you can tell them apart.</li>
+    <li><h3>Drop the ZIP here</h3>No need to unzip it — when asked for the password, type your Character.AI account email in lowercase. Every chat appears on the left, longest first, with its first line so you can tell them apart.</li>
     <li><h3>Name it and bind it</h3>Type the character's name, swap the sides if the guess is off, tick the chats you want, and make a PDF or EPUB book. Send the EPUB to your Kindle or print the PDF.</li>
   </ol>
 </section>
@@ -211,7 +211,7 @@ footer{background:var(--cloth2);color:#dccfe8;font-size:14px;padding:28px 0}foot
 
 <section class="band"><div class="faq">
   <h2>Character.AI export: common questions</h2>
-  <details open><summary>The ZIP asks for a password. Where is it?</summary><p>Character.AI's export ZIP is password-protected, and the password comes with the export email. Drop the ZIP here and type it in when asked — the ZIP is opened in your browser, so you don't need an unzip app. If you've already unzipped it, drop <em>message.json</em> (and <em>character.json</em> and <em>user.json</em> if you like) instead.</p></details>
+  <details open><summary>The ZIP asks for a password. Where is it?</summary><p>The password is the email address your Character.AI account uses, typed in lowercase (for example <em>alex.smith@gmail.com</em>, not <em>Alex.Smith@Gmail.com</em>). The built-in unzip tools on Windows, Mac and phones often can't open this kind of encrypted ZIP even with the right password. Drop the ZIP here instead and type your email when asked — BotToBook opens it in your browser and retries in lowercase for you. If you've already unzipped it, drop <em>message.json</em> (and <em>character.json</em> and <em>user.json</em> if you like) instead.</p></details>
   <details><summary>Why doesn't my export say who wrote each message?</summary><p>The official export lists each message's text, its chat and its time — but not whether you or the character wrote it, and not the character's name. BotToBook works out the sides from the turn order and the reply timing (characters answer within seconds; people take longer). If a chat comes out backwards, press <em>Swap who said what</em>. Then type the character's name once for that chat.</p></details>
   <details><summary>Are my chats uploaded anywhere?</summary><p>No. The ZIP is opened and the book is built by JavaScript running on this page, on your device. There are no trackers or ads. The only thing sent anywhere is a Pro licence key, when you activate it, so it can be checked with the payment provider.</p></details>
   <details><summary>Is Character.AI shutting down?</summary><p>As of late November 2026, Character.AI is in a Chapter 11 sale process that it expects to wrap up in late November or early December, and it has said the platform could be wound down if no suitable buyer is found. Check Character.AI's own announcements for the latest. Either way, requesting your export now and keeping a copy you can read is a good idea.</p></details>
@@ -572,13 +572,16 @@ async function openFiles(files, password) {
   try {
     for (const f of files) {
       const head = new Uint8Array(await f.slice(0, 4).arrayBuffer());
-      if (isZipBytes(head)) texts.push(...await readZip(f, password));
+      if (isZipBytes(head)) {
+        try { texts.push(...await readZip(f, password)); }
+        catch (err) { const alt = (password || "").trim().toLowerCase(); if (err.code === "badpassword" && alt && alt !== password) texts.push(...await readZip(f, alt)); else throw err; }
+      }
       else if (f.size < 600 * 1024 * 1024) texts.push({ name: f.name, text: await f.text() });
     }
   } catch (e) {
     if (e.code === "password" || e.code === "badpassword") {
       st.pending = files; $("pwBox").hidden = false; $("pw").value = ""; $("pw").focus();
-      $("loadMsg").textContent = e.code === "badpassword" ? "That password didn't open the ZIP. Copy it from Character.AI's email and try again." : "";
+      $("loadMsg").textContent = e.code === "badpassword" ? "That didn't open the ZIP. The password is the email address of your Character.AI account (in lowercase) — check for typos, or try the email you signed up with." : "";
       return;
     }
     $("loadMsg").textContent = "Couldn't open that file: " + (e && e.message || e); return;
