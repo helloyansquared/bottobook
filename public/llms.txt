@@ -13,13 +13,13 @@
 - Not included: Who wrote each message, and the name of the character you chatted with.
 
 ## Pages
-- [Tool: Character.AI chat to PDF and EPUB](https://bottobook.pages.dev/)
-- [Character.AI export ZIP password](https://bottobook.pages.dev/character-ai-export-zip-password/): The Character.AI export ZIP password is your account's email address in lowercase. Why it fails, and how to open the ZIP in your browser without an unzip app.
-- [How to open a Character.AI export](https://bottobook.pages.dev/how-to-open-character-ai-export/): Step by step: request your Character.AI export, unlock the ZIP with your email in lowercase, and read message.json as real conversations in a browser viewer.
-- [Character.AI chat to PDF](https://bottobook.pages.dev/character-ai-chat-to-pdf/): Save Character.AI chats as a PDF book with a cover, contents, a chapter per chat and page numbers. Works from the official export, in your browser, on phone or computer.
-- [Character.AI chats to Kindle](https://bottobook.pages.dev/character-ai-to-kindle/): Read your Character.AI chats on a Kindle, Kobo or Apple Books: turn the official export into an EPUB with a chapter per chat, then send it with Send to Kindle.
-- [Character.AI message.json format](https://bottobook.pages.dev/character-ai-message-json/): What's inside a Character.AI data export: user.json, character.json and message.json, the fields in each message, what's missing, and how viewers rebuild your chats.
-- [Privacy and refunds](https://bottobook.pages.dev/privacy/)
+- [Tool: Character.AI chat to PDF and EPUB](https://bottobook.yansquared.com/)
+- [Character.AI export ZIP password](https://bottobook.yansquared.com/character-ai-export-zip-password/): The Character.AI export ZIP password is your account's email address in lowercase. Why it fails, and how to open the ZIP in your browser without an unzip app.
+- [How to open a Character.AI export](https://bottobook.yansquared.com/how-to-open-character-ai-export/): Step by step: request your Character.AI export, unlock the ZIP with your email in lowercase, and read message.json as real conversations in a browser viewer.
+- [Character.AI chat to PDF](https://bottobook.yansquared.com/character-ai-chat-to-pdf/): Save Character.AI chats as a PDF book with a cover, contents, a chapter per chat and page numbers. Works from the official export, in your browser, on phone or computer.
+- [Character.AI chats to Kindle](https://bottobook.yansquared.com/character-ai-to-kindle/): Read your Character.AI chats on a Kindle, Kobo or Apple Books: turn the official export into an EPUB with a chapter per chat, then send it with Send to Kindle.
+- [Character.AI message.json format](https://bottobook.yansquared.com/character-ai-message-json/): What's inside a Character.AI data export: user.json, character.json and message.json, the fields in each message, what's missing, and how viewers rebuild your chats.
+- [Privacy and refunds](https://bottobook.yansquared.com/privacy/)
 
 ## Also by the same maker
 - [FicToEpub](https://fictoepub.pages.dev/): AO3 HTML to EPUB converter

@@ -1,6 +1,6 @@
 # BotToBook — Character.AI chats to PDF & EPUB
 
-**Use it: https://bottobook.pages.dev/**
+**Use it: https://bottobook.yansquared.com/**
 
 Open your Character.AI data export (the password-protected ZIP from the email, or `message.json`), read every chat,
 and bind them into a PDF or EPUB book with chapters, names and a cover. Everything runs in the browser; the export is
@@ -25,15 +25,15 @@ never uploaded.
 | Fields per message | `chat_id`, `candidate_id`, `raw_content`, `create_time` (microsecond precision). |
 | Not included | Who wrote each message, and the name of the character you chatted with. |
 
-More: [what message.json contains](https://bottobook.pages.dev/character-ai-message-json/) ·
-[the ZIP password](https://bottobook.pages.dev/character-ai-export-zip-password/) ·
-[Character.AI chat to PDF](https://bottobook.pages.dev/character-ai-chat-to-pdf/) ·
-[chats to Kindle (EPUB)](https://bottobook.pages.dev/character-ai-to-kindle/)
+More: [what message.json contains](https://bottobook.yansquared.com/character-ai-message-json/) ·
+[the ZIP password](https://bottobook.yansquared.com/character-ai-export-zip-password/) ·
+[Character.AI chat to PDF](https://bottobook.yansquared.com/character-ai-chat-to-pdf/) ·
+[chats to Kindle (EPUB)](https://bottobook.yansquared.com/character-ai-to-kindle/)
 
 ## Develop
 
 ```
-python3 build.py https://bottobook.pages.dev/ pdt_XXXX   # writes public/ (home, guide pages, privacy, sitemap, robots, llms.txt)
+python3 build.py https://bottobook.yansquared.com/ pdt_XXXX   # writes public/ (home, guide pages, privacy, sitemap, robots, llms.txt)
 node test/core.test.mjs && node test/license.test.mjs
 ```
 
@@ -56,7 +56,7 @@ Then open http://localhost:8000/. (The `public/` folder committed here is the ho
 
 ## What the hosted site charges for
 
-On https://bottobook.pages.dev/ these are free: opening the export (including the password ZIP), reading every chat,
+On https://bottobook.yansquared.com/ these are free: opening the export (including the password ZIP), reading every chat,
 renaming and swapping speakers, downloading any chat as TXT, and a 30-message preview book. Full PDF/EPUB/HTML books
 need a $4.99 one-time licence key, which pays for the hosted version and ongoing development. The key is only checked
 when a Dodo Payments product id is passed to `build.py`; a self-hosted build doesn't do that.
