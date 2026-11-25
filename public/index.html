@@ -509,7 +509,7 @@ ${chats.map((c, i) => `<section id="ch${i + 1}"><h2>${esc(chapterTitle(c, book.o
 /*CORE-END*/
 
 const $ = id => document.getElementById(id);
-const PRODUCT_ID = "__PRODUCT_ID__";
+const PRODUCT_ID = "pdt_0NsiGNGJQuwqIj9MbEkoP";
 const SITE = location.origin + location.pathname;
 const BUY_URL = PRODUCT_ID.startsWith("pdt_") ? `https://checkout.dodopayments.com/buy/${PRODUCT_ID}?quantity=1&redirect_url=${encodeURIComponent(SITE + "?unlock=1")}` : "";
 const LKEY = "bottobook.licence";
