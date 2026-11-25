@@ -509,7 +509,9 @@ ${chats.map((c, i) => `<section id="ch${i + 1}"><h2>${esc(chapterTitle(c, book.o
 const $ = id => document.getElementById(id);
 const PRODUCT_ID = "__PRODUCT_ID__";
 const SITE = location.origin + location.pathname;
-const BUY_URL = PRODUCT_ID.startsWith("pdt_") ? `https://checkout.dodopayments.com/buy/${PRODUCT_ID}?quantity=1&redirect_url=${encodeURIComponent(SITE + "?unlock=1")}` : "";
+// No product id (a self-hosted build: python3 build.py <url> without pdt_…) = everything unlocked, no key needed.
+const SELF_HOSTED = !PRODUCT_ID.startsWith("pdt_");
+const BUY_URL = !SELF_HOSTED ? `https://checkout.dodopayments.com/buy/${PRODUCT_ID}?quantity=1&redirect_url=${encodeURIComponent(SITE + "?unlock=1")}` : "";
 const LKEY = "bottobook.licence";
 const st = { chats: [], characters: [], userName: "", sel: 0, sample: true, pro: false, pending: null };
 let dl = null;
@@ -695,9 +697,9 @@ async function activate(key, where) {
 }
 
 // ── Wiring ────────────────────────────────────────────────────────────
-if (BUY_URL) $("buy").href = BUY_URL; else { $("buy").removeAttribute("href"); $("buy").textContent = "Pro is coming soon"; }
+if (BUY_URL) $("buy").href = BUY_URL; else $("buy").removeAttribute("href");
 const saved = store.get();
-if (saved && saved.key) setPro(true);
+if (SELF_HOSTED || (saved && saved.key)) setPro(true);
 const qs = new URLSearchParams(location.search);
 if (qs.get("license_key")) {
   const key = qs.get("license_key").split(",")[0];
