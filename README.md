@@ -40,6 +40,10 @@ node test/core.test.mjs && node test/license.test.mjs
 Words live in `src/content.py` (FAQ answers feed both the visible FAQ and the FAQPage JSON-LD); `public/` is the static site; `functions/api/license.js` is a Cloudflare Pages Function that checks Pro licence keys
 against Dodo Payments' public licence endpoints (no API key needed) and only accepts keys for this product.
 
-ZIP decryption uses [zip.js](https://github.com/gildas-lormeau/zip.js) (BSD-3-Clause, `public/vendor/`).
+## License
+
+MIT — see [LICENSE](LICENSE). ZIP decryption uses [zip.js](https://github.com/gildas-lormeau/zip.js) (BSD-3-Clause, licence in `public/vendor/`).
+
+The code is open; BotToBook Pro on the hosted site (PDF/EPUB/HTML books of your own export) is a $4.99 one-time unlock that supports the project.
 
 Not affiliated with Character Technologies, Inc. or Character.AI.

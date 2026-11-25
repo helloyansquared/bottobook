@@ -21,4 +21,8 @@
 - [Character.AI message.json format](https://bottobook.pages.dev/character-ai-message-json/): What's inside a Character.AI data export: user.json, character.json and message.json, the fields in each message, what's missing, and how viewers rebuild your chats.
 - [Privacy and refunds](https://bottobook.pages.dev/privacy/)
 
+## Also by the same maker
+- [FicToEpub](https://fictoepub.pages.dev/): AO3 HTML to EPUB converter
+- [FicWrapped](https://ficwrapped.pages.dev/): AO3 Wrapped from your own reading history
+
 Last updated: 2026-11-25. Contact: hello@yansquared.com
