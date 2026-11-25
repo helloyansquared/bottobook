@@ -21,7 +21,7 @@ upd_human = __import__('datetime').date.fromisoformat(C.LAST_UPDATED).strftime('
 FONT_FACES = ''.join(f'@font-face{{font-family:"{fam}";src:url(/fonts/{f}.woff2) format("woff2");font-weight:{w};font-display:swap}}\n'
   for fam, f, w in [("Fraunces","fraunces-latin-600-normal",600),("Fraunces","fraunces-latin-700-normal",700),
                     ("Instrument Sans","instrument-sans-latin-400-normal",400),("Instrument Sans","instrument-sans-latin-500-normal",500),("Instrument Sans","instrument-sans-latin-600-normal",600)])
-ORG = {"@type": "Organization", "@id": U() + "#org", "name": "BotToBook", "url": U(), "logo": U() + "og.png", "email": C.EMAIL, "sameAs": [C.GITHUB]}
+ORG = {"@type": "Organization", "@id": U() + "#org", "name": "BotToBook", "url": U(), "logo": U() + "icon-512.png", "email": C.EMAIL, "sameAs": [C.GITHUB]}
 
 def faq_html(keys):
     return '\n'.join(f'  <details{" open" if i == 0 else ""}><summary>{tx(C.QA[k][0])}</summary><p>{tx(C.QA[k][1])}</p></details>' for i, k in enumerate(keys))
