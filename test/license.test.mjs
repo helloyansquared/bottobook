@@ -1,5 +1,5 @@
 import fs from 'fs';
-const src = fs.readFileSync(new URL('../functions/api/license.js', import.meta.url), 'utf8').replace('__PRODUCT_ID__', 'pdt_TEST');
+const src = fs.readFileSync(new URL('../functions/api/license.js', import.meta.url), 'utf8').replace('__PRODUCT_ID__', 'pdt_TEST').replace(/const PRODUCT_ID = "pdt_[A-Za-z0-9]+";/, 'const PRODUCT_ID = "pdt_TEST";');
 const mod = await import('data:text/javascript;base64,' + Buffer.from(src).toString('base64'));
 const cases = [
   [{ action: 'activate', license_key: 'K' }, 201, { id: 'lki_1', product: { product_id: 'pdt_TEST' }, customer: { email: 'x@y.z' } }, 200, true],
