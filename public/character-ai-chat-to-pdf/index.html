@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Character.AI Chat to PDF: Save Your Chats as a Book</title>
+<meta name="description" content="Save Character.AI chats as a PDF book with a cover, contents, a chapter per chat and page numbers. Works from the official export, in your browser, on phone or computer.">
+<link rel="canonical" href="https://bottobook.pages.dev/character-ai-chat-to-pdf/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article"><meta property="og:site_name" content="BotToBook"><meta property="og:title" content="Character.AI Chat to PDF: Save Your Chats as a Book"><meta property="og:description" content="Save Character.AI chats as a PDF book with a cover, contents, a chapter per chat and page numbers. Works from the official export, in your browser, on phone or computer.">
+<meta property="og:url" content="https://bottobook.pages.dev/character-ai-chat-to-pdf/"><meta property="og:image" content="https://bottobook.pages.dev/og.png"><meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="/fonts/fraunces-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"BotToBook","item":"https://bottobook.pages.dev/"},{"@type":"ListItem","position":2,"name":"Character.AI chat to PDF","item":"https://bottobook.pages.dev/character-ai-chat-to-pdf/"}]},{"@context":"https://schema.org","@type":"TechArticle","headline":"Character.AI Chat to PDF: Save Your Chats as a Book","description":"Save Character.AI chats as a PDF book with a cover, contents, a chapter per chat and page numbers. Works from the official export, in your browser, on phone or computer.","url":"https://bottobook.pages.dev/character-ai-chat-to-pdf/","inLanguage":"en-US","datePublished":"2026-11-25","dateModified":"2026-11-25","author":{"@id":"https://bottobook.pages.dev/#org"},"publisher":{"@context":"https://schema.org","@type":"Organization","@id":"https://bottobook.pages.dev/#org","name":"BotToBook","url":"https://bottobook.pages.dev/","logo":"https://bottobook.pages.dev/og.png","email":"hello@yansquared.com","sameAs":["https://github.com/helloyansquared/bottobook"]},"mainEntityOfPage":"https://bottobook.pages.dev/character-ai-chat-to-pdf/"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I turn my Character AI chats into a PDF?","acceptedAnswer":{"@type":"Answer","text":"Request your data export in Character.AI settings. When the email arrives, drop the ZIP on BotToBook and enter your account email in lowercase as the password. Pick the chats, type the character's name, press PDF book, then choose Save as PDF in the print dialog. Each chat becomes a chapter with page numbers."}},{"@type":"Question","name":"Can I save Character AI chats as a PDF on my phone?","acceptedAnswer":{"@type":"Answer","text":"Yes. Open BotToBook in your phone's browser, drop the export ZIP, and press PDF book. On iPhone tap Share, then Print, then Share again and Save to Files. On Android choose Print and then Save as PDF. The book keeps its cover, chapters and page breaks."}},{"@type":"Question","name":"Can I save a Character AI chat as a PDF without the export?","acceptedAnswer":{"@type":"Answer","text":"You can scroll a chat to the top and use your browser's Print and Save as PDF, or copy the text into a document, but long chats load in pieces and the layout is rough. The official export contains every message, so it is the more complete way to keep a chat."}},{"@type":"Question","name":"Is BotToBook free?","acceptedAnswer":{"@type":"Answer","text":"Opening your Character.AI export, reading every chat, setting names and downloading any chat as a text file are free, and you can preview a short book from your own chats. Full PDF, EPUB and HTML books cost $4.99 once, with no subscription, on up to three devices. A sample export is loaded so you can try every button first."}}]}]
+</script>
+<style>@font-face{font-family:"Fraunces";src:url(/fonts/fraunces-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Fraunces";src:url(/fonts/fraunces-latin-700-normal.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Instrument Sans";src:url(/fonts/instrument-sans-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Instrument Sans";src:url(/fonts/instrument-sans-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Instrument Sans";src:url(/fonts/instrument-sans-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+:root{color-scheme:light dark;--bg:light-dark(#fffdf9,#120c18);--ink:light-dark(#21182b,#f1eaf6);--soft:light-dark(#6a5e74,#b5a8c0);--paper:light-dark(#f7f1e7,#1c1424);--line:light-dark(#e6dccd,#352944);--cloth:#3b2350;--cloth2:light-dark(#2c1a3d,#1a1024);--gold:#f2b33d;--goldink:light-dark(#9a5f00,#f6c76a)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 "Instrument Sans",system-ui,sans-serif}
+a{color:var(--goldink)}h1,h2{font-family:Fraunces,Georgia,serif;line-height:1.12;text-wrap:balance}
+.top{background:var(--cloth);color:#fff;padding:18px 0 34px}.top a{color:#fff;text-decoration:none}
+.wrap{max-width:780px;margin:0 auto;padding:0 max(4vw,18px)}
+.brand{font-weight:600;display:inline-flex;gap:8px;align-items:center}.brand i{width:20px;height:15px;background:#fff;border-radius:3px;box-shadow:inset -5px 0 0 var(--gold)}
+.crumbs{font-size:14px;color:#dccfe8;margin:18px 0 6px}.crumbs a{color:#eadff3;text-decoration:underline}
+.top h1{font-size:clamp(30px,4.6vw,44px);margin:6px 0 0}
+main{padding:28px 0 40px}.answer{font-size:19px;line-height:1.6;border-left:4px solid var(--gold);padding:4px 0 4px 16px;margin:0 0 18px}
+.cta{display:inline-flex;align-items:center;min-height:48px;padding:0 22px;border-radius:12px;background:var(--gold);color:#2a1a00;font-weight:600;text-decoration:none}
+.meta{font-size:14px;color:var(--soft);margin:14px 0 26px}
+h2{font-size:clamp(23px,3vw,29px);margin:34px 0 10px}li{margin:6px 0}
+code{font:.9em ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--paper);padding:1px 5px;border-radius:5px}
+pre{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:14px;overflow:auto}pre code{background:none;padding:0}
+.facts{border-collapse:collapse;width:100%;margin:12px 0;border:1px solid var(--line);font-size:15px}.facts caption{text-align:left;color:var(--soft);font-size:13px;padding-bottom:6px}
+.facts th,.facts td{padding:9px 12px;border-top:1px solid var(--line);text-align:left;vertical-align:top}.facts th{width:30%}
+figure{margin:18px 0}figure img{width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:#888}figcaption{font-size:14px;color:var(--soft);margin-top:6px}
+details{border-bottom:1px solid var(--line);padding:4px 0}summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center}details p{margin:2px 0 14px;color:var(--soft)}
+.related{background:var(--paper);border-radius:12px;padding:16px 18px;margin-top:30px}.related ul{margin:6px 0 0;padding-left:20px}
+footer{background:var(--cloth2);color:#dccfe8;font-size:14px;padding:24px 0}footer a{color:#fff}.foot{display:flex;flex-wrap:wrap;gap:6px 16px;margin-bottom:10px}
+a:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:2px}</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/"><i></i>BotToBook</a>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">BotToBook</a> › Character.AI chat to PDF</nav>
+  <h1>How to save Character.AI chats as a PDF</h1>
+</div></header>
+<main class="wrap">
+<p class="answer">To save Character.AI chats as a PDF, request your data export in Character.AI settings, then drop the emailed ZIP on BotToBook. Pick the chats, type the character's name, press PDF book and choose Save as PDF in the print dialog. You get a cover, a chapter per chat and page numbers.</p>
+<a class="cta" href="/">Open my export in BotToBook</a>
+<p class="meta">Last updated: <time datetime="2026-11-25">November 25, 2026</time> · Free to read, nothing uploaded</p>
+
+<h2>Steps</h2>
+<ol class="steps">
+<li><b>Request your export</b> in Character.AI (Profile Settings → Account → Manage Account &amp; Data → Export Data).</li>
+<li><b>Drop the ZIP on <a href="/">BotToBook</a></b> and type your account email in lowercase as the password.</li>
+<li><b>Name each chat:</b> type the character's name, and press <em>Swap who said what</em> if a chat comes out backwards.</li>
+<li><b>Pick the chats</b> to include and a page size: paperback 5.5 × 8.5 in, US Letter, A4 or A5.</li>
+<li><b>Press PDF book</b> and choose <em>Save as PDF</em> in the print dialog.</li>
+</ol>
+<h2>What the PDF looks like</h2>
+<figure><img src="/img/sample-book.png" width="1200" height="464" alt="Four pages of a sample BotToBook PDF: a cover, a contents page, and chapter pages with speaker names and date headings" loading="lazy"><figcaption>Pages from the sample book: cover, contents, and chat pages with names and dates.</figcaption></figure>
+<p>A cover with the title and the characters' names, a contents page when there's more than one chat, then each chat as a chapter with date headings and page numbers. Your browser does the typesetting, so every language and emoji comes out right.</p>
+<h2>On iPhone and Android</h2>
+<p>Press <em>PDF book</em>, then on iPhone tap Share → Print, and Share again → Save to Files. On Android choose Print → Save as PDF.</p>
+<h2>Free vs Pro</h2>
+<p>Reading every chat, text downloads and a short preview book from your own chats are free. The full PDF, EPUB and HTML books are $4.99 once — a typeset book, not a printout.</p>
+
+<h2>Questions</h2>
+  <details open><summary>How do I turn my Character AI chats into a PDF?</summary><p>Request your data export in Character.AI settings. When the email arrives, drop the ZIP on BotToBook and enter your account email in lowercase as the password. Pick the chats, type the character's name, press PDF book, then choose Save as PDF in the print dialog. Each chat becomes a chapter with page numbers.</p></details>
+  <details><summary>Can I save Character AI chats as a PDF on my phone?</summary><p>Yes. Open BotToBook in your phone's browser, drop the export ZIP, and press PDF book. On iPhone tap Share, then Print, then Share again and Save to Files. On Android choose Print and then Save as PDF. The book keeps its cover, chapters and page breaks.</p></details>
+  <details><summary>Can I save a Character AI chat as a PDF without the export?</summary><p>You can scroll a chat to the top and use your browser's Print and Save as PDF, or copy the text into a document, but long chats load in pieces and the layout is rough. The official export contains every message, so it is the more complete way to keep a chat.</p></details>
+  <details><summary>Is BotToBook free?</summary><p>Opening your Character.AI export, reading every chat, setting names and downloading any chat as a text file are free, and you can preview a short book from your own chats. Full PDF, EPUB and HTML books cost $4.99 once, with no subscription, on up to three devices. A sample export is loaded so you can try every button first.</p></details>
+<aside class="related"><b>Related guides</b><ul><li><a href="/how-to-open-character-ai-export/">How to Open a Character.AI Export (ZIP or message.json)</a></li><li><a href="/character-ai-to-kindle/">Character.AI Chats to Kindle: Export to EPUB</a></li><li><a href="/">BotToBook: Character.AI chat to PDF &amp; EPUB</a></li></ul></aside>
+</main>
+<footer><div class="wrap"><nav class="foot" aria-label="Guides"><a href="/character-ai-export-zip-password/">Character.AI export ZIP password</a><a href="/how-to-open-character-ai-export/">How to open a Character.AI export</a><a href="/character-ai-chat-to-pdf/">Character.AI chat to PDF</a><a href="/character-ai-to-kindle/">Character.AI chats to Kindle</a><a href="/character-ai-message-json/">Character.AI message.json format</a><a href="/privacy/">Privacy &amp; refunds</a></nav>BotToBook is an independent tool. It is not affiliated with, endorsed by or connected to Character Technologies, Inc. or Character.AI. Questions: <a href="mailto:hello@yansquared.com">hello@yansquared.com</a> · Last updated: November 25, 2026</div></footer>
+</body>
+</html>

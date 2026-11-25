@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Character.AI Chat to PDF &amp; EPUB – Turn Your Export Into a Book | BotToBook</title>
-<meta name="description" content="Open your Character.AI data export (even the password-protected ZIP), read every chat, and turn them into a PDF or EPUB book with chapters, names and a cover. Runs in your browser; nothing is uploaded.">
+<title>Character.AI Chat to PDF &amp; EPUB – Export Viewer | BotToBook</title>
+<meta name="description" content="Open your Character.AI export ZIP or message.json in your browser. Read every chat free, then turn them into a PDF or EPUB book for Kindle. Nothing is uploaded.">
 <link rel="canonical" href="https://bottobook.pages.dev/">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:url" content="https://bottobook.pages.dev/">
 <meta property="og:image" content="https://bottobook.pages.dev/og.png">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
@@ -15,23 +15,17 @@
 <meta property="og:title" content="Character.AI chats to PDF &amp; EPUB – BotToBook">
 <meta property="og:description" content="Drop the ZIP Character.AI emailed you. Read your chats, then bind them into a PDF or EPUB book. Private: nothing leaves your device.">
 <meta property="og:type" content="website">
-<link rel="preload" href="fonts/fraunces-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<meta property="og:site_name" content="BotToBook">
+<link rel="preload" href="/fonts/fraunces-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">
-[{"@context":"https://schema.org","@type":"WebApplication","name":"BotToBook – Character.AI chat to PDF and EPUB","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":[{"@type":"Offer","name":"Reader and text export","price":"0","priceCurrency":"USD"},{"@type":"Offer","name":"BotToBook Pro (PDF and EPUB books)","price":"4.99","priceCurrency":"USD"}]},
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"How do I turn my Character.AI chats into a PDF?","acceptedAnswer":{"@type":"Answer","text":"Request your data in Character.AI (Profile Settings, Account, Manage Account & Data, Export Data). When the email arrives, download the ZIP and drop it on BotToBook. Pick the chats, set the names, and press PDF book; your browser saves the book as a PDF."}},
-{"@type":"Question","name":"The Character.AI ZIP asks for a password. What is it?","acceptedAnswer":{"@type":"Answer","text":"The password is the email address of your Character.AI account, typed in lowercase. Many built-in unzip tools can't open this kind of ZIP, so drop it on BotToBook instead and type your email when asked; it opens in your browser and nothing is uploaded."}},
-{"@type":"Question","name":"Why doesn't the export say who wrote each message?","acceptedAnswer":{"@type":"Answer","text":"Character.AI's official export lists each message's text, chat and time, but not whether you or the character wrote it, and not the character's name. BotToBook works out who spoke from the turn order and timing, and you can swap the sides and type the names with one click."}},
-{"@type":"Question","name":"Are my chats uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. The ZIP is opened and the book is made by JavaScript on this page. Your chats never leave your device."}},
-{"@type":"Question","name":"Can I read the book on a Kindle?","acceptedAnswer":{"@type":"Answer","text":"Yes. Send the EPUB to your Kindle with Amazon's Send to Kindle (email, app or web). Kobo, Apple Books, Google Play Books and most e-readers open EPUB directly."}}
-]}]
+[{"@context":"https://schema.org","@type":"Organization","@id":"https://bottobook.pages.dev/#org","name":"BotToBook","url":"https://bottobook.pages.dev/","logo":"https://bottobook.pages.dev/og.png","email":"hello@yansquared.com","sameAs":["https://github.com/helloyansquared/bottobook"]},{"@context":"https://schema.org","@type":"WebSite","@id":"https://bottobook.pages.dev/#site","name":"BotToBook","url":"https://bottobook.pages.dev/","inLanguage":"en-US","publisher":{"@id":"https://bottobook.pages.dev/#org"}},{"@context":"https://schema.org","@type":"WebApplication","@id":"https://bottobook.pages.dev/#app","name":"BotToBook","alternateName":"BotToBook Character.AI export viewer","url":"https://bottobook.pages.dev/","description":"Browser-based viewer for Character.AI data exports that turns chats into PDF, EPUB or HTML books. Files are processed on the device and never uploaded.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript. Current Chrome, Edge, Firefox or Safari.","image":"https://bottobook.pages.dev/og.png","isAccessibleForFree":true,"inLanguage":"en-US","datePublished":"2026-11-25","dateModified":"2026-11-25","publisher":{"@id":"https://bottobook.pages.dev/#org"},"featureList":["Opens the password-protected Character.AI export ZIP in the browser","Reads message.json, character.json and user.json","Reads CAI Tools JSON, Tavern JSONL and SillyTavern .jsonl","PDF book with cover, chapters and page numbers","EPUB 3 for Kindle, Kobo and Apple Books","Single-file HTML book","Plain text export"],"offers":[{"@type":"Offer","name":"Viewer and text export","price":"0","priceCurrency":"USD"},{"@type":"Offer","name":"BotToBook Pro (PDF, EPUB and HTML books)","price":"4.99","priceCurrency":"USD","url":"https://bottobook.pages.dev/"}]},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the password for the Character AI export ZIP?","acceptedAnswer":{"@type":"Answer","text":"The password is the email address of your Character.AI account, typed in lowercase, for example alex.smith@gmail.com and not Alex.Smith@gmail.com. It is not your login password and it is not sent separately. If you signed in with Google or Apple, try the email address of that account."}},{"@type":"Question","name":"Can Character AI chats be exported?","acceptedAnswer":{"@type":"Answer","text":"Yes. Character.AI has an official Export Data option under Profile Settings → Account → Manage Account & Data on the web, and under Settings → Legal & Privacy in the app. It emails you a link to a password-protected ZIP of your messages. Character.AI says this can take 3–4 weeks, and the link works for 7 days."}},{"@type":"Question","name":"How do I open a Character AI export?","acceptedAnswer":{"@type":"Answer","text":"Download the ZIP from Character.AI's email within 7 days. Unlock it with your account email in lowercase, or drop the ZIP on a browser viewer such as BotToBook, which decrypts it on your device. Your chats are inside message.json, a raw data file that needs a viewer before it reads like a conversation."}},{"@type":"Question","name":"How long does it take for Character AI to export data?","acceptedAnswer":{"@type":"Answer","text":"Character.AI says a data export can take 3 to 4 weeks to arrive. When it is ready you get an email with a download link that works for 7 days, so download the ZIP as soon as it arrives and keep a copy somewhere safe. Request it early if you are worried about losing access."}},{"@type":"Question","name":"How do I turn my Character AI chats into a PDF?","acceptedAnswer":{"@type":"Answer","text":"Request your data export in Character.AI settings. When the email arrives, drop the ZIP on BotToBook and enter your account email in lowercase as the password. Pick the chats, type the character's name, press PDF book, then choose Save as PDF in the print dialog. Each chat becomes a chapter with page numbers."}},{"@type":"Question","name":"Can I read my Character AI chats on a Kindle?","acceptedAnswer":{"@type":"Answer","text":"Yes. Turn your Character.AI export into an EPUB with BotToBook, then send the file to your Kindle with Amazon's Send to Kindle by email, the Kindle app or the web page. Kobo, Apple Books, Google Play Books, Boox and KOReader open the same EPUB directly, with one chapter for each chat."}},{"@type":"Question","name":"Why doesn't the Character AI export say who wrote each message?","acceptedAnswer":{"@type":"Answer","text":"Character.AI's official export lists each message's text, chat ID and time, but not whether you or the character wrote it, and not the character's name. BotToBook works out the sides from turn order and reply timing, since characters answer within seconds, and you can swap the sides or type the names yourself."}},{"@type":"Question","name":"Is it safe to open my Character AI export in BotToBook?","acceptedAnswer":{"@type":"Answer","text":"BotToBook opens the ZIP and builds the book with JavaScript running in your own browser, so your chats are never uploaded to a server. The page has no ads and no trackers. The only thing sent anywhere is a Pro license key, when you activate one, so the payment provider can confirm it."}},{"@type":"Question","name":"Is BotToBook free?","acceptedAnswer":{"@type":"Answer","text":"Opening your Character.AI export, reading every chat, setting names and downloading any chat as a text file are free, and you can preview a short book from your own chats. Full PDF, EPUB and HTML books cost $4.99 once, with no subscription, on up to three devices. A sample export is loaded so you can try every button first."}},{"@type":"Question","name":"Is Character.AI shutting down?","acceptedAnswer":{"@type":"Answer","text":"As of late November 2026, Character.AI is in a Chapter 11 sale process that it expects to finish in late November or early December, and it has said the platform could be wound down if no suitable buyer is found. Check Character.AI's own announcements for the latest, and request your export now either way."}},{"@type":"Question","name":"What files does BotToBook open?","acceptedAnswer":{"@type":"Answer","text":"The official Character.AI export (the ZIP, or message.json, character.json and user.json from inside it), CAI Tools exports (JSON and Tavern JSONL), SillyTavern .jsonl chats, and most JSON files that hold a list of messages. When a file does record who spoke, BotToBook uses that instead of guessing."}},{"@type":"Question","name":"What do I get with BotToBook Pro?","acceptedAnswer":{"@type":"Answer","text":"One payment of $4.99 unlocks full PDF, EPUB and HTML books for every chat you open, as many as you like, on up to three devices, with no subscription. Your license key appears when you return from checkout and is emailed to you, so you can enter it again any time. Questions or refunds: hello@yansquared.com."}}]}]
 </script>
 <style>
-@font-face{font-family:"Fraunces";src:url(fonts/fraunces-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
-@font-face{font-family:"Fraunces";src:url(fonts/fraunces-latin-700-normal.woff2) format("woff2");font-weight:700;font-display:swap}
-@font-face{font-family:"Instrument Sans";src:url(fonts/instrument-sans-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
-@font-face{font-family:"Instrument Sans";src:url(fonts/instrument-sans-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
-@font-face{font-family:"Instrument Sans";src:url(fonts/instrument-sans-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Fraunces";src:url(/fonts/fraunces-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Fraunces";src:url(/fonts/fraunces-latin-700-normal.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Instrument Sans";src:url(/fonts/instrument-sans-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Instrument Sans";src:url(/fonts/instrument-sans-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Instrument Sans";src:url(/fonts/instrument-sans-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
 /* VOICE  a keepsake bindery: warm, calm, a little bookish, never cute
    IDEA   loose chat bubbles go in, a bound book comes out
    PICTURE the open page of the book you're making, set like a real book, live as you edit
@@ -127,6 +121,13 @@ h2{font-size:clamp(28px,3.4vw,38px)}
 .faq summary{cursor:pointer;font-weight:600;font-size:17px;min-height:44px;display:flex;align-items:center}
 .faq p{margin:4px 0 14px;color:var(--soft)}
 .alt{background:var(--paper)}
+.lede{max-width:760px;color:var(--soft);margin:12px 0}
+.facts{border-collapse:collapse;max-width:860px;width:100%;margin:18px 0;background:var(--bg);border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:15px}
+.facts caption{text-align:left;color:var(--soft);font-size:13px;padding:0 0 8px}
+.facts th,.facts td{padding:10px 14px;border-top:1px solid var(--line);text-align:left;vertical-align:top}
+.facts th{width:28%;font-weight:600}.facts tr:first-child th,.facts tr:first-child td{border-top:0}
+code{font:.92em ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--paper);padding:1px 5px;border-radius:5px}
+.foot{display:flex;flex-wrap:wrap;gap:6px 16px;margin-bottom:12px}
 footer{background:var(--cloth2);color:#dccfe8;font-size:14px;padding:28px 0}footer a{color:#fff}
 .banner{background:var(--gold);color:#2a1a00;padding:12px 0;font-weight:500}.banner .wrap{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 @media(max-width:900px){.bench{grid-template-columns:minmax(0,1fr)}.right{border-left:0;border-top:1px solid var(--line)}.how,.price{grid-template-columns:minmax(0,1fr)}}
@@ -138,8 +139,8 @@ footer{background:var(--cloth2);color:#dccfe8;font-size:14px;padding:28px 0}foot
 <div class="banner" id="paidBanner" hidden><div class="wrap" id="paidText"></div></div>
 <header class="top"><div class="wrap">
   <div class="brand"><i></i>BotToBook</div>
-  <h1>Character.AI chats to PDF &amp; EPUB</h1>
-  <p>Drop the ZIP Character.AI emailed you — password and all. Read every chat, give each one its names, and bind them into a PDF or EPUB book with chapters and a cover. Everything happens in your browser; nothing is uploaded.</p>
+  <h1>Turn your Character.AI export into a PDF or EPUB book</h1>
+  <p>BotToBook is a free viewer for Character.AI (c.ai) data exports. Drop the ZIP Character.AI emailed you, or message.json, and read every chat in your browser. Then bind them into a PDF, EPUB or HTML book. Nothing is uploaded.</p>
 </div></header>
 
 <main class="wrap">
@@ -183,18 +184,18 @@ footer{background:var(--cloth2);color:#dccfe8;font-size:14px;padding:28px 0}foot
         <label><input type="checkbox" id="oDays" checked>Date headings</label>
       </div>
       <div class="btns">
-        <button class="btn" id="mkPdf" type="button">PDF book <span class="lock" data-lock>PRO</span></button>
-        <button class="btn" id="mkEpub" type="button">EPUB (Kindle, Kobo…) <span class="lock" data-lock>PRO</span></button>
-        <button class="btn" id="mkHtml" type="button">HTML book <span class="lock" data-lock>PRO</span></button>
+        <button class="btn" id="mkPdf" type="button">PDF book <span class="lock" data-lock>PREVIEW</span></button>
+        <button class="btn" id="mkEpub" type="button">EPUB (Kindle, Kobo…) <span class="lock" data-lock>PREVIEW</span></button>
+        <button class="btn" id="mkHtml" type="button">HTML book <span class="lock" data-lock>PREVIEW</span></button>
         <button class="btn plain" id="mkTxt" type="button">Text file (free)</button>
       </div>
       <p class="msg" id="msg" role="status"></p>
       <div class="out" id="out"></div>
       <div class="pro" id="proBox">
-        <p><b>BotToBook Pro — $4.99 once.</b> PDF, EPUB and HTML books of all your chats, as many as you like, on up to 3 browsers. Reading and text files stay free. The sample works without Pro, so you can try every button first.</p>
+        <p><b>BotToBook Pro — $4.99 once.</b> Full PDF, EPUB and HTML books of all your chats, as many as you like, on 3 devices. Reading, text files and a short preview book of your own chats stay free. The sample works without Pro, so you can try every button first.</p>
         <div class="btns"><a class="btn gold" id="buy" href="#" target="_blank" rel="noopener">Unlock Pro for $4.99</a></div>
         <small>Secure checkout by Dodo Payments opens in a new tab; this tab unlocks by itself when you've paid. Tax included. You may be charged in your local currency.</small>
-        <div class="keyrow"><input type="text" id="key" placeholder="Already bought? Paste your licence key" autocomplete="off" aria-label="Licence key"><button class="btn plain" id="keyGo" type="button">Activate</button></div>
+        <div class="keyrow"><input type="text" id="key" placeholder="Already bought? Paste your license key" autocomplete="off" aria-label="License key"><button class="btn plain" id="keyGo" type="button">Activate</button></div>
         <p class="msg" id="keyMsg" role="status"></p>
       </div>
     </div>
@@ -210,28 +211,46 @@ footer{background:var(--cloth2);color:#dccfe8;font-size:14px;padding:28px 0}foot
   </ol>
 </section>
 
-<section class="band alt">
-  <h2>Free to read. $4.99 to bind.</h2>
+<section class="band alt" id="export-format">
+  <h2>What's inside a Character.AI data export</h2>
+  <p class="lede">A Character.AI data export is a password-protected ZIP that Character.AI emails on request; the password is the account's email address in lowercase. message.json is the file in it that contains every message from all your chats in a single list.</p>
+  <table class="facts"><caption>What the official Character.AI export contains (checked November 2026)</caption><tbody><tr><th scope="row">Delivery</th><td>An emailed link to a ZIP. Character.AI says 3–4 weeks; the link is valid for 7 days.</td></tr><tr><th scope="row">ZIP password</th><td>The account's email address, in lowercase.</td></tr><tr><th scope="row">Layout</th><td>A folder named after your username, with a data folder inside.</td></tr><tr><th scope="row"><code>user.json</code></th><td>Your account profile.</td></tr><tr><th scope="row"><code>character.json</code></th><td>Only characters you created: name, greeting, definition.</td></tr><tr><th scope="row"><code>message.json</code></th><td>Every message from all your chats, in one list.</td></tr><tr><th scope="row">Fields per message</th><td><code>chat_id</code>, <code>candidate_id</code>, <code>raw_content</code>, <code>create_time</code> (microsecond precision).</td></tr><tr><th scope="row">Not included</th><td>Who wrote each message, and the name of the character you chatted with.</td></tr></tbody></table>
+  <p class="lede">Because the sender is missing, any viewer has to infer who is speaking. BotToBook uses turn order and reply timing and lets you swap the sides. <a href="/character-ai-message-json/">More on message.json</a>.</p>
+</section>
+
+<section class="band">
+  <h2>Free viewer, $4.99 one-time for books</h2>
+  <p class="lede">A typeset book, not a printout: a cover, contents, a chapter per chat, page numbers — and an EPUB that works on Kindle.</p>
   <div class="price">
-    <div><span>Free</span><b>$0</b><ul><li>Open the export ZIP (with password) or message.json</li><li>Read and browse every chat</li><li>Swap sides, add names</li><li>Download any chat as a text file</li></ul></div>
-    <div class="hi"><span>Pro · one-time</span><b>$4.99</b><ul><li>PDF book: cover, a chapter per chat, page numbers</li><li>EPUB for Kindle, Kobo, Apple Books</li><li>Single-file HTML book that opens anywhere</li><li>All your chats in one book, or one at a time</li><li>Up to 3 browsers · no subscription</li></ul></div>
+    <div><span>Free</span><b>$0</b><ul><li>Open the export ZIP (password is your account email) or message.json</li><li>Read and browse every chat</li><li>Swap sides, add names</li><li>Download any chat as a text file</li><li>Preview a short book from your own chats</li></ul></div>
+    <div class="hi"><span>Pro · one-time</span><b>$4.99</b><ul><li>PDF book: cover, a chapter per chat, page numbers</li><li>EPUB for Kindle, Kobo, Apple Books</li><li>Single-file HTML book that opens anywhere</li><li>All your chats in one book, or one at a time</li><li>Use it on 3 devices · no subscription</li><li>License key emailed to you</li></ul></div>
   </div>
 </section>
 
-<section class="band"><div class="faq">
+<section class="band alt"><div class="faq">
   <h2>Character.AI export: common questions</h2>
-  <details open><summary>The ZIP asks for a password. Where is it?</summary><p>The password is the email address your Character.AI account uses, typed in lowercase (for example <em>alex.smith@gmail.com</em>, not <em>Alex.Smith@Gmail.com</em>). The built-in unzip tools on Windows, Mac and phones often can't open this kind of encrypted ZIP even with the right password. Drop the ZIP here instead and type your email when asked — BotToBook opens it in your browser and retries in lowercase for you. If you've already unzipped it, drop <em>message.json</em> (and <em>character.json</em> and <em>user.json</em> if you like) instead.</p></details>
-  <details><summary>Why doesn't my export say who wrote each message?</summary><p>The official export lists each message's text, its chat and its time — but not whether you or the character wrote it, and not the character's name. BotToBook works out the sides from the turn order and the reply timing (characters answer within seconds; people take longer). If a chat comes out backwards, press <em>Swap who said what</em>. Then type the character's name once for that chat.</p></details>
-  <details><summary>Are my chats uploaded anywhere?</summary><p>No. The ZIP is opened and the book is built by JavaScript running on this page, on your device. There are no trackers or ads. The only thing sent anywhere is a Pro licence key, when you activate it, so it can be checked with the payment provider.</p></details>
-  <details><summary>Is Character.AI shutting down?</summary><p>As of late November 2026, Character.AI is in a Chapter 11 sale process that it expects to wrap up in late November or early December, and it has said the platform could be wound down if no suitable buyer is found. Check Character.AI's own announcements for the latest. Either way, requesting your export now and keeping a copy you can read is a good idea.</p></details>
-  <details><summary>How do I read the EPUB on a Kindle?</summary><p>Use Amazon's Send to Kindle (by email, in the Kindle app, or on the web) — it accepts EPUB files and converts them for your Kindle. Kobo, Apple Books, Google Play Books, Boox and KOReader open EPUB directly.</p></details>
-  <details><summary>How does the PDF work?</summary><p>Press <em>PDF book</em> and a print-ready book opens in a new tab: a cover, then each chat as a chapter, laid out for the page size you picked, with page numbers in Chrome and Edge. Choose <em>Save as PDF</em> in the print dialog (on iPhone: Share → Print, then Share again → Save to Files). Your browser does the typesetting, so every language and emoji comes out right.</p></details>
-  <details><summary>What files does it open?</summary><p>The official Character.AI export (ZIP, or message.json / character.json / user.json), CAI Tools exports (JSON and Tavern JSONL), SillyTavern .jsonl chats, and most JSON files that hold a list of messages. When a file does say who spoke, BotToBook uses that instead of guessing.</p></details>
-  <details><summary>What do I get with Pro, and can I get a refund?</summary><p>One payment of $4.99 unlocks PDF, EPUB and HTML books for every chat you open, on up to 3 browsers, with no subscription. The licence key is shown when you come back from checkout and is emailed to you. If it doesn't work with your export, email <a href="mailto:hello@yansquared.com">hello@yansquared.com</a> within 14 days for a refund.</p></details>
+  <details open><summary>What is the password for the Character AI export ZIP?</summary><p>The password is the email address of your Character.AI account, typed in lowercase, for example alex.smith@gmail.com and not Alex.Smith@gmail.com. It is not your login password and it is not sent separately. If you signed in with Google or Apple, try the email address of that account.</p></details>
+  <details><summary>Can Character AI chats be exported?</summary><p>Yes. Character.AI has an official Export Data option under Profile Settings → Account → Manage Account &amp; Data on the web, and under Settings → Legal &amp; Privacy in the app. It emails you a link to a password-protected ZIP of your messages. Character.AI says this can take 3–4 weeks, and the link works for 7 days.</p></details>
+  <details><summary>How do I open a Character AI export?</summary><p>Download the ZIP from Character.AI's email within 7 days. Unlock it with your account email in lowercase, or drop the ZIP on a browser viewer such as BotToBook, which decrypts it on your device. Your chats are inside message.json, a raw data file that needs a viewer before it reads like a conversation.</p></details>
+  <details><summary>How long does it take for Character AI to export data?</summary><p>Character.AI says a data export can take 3 to 4 weeks to arrive. When it is ready you get an email with a download link that works for 7 days, so download the ZIP as soon as it arrives and keep a copy somewhere safe. Request it early if you are worried about losing access.</p></details>
+  <details><summary>How do I turn my Character AI chats into a PDF?</summary><p>Request your data export in Character.AI settings. When the email arrives, drop the ZIP on BotToBook and enter your account email in lowercase as the password. Pick the chats, type the character's name, press PDF book, then choose Save as PDF in the print dialog. Each chat becomes a chapter with page numbers.</p></details>
+  <details><summary>Can I read my Character AI chats on a Kindle?</summary><p>Yes. Turn your Character.AI export into an EPUB with BotToBook, then send the file to your Kindle with Amazon's Send to Kindle by email, the Kindle app or the web page. Kobo, Apple Books, Google Play Books, Boox and KOReader open the same EPUB directly, with one chapter for each chat.</p></details>
+  <details><summary>Why doesn't the Character AI export say who wrote each message?</summary><p>Character.AI's official export lists each message's text, chat ID and time, but not whether you or the character wrote it, and not the character's name. BotToBook works out the sides from turn order and reply timing, since characters answer within seconds, and you can swap the sides or type the names yourself.</p></details>
+  <details><summary>Is it safe to open my Character AI export in BotToBook?</summary><p>BotToBook opens the ZIP and builds the book with JavaScript running in your own browser, so your chats are never uploaded to a server. The page has no ads and no trackers. The only thing sent anywhere is a Pro license key, when you activate one, so the payment provider can confirm it.</p></details>
+  <details><summary>Is BotToBook free?</summary><p>Opening your Character.AI export, reading every chat, setting names and downloading any chat as a text file are free, and you can preview a short book from your own chats. Full PDF, EPUB and HTML books cost $4.99 once, with no subscription, on up to three devices. A sample export is loaded so you can try every button first.</p></details>
+  <details><summary>Is Character.AI shutting down?</summary><p>As of late November 2026, Character.AI is in a Chapter 11 sale process that it expects to finish in late November or early December, and it has said the platform could be wound down if no suitable buyer is found. Check Character.AI's own announcements for the latest, and request your export now either way.</p></details>
+  <details><summary>What files does BotToBook open?</summary><p>The official Character.AI export (the ZIP, or message.json, character.json and user.json from inside it), CAI Tools exports (JSON and Tavern JSONL), SillyTavern .jsonl chats, and most JSON files that hold a list of messages. When a file does record who spoke, BotToBook uses that instead of guessing.</p></details>
+  <details><summary>What do I get with BotToBook Pro?</summary><p>One payment of $4.99 unlocks full PDF, EPUB and HTML books for every chat you open, as many as you like, on up to three devices, with no subscription. Your license key appears when you return from checkout and is emailed to you, so you can enter it again any time. Questions or refunds: hello@yansquared.com.</p></details>
+</div></section>
+
+<section class="band" id="about"><div class="faq">
+  <h2>About BotToBook</h2>
+  <p class="lede">BotToBook is a free browser-based viewer for Character.AI data exports that can also turn the chats into a PDF, EPUB or HTML book. It is an independent tool by YanSquared, first published on November 25, 2026; payments are handled by Dodo Payments. The code is <a href="https://github.com/helloyansquared/bottobook">on GitHub</a>. It is not affiliated with Character Technologies, Inc. or Character.AI. Contact: <a href="mailto:hello@yansquared.com">hello@yansquared.com</a>.</p>
+  <p class="lede">Guides: <a href="/character-ai-export-zip-password/">export ZIP password</a> · <a href="/how-to-open-character-ai-export/">how to open the export</a> · <a href="/character-ai-chat-to-pdf/">chat to PDF</a> · <a href="/character-ai-to-kindle/">chats to Kindle (EPUB)</a> · <a href="/character-ai-message-json/">message.json format</a></p>
 </div></section>
 </main>
 
-<footer><div class="wrap">BotToBook is an independent tool. It is not affiliated with, endorsed by or connected to Character Technologies, Inc. or Character.AI. Make books of your own chats, for your own keeping. Questions: <a href="mailto:hello@yansquared.com">hello@yansquared.com</a></div></footer>
+<footer><div class="wrap"><nav class="foot" aria-label="Guides"><a href="/character-ai-export-zip-password/">Character.AI export ZIP password</a><a href="/how-to-open-character-ai-export/">How to open a Character.AI export</a><a href="/character-ai-chat-to-pdf/">Character.AI chat to PDF</a><a href="/character-ai-to-kindle/">Character.AI chats to Kindle</a><a href="/character-ai-message-json/">Character.AI message.json format</a><a href="/privacy/">Privacy &amp; refunds</a></nav>BotToBook is an independent tool. It is not affiliated with, endorsed by or connected to Character Technologies, Inc. or Character.AI. Make books of your own chats, for your own keeping. Questions: <a href="mailto:hello@yansquared.com">hello@yansquared.com</a> · <a href="/privacy/">Privacy &amp; refunds</a> · Last updated: November 25, 2026</div></footer>
 
 <script id="sample" type="application/json">
 [{"chat_id":"sample-lighthouse","candidate_id":"s1","raw_content":"*The lamp room hums as Wren sets down a tin of tea.* You made it up all two hundred steps. Most visitors turn back at the landing.","create_time":"2026-10-03 19:02:11.204188+00:00"},
@@ -431,7 +450,7 @@ h2.chap{font:700 ${small ? "17pt" : "20pt"}/1.15 Fraunces,Georgia,serif;text-ali
     const body = chats.map(c => `<section class="ch"><h2 class="chap">${esc(chapterTitle(c, book.opt.defUser))}</h2><p class="sub">${esc(range(c.messages))} · ${c.messages.length} messages</p>\n${chatBlocks(c, book.opt)}</section>`).join("\n");
     return `<!DOCTYPE html><html lang="${esc(book.opt.lang || "en")}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(book.title)}</title><style>${css}</style></head><body>
 <div class="bar" id="bar"><span>To keep it as a PDF: press <b>Print</b> and choose <b>Save as PDF</b>.</span><button type="button" onclick="window.print()">Print / Save as PDF</button></div>
-<div class="sheet"><div class="cover"><h1>${esc(book.title)}</h1><div class="rule"></div><p>${esc(charNames.slice(0, 4).join(", "))}${charNames.length > 4 ? " and others" : ""}</p><p>${esc(range(all))}</p><p class="small">Bound with BotToBook</p></div>
+<div class="sheet"><div class="cover"><h1>${esc(book.title)}</h1><div class="rule"></div><p>${esc(charNames.slice(0, 4).join(", "))}${charNames.length > 4 ? " and others" : ""}</p><p>${esc(range(all))}</p><p class="small">${esc(book.note || "Bound with BotToBook")}</p></div>
 ${toc}${body}</div>${book.autoPrint ? `<script>window.addEventListener("load",()=>setTimeout(()=>window.print(),700))<\/script>` : ""}</body></html>`;
   }
 
@@ -444,7 +463,7 @@ nav{margin:2em 0 3em}nav a{color:inherit}section{margin-top:3em;padding-top:1em;
     return `<!DOCTYPE html><html lang="${esc(book.opt.lang || "en")}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(book.title)}</title><style>${css}</style></head><body>
 <h1>${esc(book.title)}</h1><p class="sub">${esc(range(chats.flatMap(c => c.messages)))}</p>${toc}
 ${chats.map((c, i) => `<section id="ch${i + 1}"><h2>${esc(chapterTitle(c, book.opt.defUser))}</h2><p class="sub">${esc(range(c.messages))} · ${c.messages.length} messages</p>\n${chatBlocks(c, book.opt)}</section>`).join("\n")}
-<p class="colophon">Bound with BotToBook</p></body></html>`;
+<p class="colophon">${esc(book.note || "Bound with BotToBook")}</p></body></html>`;
   }
 
   const page = (title, lang, body, cls) => `<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE html>\n<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xml:lang="${lang}" lang="${lang}">\n<head><meta charset="UTF-8"/><title>${esc(title)}</title><link rel="stylesheet" type="text/css" href="style.css"/></head>\n<body${cls ? ` class="${cls}"` : ""}>\n${body}\n</body>\n</html>`;
@@ -462,7 +481,7 @@ ${chats.map((c, i) => `<section id="ch${i + 1}"><h2>${esc(chapterTitle(c, book.o
       spine.push(`<itemref idref="cover"/>`);
     }
     const all = book.chats.flatMap(c => c.messages);
-    add(book.title, `<div class="title-page"><h1>${esc(book.title)}</h1><p class="sub">${esc(range(all))}</p></div>`);
+    add(book.title, `<div class="title-page"><h1>${esc(book.title)}</h1><p class="sub">${esc(range(all))}</p>${book.note ? `<p class="sub">${esc(book.note)}</p>` : ""}</div>`);
     for (const c of book.chats) {
       const t = chapterTitle(c, book.opt.defUser), entry = { title: t, file: null, kids: [] }, parts = Math.ceil(c.messages.length / PART);
       for (let p = 0; p < parts; p++) {
@@ -620,16 +639,21 @@ function offer(name, blob) {
   r.append(s, a); $("out").prepend(r);
 }
 const picked = () => document.querySelector('input[name=scope]:checked').value === "cur" ? [cur()] : st.chats.filter(c => c.include);
+const PREVIEW_N = 30;
 function book() {
   const chats = picked().filter(Boolean);
   const title = $("bTitle").value.trim() || (chats.length === 1 ? CORE.chapterTitle(chats[0], st.userName) : "My Character.AI chats");
-  return { title, chats, opt: opt(), size: $("bSize").value, lang: "en", author: st.userName };
+  const b = { title, chats, opt: opt(), size: $("bSize").value, lang: "en", author: st.userName };
+  if (st.pro || st.sample || !chats.length) return b;
+  // Free preview: the first messages of the first chosen chat, so people see their own book before paying.
+  const c = chats[0], total = chats.reduce((n, x) => n + x.messages.length, 0);
+  return { ...b, title: title + " (preview)", chats: [{ ...c, messages: c.messages.slice(0, PREVIEW_N) }], preview: { chats: chats.length, total },
+    note: `Free preview: the first ${Math.min(PREVIEW_N, c.messages.length)} messages. BotToBook Pro makes the full book.` };
 }
-function gate() {
-  if (st.pro || st.sample) return true;
-  $("msg").textContent = "Books are part of Pro ($4.99 once). Reading and text files are free.";
-  $("proBox").scrollIntoView({ behavior: "smooth", block: "center" }); $("buy").focus({ preventScroll: true });
-  return false;
+function previewNote(b, what) {
+  if (!b.preview) return false;
+  $("msg").textContent = `Here's a free preview ${what} — the first ${Math.min(PREVIEW_N, b.chats[0].messages.length)} messages of “${CORE.chapterTitle(b.chats[0], st.userName)}”. Unlock Pro ($4.99 once) for the full book: ${b.preview.chats} chat${b.preview.chats > 1 ? "s" : ""}, ${b.preview.total.toLocaleString("en")} messages.`;
+  return true;
 }
 function ready(b) { if (!b.chats.length) { $("msg").textContent = "Tick at least one chat on the left, or choose “Only this chat”."; return false; } return true; }
 function drawCover(title, sub) {
@@ -650,25 +674,25 @@ function drawCover(title, sub) {
   return new Promise(r => cv.toBlob(b => r(b), "image/png"));
 }
 async function makeEpub() {
-  if (!gate()) return; const b = book(); if (!ready(b)) return;
+  const b = book(); if (!ready(b)) return;
   const sub = [...new Set(b.chats.map(c => CORE.names(c, st.userName).char))].slice(0, 3).join(", ");
   const cover = await drawCover(b.title, sub);
   const bytes = CORE.buildEpub({ ...b, cover: cover ? new Uint8Array(await cover.arrayBuffer()) : null });
   offer(safe(b.title) + ".epub", new Blob([bytes], { type: "application/epub+zip" }));
-  $("msg").textContent = "Your EPUB is ready.";
+  if (!previewNote(b, "EPUB")) $("msg").textContent = "Your EPUB is ready.";
 }
 function makePdf() {
-  if (!gate()) return; const b = book(); if (!ready(b)) return;
+  const b = book(); if (!ready(b)) return;
   const html = CORE.printHtml({ ...b, autoPrint: true });
   const url = URL.createObjectURL(new Blob([html], { type: "text/html" }));
   const w = window.open(url, "_blank");
   offer(safe(b.title) + " (print).html", new Blob([html], { type: "text/html" }));
-  $("msg").textContent = w ? "Your book opened in a new tab — choose “Save as PDF” in the print dialog." : "Your browser blocked the new tab. Save the print file below, open it, and choose Print → Save as PDF.";
+  if (!previewNote(b, "book (it opened in a new tab)")) $("msg").textContent = w ? "Your book opened in a new tab — choose “Save as PDF” in the print dialog." : "Your browser blocked the new tab. Save the print file below, open it, and choose Print → Save as PDF.";
 }
 function makeHtml() {
-  if (!gate()) return; const b = book(); if (!ready(b)) return;
+  const b = book(); if (!ready(b)) return;
   offer(safe(b.title) + ".html", new Blob([CORE.readHtml(b)], { type: "text/html" }));
-  $("msg").textContent = "Your HTML book is ready. It opens in any browser, on any device.";
+  if (!previewNote(b, "HTML book")) $("msg").textContent = "Your HTML book is ready. It opens in any browser, on any device.";
 }
 function makeTxt() {
   const c = cur(); if (!c) return;
@@ -688,7 +712,7 @@ async function activate(key, where) {
     const r = await licence("activate", key);
     if (r.ok) { store.set({ key, id: r.id, at: Date.now() }); setPro(true); where.textContent = "Pro is unlocked on this browser. Thank you!"; where.classList.add("ok"); return true; }
     where.textContent = { not_found: "That key wasn't found. Check it against the email from Dodo Payments.", inactive: "That key isn't active. If you were refunded, it has been switched off.", limit: "This key is already active on 3 browsers. Email hello@yansquared.com and we'll reset it.", wrong_product: "That key is for a different product." }[r.error] || "Couldn't check the key right now. Please try again in a minute.";
-  } catch (e) { where.textContent = "Couldn't reach the licence check. Are you online?"; }
+  } catch (e) { where.textContent = "Couldn't reach the license check. Are you online?"; }
   return false;
 }
 

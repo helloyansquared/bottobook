@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Character.AI message.json Explained: Export File Format</title>
+<meta name="description" content="What&#x27;s inside a Character.AI data export: user.json, character.json and message.json, the fields in each message, what&#x27;s missing, and how viewers rebuild your chats.">
+<link rel="canonical" href="https://bottobook.pages.dev/character-ai-message-json/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article"><meta property="og:site_name" content="BotToBook"><meta property="og:title" content="Character.AI message.json Explained: Export File Format"><meta property="og:description" content="What&#x27;s inside a Character.AI data export: user.json, character.json and message.json, the fields in each message, what&#x27;s missing, and how viewers rebuild your chats.">
+<meta property="og:url" content="https://bottobook.pages.dev/character-ai-message-json/"><meta property="og:image" content="https://bottobook.pages.dev/og.png"><meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="/fonts/fraunces-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"BotToBook","item":"https://bottobook.pages.dev/"},{"@type":"ListItem","position":2,"name":"Character.AI message.json format","item":"https://bottobook.pages.dev/character-ai-message-json/"}]},{"@context":"https://schema.org","@type":"TechArticle","headline":"Character.AI message.json Explained: Export File Format","description":"What's inside a Character.AI data export: user.json, character.json and message.json, the fields in each message, what's missing, and how viewers rebuild your chats.","url":"https://bottobook.pages.dev/character-ai-message-json/","inLanguage":"en-US","datePublished":"2026-11-25","dateModified":"2026-11-25","author":{"@id":"https://bottobook.pages.dev/#org"},"publisher":{"@context":"https://schema.org","@type":"Organization","@id":"https://bottobook.pages.dev/#org","name":"BotToBook","url":"https://bottobook.pages.dev/","logo":"https://bottobook.pages.dev/og.png","email":"hello@yansquared.com","sameAs":["https://github.com/helloyansquared/bottobook"]},"mainEntityOfPage":"https://bottobook.pages.dev/character-ai-message-json/"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I read message.json from a Character AI export?","acceptedAnswer":{"@type":"Answer","text":"Open it in a viewer rather than a text editor. message.json holds every message from all your chats in one list, so a viewer has to group messages by chat_id, sort them by create_time and work out who spoke. Drop the file on BotToBook to see each conversation in order."}},{"@type":"Question","name":"What fields are in Character AI message.json?","acceptedAnswer":{"@type":"Answer","text":"Each entry in message.json has a chat_id that groups it into a conversation, a candidate_id for the reply, raw_content with the message text, and create_time, a timestamp with microsecond precision. There is no field for who wrote the message and no character name, so those have to be inferred or typed in."}},{"@type":"Question","name":"Why doesn't the Character AI export say who wrote each message?","acceptedAnswer":{"@type":"Answer","text":"Character.AI's official export lists each message's text, chat ID and time, but not whether you or the character wrote it, and not the character's name. BotToBook works out the sides from turn order and reply timing, since characters answer within seconds, and you can swap the sides or type the names yourself."}},{"@type":"Question","name":"What does \"Export Data\" on Character AI mean?","acceptedAnswer":{"@type":"Answer","text":"Export Data is Character.AI's official way to get a copy of what your account holds. You request it in settings, and Character.AI emails a link to a ZIP containing user.json (your profile), character.json (characters you created) and message.json (every message from all your chats). It is raw data, not a readable transcript."}}]}]
+</script>
+<style>@font-face{font-family:"Fraunces";src:url(/fonts/fraunces-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Fraunces";src:url(/fonts/fraunces-latin-700-normal.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Instrument Sans";src:url(/fonts/instrument-sans-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Instrument Sans";src:url(/fonts/instrument-sans-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Instrument Sans";src:url(/fonts/instrument-sans-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+:root{color-scheme:light dark;--bg:light-dark(#fffdf9,#120c18);--ink:light-dark(#21182b,#f1eaf6);--soft:light-dark(#6a5e74,#b5a8c0);--paper:light-dark(#f7f1e7,#1c1424);--line:light-dark(#e6dccd,#352944);--cloth:#3b2350;--cloth2:light-dark(#2c1a3d,#1a1024);--gold:#f2b33d;--goldink:light-dark(#9a5f00,#f6c76a)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 "Instrument Sans",system-ui,sans-serif}
+a{color:var(--goldink)}h1,h2{font-family:Fraunces,Georgia,serif;line-height:1.12;text-wrap:balance}
+.top{background:var(--cloth);color:#fff;padding:18px 0 34px}.top a{color:#fff;text-decoration:none}
+.wrap{max-width:780px;margin:0 auto;padding:0 max(4vw,18px)}
+.brand{font-weight:600;display:inline-flex;gap:8px;align-items:center}.brand i{width:20px;height:15px;background:#fff;border-radius:3px;box-shadow:inset -5px 0 0 var(--gold)}
+.crumbs{font-size:14px;color:#dccfe8;margin:18px 0 6px}.crumbs a{color:#eadff3;text-decoration:underline}
+.top h1{font-size:clamp(30px,4.6vw,44px);margin:6px 0 0}
+main{padding:28px 0 40px}.answer{font-size:19px;line-height:1.6;border-left:4px solid var(--gold);padding:4px 0 4px 16px;margin:0 0 18px}
+.cta{display:inline-flex;align-items:center;min-height:48px;padding:0 22px;border-radius:12px;background:var(--gold);color:#2a1a00;font-weight:600;text-decoration:none}
+.meta{font-size:14px;color:var(--soft);margin:14px 0 26px}
+h2{font-size:clamp(23px,3vw,29px);margin:34px 0 10px}li{margin:6px 0}
+code{font:.9em ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--paper);padding:1px 5px;border-radius:5px}
+pre{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:14px;overflow:auto}pre code{background:none;padding:0}
+.facts{border-collapse:collapse;width:100%;margin:12px 0;border:1px solid var(--line);font-size:15px}.facts caption{text-align:left;color:var(--soft);font-size:13px;padding-bottom:6px}
+.facts th,.facts td{padding:9px 12px;border-top:1px solid var(--line);text-align:left;vertical-align:top}.facts th{width:30%}
+figure{margin:18px 0}figure img{width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:#888}figcaption{font-size:14px;color:var(--soft);margin-top:6px}
+details{border-bottom:1px solid var(--line);padding:4px 0}summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center}details p{margin:2px 0 14px;color:var(--soft)}
+.related{background:var(--paper);border-radius:12px;padding:16px 18px;margin-top:30px}.related ul{margin:6px 0 0;padding-left:20px}
+footer{background:var(--cloth2);color:#dccfe8;font-size:14px;padding:24px 0}footer a{color:#fff}.foot{display:flex;flex-wrap:wrap;gap:6px 16px;margin-bottom:10px}
+a:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:2px}</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/"><i></i>BotToBook</a>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">BotToBook</a> › Character.AI message.json format</nav>
+  <h1>What is message.json in a Character.AI export?</h1>
+</div></header>
+<main class="wrap">
+<p class="answer">message.json is the file in a Character.AI data export that holds your chats. It is one list of every message from all conversations, each with a chat_id, candidate_id, raw_content and create_time. It does not record who wrote a message or the character's name, which is why it needs a viewer.</p>
+<a class="cta" href="/">Open my export in BotToBook</a>
+<p class="meta">Last updated: <time datetime="2026-11-25">November 25, 2026</time> · Free to read, nothing uploaded</p>
+
+<h2>Files in the export ZIP</h2>
+<table class="facts"><caption>What the official Character.AI export contains (checked November 2026)</caption><tbody><tr><th scope="row">Delivery</th><td>An emailed link to a ZIP. Character.AI says 3–4 weeks; the link is valid for 7 days.</td></tr><tr><th scope="row">ZIP password</th><td>The account's email address, in lowercase.</td></tr><tr><th scope="row">Layout</th><td>A folder named after your username, with a data folder inside.</td></tr><tr><th scope="row"><code>user.json</code></th><td>Your account profile.</td></tr><tr><th scope="row"><code>character.json</code></th><td>Only characters you created: name, greeting, definition.</td></tr><tr><th scope="row"><code>message.json</code></th><td>Every message from all your chats, in one list.</td></tr><tr><th scope="row">Fields per message</th><td><code>chat_id</code>, <code>candidate_id</code>, <code>raw_content</code>, <code>create_time</code> (microsecond precision).</td></tr><tr><th scope="row">Not included</th><td>Who wrote each message, and the name of the character you chatted with.</td></tr></tbody></table>
+<h2>Fields in message.json</h2>
+<p>An entry looks like this (values made up):</p>
+<pre><code>{
+  "chat_id": "a1b2c3d4-…",
+  "candidate_id": "e5f6…",
+  "raw_content": "*She sets down the lantern.* You came back.",
+  "create_time": "2026-10-03 19:02:11.204188+00:00"
+}</code></pre>
+<p><code>chat_id</code> ties the message to a conversation. <code>raw_content</code> is the text, with Character.AI's Markdown (<code>*actions*</code>, <code>**bold**</code>) left in. <code>create_time</code> has microsecond precision. Some exports are a single JSON array; others put one message per line.</p>
+<h2>What the export leaves out</h2>
+<p>There is no field for whether you or the character wrote a message, and no character name — not even for the characters you talked to. <code>character.json</code> only lists characters you created yourself.</p>
+<h2>How viewers rebuild your conversations</h2>
+<ol>
+<li>Group messages by <code>chat_id</code>.</li>
+<li>Sort each group by <code>create_time</code>.</li>
+<li>Work out who spoke. Turns alternate, and the character's replies arrive within seconds while yours take longer, so the gaps between messages show which side is which. <a href="/">BotToBook</a> does this and lets you swap the sides with one click.</li>
+<li>Name the speakers: you type the character's name once per chat.</li>
+</ol>
+<h2>character.json and user.json</h2>
+<p><code>character.json</code> holds the characters you made — name, greeting and the long definition. <code>user.json</code> holds your profile, such as your first name and the date you joined.</p>
+
+<h2>Questions</h2>
+  <details open><summary>How do I read message.json from a Character AI export?</summary><p>Open it in a viewer rather than a text editor. message.json holds every message from all your chats in one list, so a viewer has to group messages by chat_id, sort them by create_time and work out who spoke. Drop the file on BotToBook to see each conversation in order.</p></details>
+  <details><summary>What fields are in Character AI message.json?</summary><p>Each entry in message.json has a chat_id that groups it into a conversation, a candidate_id for the reply, raw_content with the message text, and create_time, a timestamp with microsecond precision. There is no field for who wrote the message and no character name, so those have to be inferred or typed in.</p></details>
+  <details><summary>Why doesn't the Character AI export say who wrote each message?</summary><p>Character.AI's official export lists each message's text, chat ID and time, but not whether you or the character wrote it, and not the character's name. BotToBook works out the sides from turn order and reply timing, since characters answer within seconds, and you can swap the sides or type the names yourself.</p></details>
+  <details><summary>What does "Export Data" on Character AI mean?</summary><p>Export Data is Character.AI's official way to get a copy of what your account holds. You request it in settings, and Character.AI emails a link to a ZIP containing user.json (your profile), character.json (characters you created) and message.json (every message from all your chats). It is raw data, not a readable transcript.</p></details>
+<aside class="related"><b>Related guides</b><ul><li><a href="/how-to-open-character-ai-export/">How to Open a Character.AI Export (ZIP or message.json)</a></li><li><a href="/character-ai-export-zip-password/">Character.AI Export ZIP Password: It's Your Email, Lowercase</a></li><li><a href="/">BotToBook: Character.AI chat to PDF &amp; EPUB</a></li></ul></aside>
+</main>
+<footer><div class="wrap"><nav class="foot" aria-label="Guides"><a href="/character-ai-export-zip-password/">Character.AI export ZIP password</a><a href="/how-to-open-character-ai-export/">How to open a Character.AI export</a><a href="/character-ai-chat-to-pdf/">Character.AI chat to PDF</a><a href="/character-ai-to-kindle/">Character.AI chats to Kindle</a><a href="/character-ai-message-json/">Character.AI message.json format</a><a href="/privacy/">Privacy &amp; refunds</a></nav>BotToBook is an independent tool. It is not affiliated with, endorsed by or connected to Character Technologies, Inc. or Character.AI. Questions: <a href="mailto:hello@yansquared.com">hello@yansquared.com</a> · Last updated: November 25, 2026</div></footer>
+</body>
+</html>
