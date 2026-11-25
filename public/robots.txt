@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bottobook.pages.dev/sitemap.xml

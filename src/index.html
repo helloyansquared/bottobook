@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Character.AI Chat to PDF &amp; EPUB – Turn Your Export Into a Book | BotToBook</title>
+<meta name="description" content="Open your Character.AI data export (even the password-protected ZIP), read every chat, and turn them into a PDF or EPUB book with chapters, names and a cover. Runs in your browser; nothing is uploaded.">
+<!--SEO-HEAD-->
+<meta property="og:title" content="Character.AI chats to PDF &amp; EPUB – BotToBook">
+<meta property="og:description" content="Drop the ZIP Character.AI emailed you. Read your chats, then bind them into a PDF or EPUB book. Private: nothing leaves your device.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+[{"@context":"https://schema.org","@type":"WebApplication","name":"BotToBook – Character.AI chat to PDF and EPUB","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (web browser)","offers":[{"@type":"Offer","name":"Reader and text export","price":"0","priceCurrency":"USD"},{"@type":"Offer","name":"BotToBook Pro (PDF and EPUB books)","price":"4.99","priceCurrency":"USD"}]},
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do I turn my Character.AI chats into a PDF?","acceptedAnswer":{"@type":"Answer","text":"Request your data in Character.AI (Profile Settings, Account, Manage Account & Data, Export Data). When the email arrives, download the ZIP and drop it on BotToBook. Pick the chats, set the names, and press PDF book; your browser saves the book as a PDF."}},
+{"@type":"Question","name":"The Character.AI ZIP asks for a password. What is it?","acceptedAnswer":{"@type":"Answer","text":"The export ZIP is password-protected. Use the password from Character.AI's email. You can type it into BotToBook, which opens the ZIP in your browser; you don't need to unzip it first."}},
+{"@type":"Question","name":"Why doesn't the export say who wrote each message?","acceptedAnswer":{"@type":"Answer","text":"Character.AI's official export lists each message's text, chat and time, but not whether you or the character wrote it, and not the character's name. BotToBook works out who spoke from the turn order and timing, and you can swap the sides and type the names with one click."}},
+{"@type":"Question","name":"Are my chats uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. The ZIP is opened and the book is made by JavaScript on this page. Your chats never leave your device."}},
+{"@type":"Question","name":"Can I read the book on a Kindle?","acceptedAnswer":{"@type":"Answer","text":"Yes. Send the EPUB to your Kindle with Amazon's Send to Kindle (email, app or web). Kobo, Apple Books, Google Play Books and most e-readers open EPUB directly."}}
+]}]
+</script>
+<style>
+/* VOICE  a keepsake bindery: warm, calm, a little bookish, never cute
+   IDEA   loose chat bubbles go in, a bound book comes out
+   PICTURE the open page of the book you're making, set like a real book, live as you edit
+   COLOUR plum book cloth, cream paper, one marigold ribbon; night = plum under lamplight
+   TYPE   Fraunces for titles, Instrument Sans for the interface, a book serif for the page
+   LAYOUT plum band with the title, the bench overlapping it (chats left, page right), then how-to, pricing, FAQ */
+:root{color-scheme:light dark;--bg:light-dark(#fffdf9,#120c18);--ink:light-dark(#21182b,#f1eaf6);--soft:light-dark(#6a5e74,#b5a8c0);
+--paper:light-dark(#f7f1e7,#1c1424);--sheet:light-dark(#fffdf8,#241a2e);--line:light-dark(#e6dccd,#352944);--cloth:#3b2350;--cloth2:light-dark(#2c1a3d,#1a1024);
+--gold:#f2b33d;--goldink:light-dark(#9a5f00,#f6c76a);--you:light-dark(#3b2350,#d9c2ef)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Instrument Sans",system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.08;text-wrap:balance;margin:0}
+a{color:var(--goldink)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 max(4vw,16px)}
+.top{background:var(--cloth);color:#fff;padding:22px 0 118px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;margin-bottom:36px}
+.brand i{width:26px;height:20px;position:relative;background:#fff;border-radius:3px 3px 3px 0}
+.brand i::after{content:"";position:absolute;left:0;bottom:-6px;border:6px solid transparent;border-left-color:#fff;border-top-color:#fff;border-width:6px 6px 0 0}
+.brand i::before{content:"";position:absolute;right:5px;top:-2px;width:4px;height:24px;background:var(--gold)}
+.top h1{font-size:clamp(34px,5vw,54px);max-width:16ch}
+.top p{max-width:62ch;font-size:17px;color:#eadff3;margin:14px 0 0}
+.bench{margin-top:-90px;background:var(--bg);border:1px solid var(--line);border-radius:18px;box-shadow:0 30px 60px -30px rgba(40,10,60,.4);
+display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.25fr);overflow:hidden}
+.left{padding:22px;display:grid;gap:14px;align-content:start}
+.right{background:var(--paper);padding:22px;display:grid;gap:14px;align-content:start;border-left:1px solid var(--line)}
+.drop{border:2px dashed var(--line);border-radius:14px;padding:20px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;display:block}
+.drop.over,.drop:hover{border-color:var(--cloth);background:light-dark(#f4edf9,#1e1528)}
+.drop b{display:block;font-size:18px}.drop span{color:var(--soft);font-size:14px}
+.pw{display:grid;gap:8px;border:1px solid var(--gold);background:light-dark(#fff7e6,#2a2010);border-radius:12px;padding:12px}
+.pw p{margin:0;font-size:14px}.pwrow{display:flex;gap:8px}
+.chats{list-style:none;margin:0;padding:0;display:grid;gap:6px;max-height:420px;overflow:auto}
+.chats li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:start;padding:10px 12px;border:1px solid var(--line);border-radius:10px;cursor:pointer;background:var(--bg)}
+.chats li.sel{border-color:var(--cloth);box-shadow:inset 3px 0 0 var(--cloth)}
+.chats input{width:18px;height:18px;margin-top:3px;accent-color:var(--cloth)}
+.chats .t{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chats .m{font-size:13px;color:var(--soft)}.chats .q{font-size:13px;color:var(--soft);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-style:italic}
+.listhead{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:14px}
+.listhead b{font-size:15px}
+.linkbtn{border:0;background:none;color:var(--goldink);font:inherit;font-size:14px;cursor:pointer;padding:6px 2px;text-decoration:underline}
+.editing{font-size:13px;color:var(--soft);margin:0}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+label.f{display:grid;gap:4px;font-size:14px;font-weight:500}
+input[type=text],input[type=password],select{font:inherit;font-size:16px;min-height:44px;padding:8px 10px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--ink);width:100%}
+.ib,.btn,.chip{font:inherit;cursor:pointer}
+.ib:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible,.chip:focus-visible,.linkbtn:focus-visible,.drop:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{min-height:38px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:14px;font-weight:500}
+.chip:hover{border-color:var(--cloth)}
+.guess{font-size:13px;color:var(--soft)}
+.page{background:var(--sheet);border:1px solid var(--line);border-radius:4px 10px 10px 4px;box-shadow:0 18px 30px -22px rgba(40,10,60,.45),inset 6px 0 10px -8px rgba(0,0,0,.25);
+padding:clamp(18px,4vw,40px) clamp(18px,4.5vw,48px);max-height:560px;overflow:auto;font:17px/1.6 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif}
+.page h3{font-family:Fraunces,Georgia,serif;text-align:center;font-size:24px;margin:4px 0 4px}
+.page .sub{text-align:center;color:var(--soft);font-size:14px;margin:0 0 18px;font-family:"Instrument Sans",system-ui,sans-serif}
+.page .day{text-align:center;font-variant:small-caps;letter-spacing:.06em;color:var(--soft);font-size:14px;margin:18px 0 10px}
+.page .m{margin:0 0 .85em}.page .m p{margin:0 0 .4em}
+.page .who{display:block;font-family:"Instrument Sans",system-ui,sans-serif;font-weight:600;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--goldink);margin-bottom:2px}
+.page .u .who{color:var(--you)}
+.page .u{padding-left:1.2em;border-left:2px solid var(--line)}
+.page .more{text-align:center;color:var(--soft);font-size:14px;font-family:"Instrument Sans",system-ui,sans-serif;margin-top:16px}
+.page .tm{font-weight:400;opacity:.7;letter-spacing:0;text-transform:none;margin-left:6px}
+.export{display:grid;gap:10px;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:16px}
+.export h3{font-size:19px}
+.opts{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px}.opts label{display:flex;gap:7px;align-items:center;min-height:32px}
+.opts input{width:18px;height:18px;accent-color:var(--cloth)}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 18px;border-radius:12px;border:0;background:var(--cloth);color:#fff;font-weight:600;font-size:15px;text-decoration:none}
+.btn.gold{background:var(--gold);color:#2a1a00;font-size:16px}
+.btn.plain{background:none;border:1px solid var(--line);color:var(--ink)}
+.btn:disabled{opacity:.5;cursor:default}
+.btn .lock{font-size:12px;font-weight:600;background:rgba(255,255,255,.18);border-radius:6px;padding:2px 6px}
+.pro{display:grid;gap:8px;border-top:1px dashed var(--line);padding-top:12px}
+.pro p{margin:0;font-size:14px}.pro small{color:var(--soft);font-size:12.5px}
+.keyrow{display:flex;gap:8px}
+.msg{font-size:14px;color:var(--goldink);margin:0;min-height:1em}
+.ok{color:light-dark(#1e6b3a,#7fd69d)}
+.out{display:grid;gap:8px}
+.out .r{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.out .r span{font-size:14px;overflow-wrap:anywhere}.out small{display:block;color:var(--soft)}
+.band{padding:clamp(36px,5vw,64px) 0}
+.how{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:22px;padding:0;list-style:none;counter-reset:s}
+.how li{counter-increment:s;border-top:3px solid var(--cloth);padding-top:14px}
+.how li::before{content:"Step " counter(s);display:block;font-weight:600;color:var(--goldink);font-size:14px;margin-bottom:4px}
+.how h3{font-size:21px;margin-bottom:6px}
+h2{font-size:clamp(28px,3.4vw,38px)}
+.price{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:22px;max-width:860px}
+.price div{border:1px solid var(--line);border-radius:14px;padding:20px;background:var(--bg)}
+.price div.hi{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold) inset}
+.price b{font-family:Fraunces,Georgia,serif;font-size:30px;display:block;margin:4px 0}
+.price ul{margin:8px 0 0;padding-left:20px}.price li{margin:3px 0}
+.faq{max-width:780px}.faq details{border-bottom:1px solid var(--line);padding:6px 0}
+.faq summary{cursor:pointer;font-weight:600;font-size:17px;min-height:44px;display:flex;align-items:center}
+.faq p{margin:4px 0 14px;color:var(--soft)}
+.alt{background:var(--paper)}
+footer{background:var(--cloth2);color:#dccfe8;font-size:14px;padding:28px 0}footer a{color:#fff}
+.banner{background:var(--gold);color:#2a1a00;padding:12px 0;font-weight:500}.banner .wrap{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+@media(max-width:900px){.bench{grid-template-columns:minmax(0,1fr)}.right{border-left:0;border-top:1px solid var(--line)}.how,.price{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){.grid2{grid-template-columns:minmax(0,1fr)}.left,.right{padding:16px}.top{padding-bottom:108px}.keyrow,.pwrow{flex-direction:column}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="banner" id="paidBanner" hidden><div class="wrap" id="paidText"></div></div>
+<header class="top"><div class="wrap">
+  <div class="brand"><i></i>BotToBook</div>
+  <h1>Character.AI chats to PDF &amp; EPUB</h1>
+  <p>Drop the ZIP Character.AI emailed you — password and all. Read every chat, give each one its names, and bind them into a PDF or EPUB book with chapters and a cover. Everything happens in your browser; nothing is uploaded.</p>
+</div></header>
+
+<main class="wrap">
+<section class="bench" aria-label="Chat to book">
+  <div class="left">
+    <label class="drop" id="drop" tabindex="0">
+      <b>Drop your Character.AI export here</b>
+      <span>the ZIP from the email, or message.json · CAI Tools &amp; SillyTavern files work too</span>
+      <input type="file" id="pick" accept=".zip,.json,.jsonl,.txt,application/zip,application/json" multiple hidden>
+    </label>
+    <div class="pw" id="pwBox" hidden>
+      <p><b>This ZIP is password-protected.</b> Type the password from Character.AI's email. It's used here in your browser only.</p>
+      <div class="pwrow"><input type="password" id="pw" autocomplete="off" aria-label="ZIP password"><button class="btn" id="pwGo" type="button">Open ZIP</button></div>
+    </div>
+    <p class="msg" id="loadMsg" role="status"></p>
+    <div class="listhead"><b id="listTitle">Chats</b><span><button class="linkbtn" id="allOn" type="button">Select all</button> · <button class="linkbtn" id="allOff" type="button">None</button></span></div>
+    <ul class="chats" id="chats"></ul>
+    <p class="editing" id="sampleNote">A short sample export is loaded so you can see how it works — drop your own file to replace it.</p>
+  </div>
+
+  <div class="right">
+    <div class="grid2">
+      <label class="f">Character's name<input type="text" id="cName" autocomplete="off" list="charList"></label>
+      <label class="f">Your name in the book<input type="text" id="uName" autocomplete="off"></label>
+    </div>
+    <datalist id="charList"></datalist>
+    <label class="f">Chapter title<input type="text" id="cTitle" autocomplete="off"></label>
+    <div class="tools"><button class="chip" id="swap" type="button">⇄ Swap who said what</button><span class="guess" id="guess"></span></div>
+    <article class="page" id="page" aria-label="Book page preview"></article>
+
+    <div class="export">
+      <h3>Make your book</h3>
+      <div class="grid2">
+        <label class="f">Book title<input type="text" id="bTitle" autocomplete="off"></label>
+        <label class="f">Page size (PDF)<select id="bSize"><option value="paperback">Paperback 5.5 × 8.5 in</option><option value="letter">US Letter</option><option value="a4">A4</option><option value="a5">A5</option></select></label>
+      </div>
+      <div class="opts">
+        <label><input type="radio" name="scope" value="sel" id="sSel" checked><span>Selected chats (<span id="nSel">0</span>)</span></label>
+        <label><input type="radio" name="scope" value="cur" id="sCur">Only this chat</label>
+        <label><input type="checkbox" id="oTime">Show message times</label>
+        <label><input type="checkbox" id="oDays" checked>Date headings</label>
+      </div>
+      <div class="btns">
+        <button class="btn" id="mkPdf" type="button">PDF book <span class="lock" data-lock>PRO</span></button>
+        <button class="btn" id="mkEpub" type="button">EPUB (Kindle, Kobo…) <span class="lock" data-lock>PRO</span></button>
+        <button class="btn" id="mkHtml" type="button">HTML book <span class="lock" data-lock>PRO</span></button>
+        <button class="btn plain" id="mkTxt" type="button">Text file (free)</button>
+      </div>
+      <p class="msg" id="msg" role="status"></p>
+      <div class="out" id="out"></div>
+      <div class="pro" id="proBox">
+        <p><b>BotToBook Pro — $4.99 once.</b> PDF, EPUB and HTML books of all your chats, as many as you like, on up to 3 browsers. Reading and text files stay free. The sample works without Pro, so you can try every button first.</p>
+        <div class="btns"><a class="btn gold" id="buy" href="#" target="_blank" rel="noopener">Unlock Pro for $4.99</a></div>
+        <small>Secure checkout by Dodo Payments opens in a new tab; this tab unlocks by itself when you've paid. Tax included. You may be charged in your local currency.</small>
+        <div class="keyrow"><input type="text" id="key" placeholder="Already bought? Paste your licence key" autocomplete="off" aria-label="Licence key"><button class="btn plain" id="keyGo" type="button">Activate</button></div>
+        <p class="msg" id="keyMsg" role="status"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <h2>How to turn Character.AI chats into a PDF or EPUB</h2>
+  <ol class="how">
+    <li><h3>Request your export</h3>On character.ai: <em>Profile Settings → Account → Manage Account &amp; Data → Export Data</em>. In the app: <em>Settings → Legal &amp; Privacy → Export Data</em>. Character.AI says it can take 3–4 weeks, and the emailed link works for 7 days.</li>
+    <li><h3>Drop the ZIP here</h3>No need to unzip it — type the password from the email. Every chat appears on the left, longest first, with its first line so you can tell them apart.</li>
+    <li><h3>Name it and bind it</h3>Type the character's name, swap the sides if the guess is off, tick the chats you want, and make a PDF or EPUB book. Send the EPUB to your Kindle or print the PDF.</li>
+  </ol>
+</section>
+
+<section class="band alt">
+  <h2>Free to read. $4.99 to bind.</h2>
+  <div class="price">
+    <div><span>Free</span><b>$0</b><ul><li>Open the export ZIP (with password) or message.json</li><li>Read and browse every chat</li><li>Swap sides, add names</li><li>Download any chat as a text file</li></ul></div>
+    <div class="hi"><span>Pro · one-time</span><b>$4.99</b><ul><li>PDF book: cover, a chapter per chat, page numbers</li><li>EPUB for Kindle, Kobo, Apple Books</li><li>Single-file HTML book that opens anywhere</li><li>All your chats in one book, or one at a time</li><li>Up to 3 browsers · no subscription</li></ul></div>
+  </div>
+</section>
+
+<section class="band"><div class="faq">
+  <h2>Character.AI export: common questions</h2>
+  <details open><summary>The ZIP asks for a password. Where is it?</summary><p>Character.AI's export ZIP is password-protected, and the password comes with the export email. Drop the ZIP here and type it in when asked — the ZIP is opened in your browser, so you don't need an unzip app. If you've already unzipped it, drop <em>message.json</em> (and <em>character.json</em> and <em>user.json</em> if you like) instead.</p></details>
+  <details><summary>Why doesn't my export say who wrote each message?</summary><p>The official export lists each message's text, its chat and its time — but not whether you or the character wrote it, and not the character's name. BotToBook works out the sides from the turn order and the reply timing (characters answer within seconds; people take longer). If a chat comes out backwards, press <em>Swap who said what</em>. Then type the character's name once for that chat.</p></details>
+  <details><summary>Are my chats uploaded anywhere?</summary><p>No. The ZIP is opened and the book is built by JavaScript running on this page, on your device. There are no trackers or ads. The only thing sent anywhere is a Pro licence key, when you activate it, so it can be checked with the payment provider.</p></details>
+  <details><summary>Is Character.AI shutting down?</summary><p>As of late November 2026, Character.AI is in a Chapter 11 sale process that it expects to wrap up in late November or early December, and it has said the platform could be wound down if no suitable buyer is found. Check Character.AI's own announcements for the latest. Either way, requesting your export now and keeping a copy you can read is a good idea.</p></details>
+  <details><summary>How do I read the EPUB on a Kindle?</summary><p>Use Amazon's Send to Kindle (by email, in the Kindle app, or on the web) — it accepts EPUB files and converts them for your Kindle. Kobo, Apple Books, Google Play Books, Boox and KOReader open EPUB directly.</p></details>
+  <details><summary>How does the PDF work?</summary><p>Press <em>PDF book</em> and a print-ready book opens in a new tab: a cover, then each chat as a chapter, laid out for the page size you picked, with page numbers in Chrome and Edge. Choose <em>Save as PDF</em> in the print dialog (on iPhone: Share → Print, then Share again → Save to Files). Your browser does the typesetting, so every language and emoji comes out right.</p></details>
+  <details><summary>What files does it open?</summary><p>The official Character.AI export (ZIP, or message.json / character.json / user.json), CAI Tools exports (JSON and Tavern JSONL), SillyTavern .jsonl chats, and most JSON files that hold a list of messages. When a file does say who spoke, BotToBook uses that instead of guessing.</p></details>
+  <details><summary>What do I get with Pro, and can I get a refund?</summary><p>One payment of $4.99 unlocks PDF, EPUB and HTML books for every chat you open, on up to 3 browsers, with no subscription. The licence key is shown when you come back from checkout and is emailed to you. If it doesn't work with your export, email <a href="mailto:hello@yansquared.com">hello@yansquared.com</a> within 14 days for a refund.</p></details>
+</div></section>
+</main>
+
+<footer><div class="wrap">BotToBook is an independent tool. It is not affiliated with, endorsed by or connected to Character Technologies, Inc. or Character.AI. Make books of your own chats, for your own keeping. Questions: <a href="mailto:hello@yansquared.com">hello@yansquared.com</a></div></footer>
+
+<script id="sample" type="application/json">
+[{"chat_id":"sample-lighthouse","candidate_id":"s1","raw_content":"*The lamp room hums as Wren sets down a tin of tea.* You made it up all two hundred steps. Most visitors turn back at the landing.","create_time":"2026-10-03 19:02:11.204188+00:00"},
+{"chat_id":"sample-lighthouse","candidate_id":"s2","raw_content":"I almost did. Why does the light still turn if no ships come this way anymore?","create_time":"2026-10-03 19:03:40.551002+00:00"},
+{"chat_id":"sample-lighthouse","candidate_id":"s3","raw_content":"Because somebody might. *She wipes the great lens with her sleeve.* A lighthouse that only shines for the ships it expects isn't a lighthouse. It's an **appointment**.","create_time":"2026-10-03 19:03:46.917310+00:00"},
+{"chat_id":"sample-lighthouse","candidate_id":"s4","raw_content":"That's a very lighthouse-keeper thing to say.","create_time":"2026-10-03 19:05:02.110000+00:00"},
+{"chat_id":"sample-lighthouse","candidate_id":"s5","raw_content":"*Wren laughs and pours two cups.* Eleven years up here. You start talking like the weather report.\n\nNow — tell me what brought you out on a night like this.","create_time":"2026-10-03 19:05:08.402771+00:00"},
+{"chat_id":"sample-lighthouse","candidate_id":"s6","raw_content":"I wanted to see the storm from somewhere it couldn't reach me.","create_time":"2026-10-04 20:14:55.000000+00:00"},
+{"chat_id":"sample-lighthouse","candidate_id":"s7","raw_content":"Then you've come to the right tower. *She dims the lamp-room light so the sea shows through the glass.* Watch the third wave from the left. It always breaks the highest.","create_time":"2026-10-04 20:15:01.338820+00:00"},
+{"chat_id":"sample-garden","candidate_id":"g1","raw_content":"Good morning! The tomatoes staged a rebellion overnight. *Professor Bramble holds up a vine that has escaped its stake.*","create_time":"2026-11-02 08:30:00.000000+00:00"},
+{"chat_id":"sample-garden","candidate_id":"g2","raw_content":"Should we tie it back or let it win?","create_time":"2026-11-02 08:31:12.000000+00:00"},
+{"chat_id":"sample-garden","candidate_id":"g3","raw_content":"Let it win a little. A plant that climbs is a plant that's happy. We'll give it a taller stake and pretend that was the plan.","create_time":"2026-11-02 08:31:17.000000+00:00"}]
+</script>
+<script src="vendor/zip.min.js" defer></script>
+<script>
+{
+/*CORE-START*/
+const CORE = (() => {
+  const isObj = v => !!v && typeof v === "object" && !Array.isArray(v);
+  const str = v => (typeof v === "string" ? v : "");
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const BADCH = /[\u0000-\u0008\u000B\u000C\u000E-\u001F￾￿]/g;
+
+  // Time of a message in ms: number (s or ms), ISO, "2026-11-01 09:00:00.123456+00:00", SillyTavern "2023-8-1 @12h 30m 45s 123ms"; 0 = unknown.
+  function timeOf(v) {
+    if (typeof v === "number" && isFinite(v) && v > 0) return v > 1e12 ? Math.round(v) : Math.round(v * 1000);
+    let s = str(v).trim(); if (!s) return 0;
+    if (/^\d{9,13}(\.\d+)?$/.test(s)) return timeOf(Number(s));
+    const st = /^(\d{4})-(\d{1,2})-(\d{1,2})\s*@\s*(\d{1,2})h\s*(\d{1,2})m\s*(\d{1,2})s(?:\s*(\d{1,3})ms)?/.exec(s);
+    if (st) return new Date(+st[1], +st[2] - 1, +st[3], +st[4], +st[5], +st[6], +(st[7] || 0)).getTime();
+    s = s.replace(/^(\d{4}-\d{2}-\d{2})[ T](\d{2}:\d{2}(?::\d{2})?)(\.\d+)?\s*(Z|[+-]\d{2}:?\d{2}|UTC)?$/i, (m, d, t, f, z) =>
+      `${d}T${t.length === 5 ? t + ":00" : t}${f ? f.slice(0, 4).padEnd(4, "0") : ""}${!z ? "Z" : /utc/i.test(z) ? "Z" : z.length === 5 ? z.slice(0, 3) + ":" + z.slice(3) : z}`);
+    const t = Date.parse(s); return isFinite(t) ? t : 0;
+  }
+  const textOf = v => typeof v === "string" ? v : Array.isArray(v) ? v.map(x => typeof x === "string" ? x : isObj(x) ? str(x.text) : "").join("") : "";
+  const CHAT_KEYS = ["chat_id", "history_id", "chatId", "history_external_id", "conversation_id", "external_history_id", "chat"];
+
+  // One message from any known shape; null = not a message.
+  function messageOf(o) {
+    if (!isObj(o) || o.is_system === true || o.type === "service") return null;
+    let cand = isObj(o.candidate) ? o.candidate : null;
+    if (!cand && Array.isArray(o.candidates) && o.candidates.length) cand = o.candidates.find(c => isObj(c) && c.candidate_id && c.candidate_id === o.primary_candidate_id) || o.candidates[0];
+    const text = str(o.mes) || str(o.raw_content) || textOf(o.text) || str(o.content) || str(o.message) || (isObj(cand) ? str(cand.raw_content) || str(cand.text) : "");
+    if (!text.trim()) return null;
+    let role = "";
+    const human = o.is_user ?? o.is_human ?? o.isHuman ?? o.src__is_human ?? (isObj(o.author) ? o.author.is_human : undefined) ?? (isObj(o.src) ? o.src.is_human : undefined);
+    if (typeof human === "boolean") role = human ? "user" : "char";
+    else {
+      const r = (str(o.role) || str(o.sender) || str(o.side)).toLowerCase();
+      if (["user", "human", "you", "me"].includes(r)) role = "user";
+      else if (["assistant", "bot", "char", "character", "model", "ai"].includes(r)) role = "char";
+    }
+    const name = (str(o.name) || str(o.src__name) || str(o.author_name) || str(o.sender_name) || (isObj(o.author) ? str(o.author.name) : str(o.author)) || (isObj(o.src) ? str(o.src.name) : "")).trim();
+    const at = timeOf(o.create_time ?? o.created_at ?? o.send_date ?? o.created ?? o.timestamp ?? o.date_unixtime ?? o.date ?? o.time ?? (isObj(cand) ? cand.create_time : undefined));
+    let chat = "";
+    for (const k of CHAT_KEYS) { const v = o[k]; if (typeof v === "string" || typeof v === "number") { chat = String(v); break; } }
+    return { text: text.replace(BADCH, ""), role, name, at, chat };
+  }
+
+  // JSON or JSON Lines; undefined when neither.
+  function parseJsonish(text) {
+    const t = text.replace(/^﻿/, "").trim();
+    if (!t) return undefined;
+    try { return JSON.parse(t); } catch (e) {}
+    const out = [];
+    for (const line of t.split(/\r?\n/)) { const l = line.trim(); if (!l) continue; try { out.push(JSON.parse(l)); } catch (e) { return undefined; } }
+    return out.length ? out : undefined;
+  }
+
+  const looksLikeMessages = arr => { const p = arr.slice(0, 40); const hits = p.filter(x => messageOf(x)).length; return hits > 0 && hits >= p.length * 0.5; };
+  const charOf = v => isObj(v) && (str(v.name) || str(v.title) || str(v.participant__name)) && ["greeting", "definition", "description", "tagline"].some(k => typeof v[k] === "string") ? (str(v.name) || str(v.title) || str(v.participant__name)).trim() : "";
+
+  // files: [{name, text}] -> {chats:[{id,title,charName,userName,messages:[{text,role,name,at}],known}], characters:[names], userName}
+  function parseExport(files) {
+    const groups = new Map(), characters = new Set(); let userName = "", recognised = 0;
+    const group = (key, meta) => { if (!groups.has(key)) groups.set(key, { id: key, msgs: [], charName: "", userName: "", title: "" }); const g = groups.get(key); for (const k of ["charName", "userName", "title"]) if (meta[k] && !g[k]) g[k] = meta[k]; return g; };
+    const visit = (v, file, path, meta, depth) => {
+      if (depth > 8) return;
+      if (Array.isArray(v)) {
+        if (v.length && looksLikeMessages(v)) {
+          recognised++;
+          const m2 = { ...meta };
+          for (const x of v) if (isObj(x) && !messageOf(x) && (x.character_name || x.user_name)) { m2.charName = m2.charName || str(x.character_name); m2.userName = m2.userName || str(x.user_name); }
+          for (const x of v) { const m = messageOf(x); if (!m) continue; group(m.chat ? "c:" + m.chat : file + path, m2).msgs.push(m); }
+          return;
+        }
+        v.forEach((x, i) => (isObj(x) || Array.isArray(x)) && visit(x, file, path + "/" + i, meta, depth + 1));
+        return;
+      }
+      if (!isObj(v)) return;
+      const c = charOf(v); if (c) characters.add(c);
+      if (!userName) { const u = isObj(v.user) ? v.user : v; if (typeof u.email === "string" || typeof u.date_joined === "string" || typeof u.username === "string" && typeof u.first_name === "string") userName = (str(u.first_name) || str(u.name) || str(u.username)).trim(); }
+      const m2 = { ...meta };
+      const cn = str(v.character_name) || str(v.char_name) || str(v.participant__name) || (isObj(v.character) ? str(v.character.name) : "");
+      if (cn) m2.charName = cn.trim();
+      if (str(v.user_name)) m2.userName = str(v.user_name).trim();
+      if (str(v.title) && (Array.isArray(v.messages) || Array.isArray(v.turns) || Array.isArray(v.history))) m2.title = str(v.title).trim();
+      for (const [k, x] of Object.entries(v)) if (isObj(x) || Array.isArray(x)) visit(x, file, path + "/" + k, m2, depth + 1);
+    };
+    for (const f of files) { const v = parseJsonish(f.text); if (v !== undefined) visit(v, f.name, "", {}, 0); }
+    const chats = [];
+    for (const g of groups.values()) {
+      const seen = new Set(), msgs = [];
+      for (const m of g.msgs) { const k = m.at + "|" + m.text; if (m.at && seen.has(k)) continue; seen.add(k); msgs.push(m); }
+      if (msgs.length && msgs.every(m => m.at > 0)) msgs.sort((a, b) => a.at - b.at);
+      if (!msgs.length) continue;
+      const known = msgs.filter(m => m.role).length >= msgs.length * 0.6;
+      const names = {};
+      if (known) for (const m of msgs) if (m.name) names[m.role] = names[m.role] || m.name;
+      chats.push({ id: g.id, title: g.title, charName: g.charName || names.char || "", userName: g.userName || names.user || "", messages: msgs, known, offset: known ? 0 : guessOffset(msgs), swapped: false });
+    }
+    chats.sort((a, b) => b.messages.length - a.messages.length);
+    return { chats, characters: [...characters], userName, recognised };
+  }
+
+  // Official exports don't say who spoke. Turns alternate; replies from the character come within seconds,
+  // people take longer. offset 0 = first message is the character's (the greeting).
+  function guessOffset(msgs) {
+    if (msgs.length < 6 || !msgs.every(m => m.at > 0)) return 0;
+    const med = a => { if (!a.length) return Infinity; const s = [...a].sort((x, y) => x - y); return s[s.length >> 1]; };
+    const score = p => { const g = []; for (let i = 0; i + 1 < msgs.length; i++) if ((i + p) % 2 === 1) g.push(msgs[i + 1].at - msgs[i].at); return med(g); };
+    const s0 = score(0), s1 = score(1);
+    return s1 * 1.5 < s0 ? 1 : 0;
+  }
+  const roleAt = (chat, i) => {
+    const m = chat.messages[i];
+    let r = chat.known && m.role ? m.role : ((i + chat.offset) % 2 === 0 ? "char" : "user");
+    if (chat.swapped) r = r === "char" ? "user" : "char";
+    return r;
+  };
+
+  // Light Markdown used in chats: **bold**, *action* / _action_, line breaks. Returns XHTML-safe paragraphs.
+  function mdParas(text) {
+    return text.replace(/\r\n?/g, "\n").split(/\n{2,}/).map(p => p.trim()).filter(Boolean).map(p => {
+      let h = esc(p);
+      h = h.replace(/\*\*(?=\S)([^*\n]+?)\*\*/g, "<strong>$1</strong>").replace(/(^|[^*\w])\*(?=\S)([^*\n]+?)\*(?!\w)/g, "$1<em>$2</em>").replace(/(^|[^\w])_(?=\S)([^_\n]+?)_(?!\w)/g, "$1<em>$2</em>");
+      return h.replace(/\n/g, "<br/>");
+    });
+  }
+  const dayFmt = (ms, lang) => { try { return new Date(ms).toLocaleDateString(lang || "en", { weekday: "long", year: "numeric", month: "long", day: "numeric" }); } catch (e) { return new Date(ms).toDateString(); } };
+  const timeFmt = (ms, lang) => { try { return new Date(ms).toLocaleTimeString(lang || "en", { hour: "numeric", minute: "2-digit" }); } catch (e) { return ""; } };
+  const names = (chat, defUser) => ({ char: (chat.charName || "").trim() || "Character", user: (chat.userName || "").trim() || (defUser || "").trim() || "You" });
+  const chapterTitle = (chat, defUser) => (chat.title || "").trim() || `Conversations with ${names(chat, defUser).char}`;
+  const range = msgs => { const a = msgs.find(m => m.at), b = [...msgs].reverse().find(m => m.at); if (!a) return ""; const f = d => new Date(d).toLocaleDateString("en", { year: "numeric", month: "short", day: "numeric" }); return f(a.at) === f(b.at) ? f(a.at) : `${f(a.at)} – ${f(b.at)}`; };
+
+  // Message blocks for one chat (from..to), as XHTML. opt: {times, days, lang, defUser}
+  function chatBlocks(chat, opt, from = 0, to = chat.messages.length) {
+    const nm = names(chat, opt.defUser), out = []; let lastDay = from > 0 && chat.messages[from - 1].at ? new Date(chat.messages[from - 1].at).toDateString() : "";
+    for (let i = from; i < to; i++) {
+      const m = chat.messages[i], r = roleAt(chat, i);
+      if (opt.days && m.at) { const d = new Date(m.at).toDateString(); if (d !== lastDay) { out.push(`<p class="day">${esc(dayFmt(m.at, opt.lang))}</p>`); lastDay = d; } }
+      const paras = mdParas(m.text);
+      out.push(`<div class="m ${r === "user" ? "u" : "c"}"><span class="who">${esc(r === "user" ? nm.user : nm.char)}${opt.times && m.at ? `<span class="tm">${esc(timeFmt(m.at, opt.lang))}</span>` : ""}</span>${paras.map(p => `<p>${p}</p>`).join("")}</div>`);
+    }
+    return out.join("\n");
+  }
+  const txtOf = (chat, defUser) => {
+    const nm = names(chat, defUser);
+    const lines = [chapterTitle(chat, defUser), range(chat.messages), ""];
+    chat.messages.forEach((m, i) => { const r = roleAt(chat, i); lines.push(`${r === "user" ? nm.user : nm.char}${m.at ? " (" + new Date(m.at).toLocaleString("en") + ")" : ""}:`, m.text, ""); });
+    return lines.join("\n");
+  };
+
+  const BOOK_CSS = `body{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;line-height:1.55;margin:0 4%}
+h1,h2{text-align:center;line-height:1.2;margin:1.4em 0 .3em}h1{font-size:1.7em}h2{font-size:1.35em}.sub{text-align:center;font-size:.9em;opacity:.7;margin:0 0 1.6em}
+.day{text-align:center;font-variant:small-caps;letter-spacing:.05em;opacity:.7;margin:1.4em 0 .8em;font-size:.92em}
+.m{margin:0 0 .9em}.m p{margin:0 0 .35em}.who{display:block;font-family:sans-serif;font-weight:bold;font-size:.72em;letter-spacing:.08em;text-transform:uppercase;color:#8a5a00;margin-bottom:.1em}
+.u{padding-left:1em;border-left:2px solid #ccc}.u .who{color:#3b2350}.tm{font-weight:normal;opacity:.7;letter-spacing:0;text-transform:none;margin-left:.5em}
+.cover{margin:0;padding:0;text-align:center}.cover img{max-width:100%;max-height:100%}.title-page{text-align:center;margin-top:30%}.colophon{text-align:center;font-size:.85em;opacity:.7;margin-top:3em}`;
+
+  // Print-ready HTML book. book: {title, chats, opt, size}
+  function printHtml(book) {
+    const sizes = { paperback: "5.5in 8.5in", letter: "letter", a4: "A4", a5: "A5" };
+    const small = book.size === "paperback" || book.size === "a5";
+    const css = `@page{size:${sizes[book.size] || "letter"};margin:${small ? "0.7in 0.6in 0.75in" : "0.9in 0.85in 0.95in"};@bottom-center{content:counter(page);font:9pt Georgia,serif;color:#777}}
+@page:first{@bottom-center{content:none}}
+html{background:#e9e4dc}body{margin:0;font:${small ? "10.5pt" : "11.5pt"}/1.5 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Noto Serif",serif;color:#1d1a17}
+.sheet{background:#fff;max-width:${small ? "5.5in" : "8.3in"};margin:24px auto;padding:${small ? "0.7in 0.6in" : "0.9in 0.85in"};box-shadow:0 10px 30px rgba(0,0,0,.15)}
+.cover{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;min-height:${small ? "6.6in" : "8.8in"};break-after:page}
+.cover h1{font:700 ${small ? "28pt" : "34pt"}/1.1 Fraunces,Georgia,serif;margin:0 0 14pt}.cover .rule{width:60pt;height:0;border-top:3pt solid #f2b33d;margin:6pt auto 16pt}
+.cover p{margin:2pt 0;color:#555}.cover .small{font-size:8.5pt;color:#999;margin-top:40pt}
+.toc{break-after:page}.toc h2{font:600 16pt Fraunces,Georgia,serif;margin:0 0 14pt;text-align:left}.toc ol{padding-left:1.2em}.toc li{margin:4pt 0}.toc span{color:#888;font-size:.9em}
+section.ch{break-before:page}section.ch:first-of-type{break-before:auto}
+h2.chap{font:700 ${small ? "17pt" : "20pt"}/1.15 Fraunces,Georgia,serif;text-align:center;margin:${small ? "0.6in" : "0.9in"} 0 4pt}
+.sub{text-align:center;color:#888;font-size:9pt;margin:0 0 20pt;font-family:system-ui,sans-serif}
+.day{text-align:center;font-variant:small-caps;letter-spacing:.05em;color:#888;margin:14pt 0 8pt;font-size:9.5pt;break-after:avoid}
+.m{margin:0 0 9pt;break-inside:avoid-page;orphans:3;widows:3}.m p{margin:0 0 3pt}
+.who{display:block;font:600 7.5pt system-ui,"Helvetica Neue",Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#9a5f00;margin-bottom:1pt;break-after:avoid}
+.u{padding-left:10pt;border-left:1.5pt solid #ddd}.u .who{color:#3b2350}.tm{font-weight:400;color:#999;letter-spacing:0;text-transform:none;margin-left:5pt}
+.bar{position:sticky;top:0;background:#3b2350;color:#fff;padding:10px 16px;font:14px system-ui,sans-serif;display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:center;z-index:2}
+.bar button{font:600 15px system-ui,sans-serif;background:#f2b33d;color:#2a1a00;border:0;border-radius:9px;padding:9px 16px;cursor:pointer}
+@media print{html{background:#fff}.bar{display:none}.sheet{box-shadow:none;margin:0;padding:0;max-width:none}.cover{min-height:auto;height:${small ? "6.9in" : "9in"}}}`;
+    const chats = book.chats;
+    const toc = chats.length > 1 ? `<nav class="toc"><h2>Contents</h2><ol>${chats.map(c => `<li>${esc(chapterTitle(c, book.opt.defUser))} <span>· ${c.messages.length} messages</span></li>`).join("")}</ol></nav>` : "";
+    const all = chats.flatMap(c => c.messages);
+    const charNames = [...new Set(chats.map(c => names(c, book.opt.defUser).char))];
+    const body = chats.map(c => `<section class="ch"><h2 class="chap">${esc(chapterTitle(c, book.opt.defUser))}</h2><p class="sub">${esc(range(c.messages))} · ${c.messages.length} messages</p>\n${chatBlocks(c, book.opt)}</section>`).join("\n");
+    return `<!DOCTYPE html><html lang="${esc(book.opt.lang || "en")}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(book.title)}</title><style>${css}</style></head><body>
+<div class="bar" id="bar"><span>To keep it as a PDF: press <b>Print</b> and choose <b>Save as PDF</b>.</span><button type="button" onclick="window.print()">Print / Save as PDF</button></div>
+<div class="sheet"><div class="cover"><h1>${esc(book.title)}</h1><div class="rule"></div><p>${esc(charNames.slice(0, 4).join(", "))}${charNames.length > 4 ? " and others" : ""}</p><p>${esc(range(all))}</p><p class="small">Bound with BotToBook</p></div>
+${toc}${body}</div>${book.autoPrint ? `<script>window.addEventListener("load",()=>setTimeout(()=>window.print(),700))<\/script>` : ""}</body></html>`;
+  }
+
+  // Single-file HTML book for reading on any device.
+  function readHtml(book) {
+    const chats = book.chats;
+    const css = `${BOOK_CSS}\nbody{max-width:42em;margin:0 auto;padding:2em 1.2em;color:#1d1a17;background:#fffdf8;font-size:18px}@media(prefers-color-scheme:dark){body{background:#17121c;color:#eee}.who{color:#f2b33d}.u .who{color:#d9c2ef}.u{border-color:#444}}
+nav{margin:2em 0 3em}nav a{color:inherit}section{margin-top:3em;padding-top:1em;border-top:1px solid #8884}`;
+    const toc = chats.length > 1 ? `<nav><h2>Contents</h2><ol>${chats.map((c, i) => `<li><a href="#ch${i + 1}">${esc(chapterTitle(c, book.opt.defUser))}</a></li>`).join("")}</ol></nav>` : "";
+    return `<!DOCTYPE html><html lang="${esc(book.opt.lang || "en")}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(book.title)}</title><style>${css}</style></head><body>
+<h1>${esc(book.title)}</h1><p class="sub">${esc(range(chats.flatMap(c => c.messages)))}</p>${toc}
+${chats.map((c, i) => `<section id="ch${i + 1}"><h2>${esc(chapterTitle(c, book.opt.defUser))}</h2><p class="sub">${esc(range(c.messages))} · ${c.messages.length} messages</p>\n${chatBlocks(c, book.opt)}</section>`).join("\n")}
+<p class="colophon">Bound with BotToBook</p></body></html>`;
+  }
+
+  const page = (title, lang, body, cls) => `<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE html>\n<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops" xml:lang="${lang}" lang="${lang}">\n<head><meta charset="UTF-8"/><title>${esc(title)}</title><link rel="stylesheet" type="text/css" href="style.css"/></head>\n<body${cls ? ` class="${cls}"` : ""}>\n${body}\n</body>\n</html>`;
+  const PART = 350;
+
+  // EPUB 3 with an NCX table of contents. book: {title, author, lang, cover: Uint8Array|null, chats, opt}
+  function buildEpub(book) {
+    const L = book.lang || "en", files = [], manifest = [], spine = [], toc = [];
+    let n = 0;
+    const add = (title, body, cls) => { n++; const f = `p${String(n).padStart(4, "0")}.xhtml`; files.push({ name: "OEBPS/" + f, data: page(title, L, body, cls) }); manifest.push(`<item id="p${n}" href="${f}" media-type="application/xhtml+xml"/>`); spine.push(`<itemref idref="p${n}"/>`); return f; };
+    if (book.cover) {
+      files.push({ name: "OEBPS/cover.png", data: book.cover });
+      files.push({ name: "OEBPS/cover.xhtml", data: page("Cover", L, `<div class="cover"><img src="cover.png" alt="${esc(book.title)}"/></div>`, "cover") });
+      manifest.push(`<item id="cover-image" href="cover.png" media-type="image/png" properties="cover-image"/>`, `<item id="cover" href="cover.xhtml" media-type="application/xhtml+xml"/>`);
+      spine.push(`<itemref idref="cover"/>`);
+    }
+    const all = book.chats.flatMap(c => c.messages);
+    add(book.title, `<div class="title-page"><h1>${esc(book.title)}</h1><p class="sub">${esc(range(all))}</p></div>`);
+    for (const c of book.chats) {
+      const t = chapterTitle(c, book.opt.defUser), entry = { title: t, file: null, kids: [] }, parts = Math.ceil(c.messages.length / PART);
+      for (let p = 0; p < parts; p++) {
+        const from = p * PART, to = Math.min(c.messages.length, from + PART);
+        const head = p === 0 ? `<h2>${esc(t)}</h2><p class="sub">${esc(range(c.messages))} · ${c.messages.length} messages</p>\n` : "";
+        const f = add(parts > 1 ? `${t} (${p + 1})` : t, head + chatBlocks(c, book.opt, from, to));
+        if (!entry.file) entry.file = f;
+        if (parts > 1) entry.kids.push({ title: `Part ${p + 1}` + (c.messages[from].at ? ` · ${new Date(c.messages[from].at).toLocaleDateString("en", { year: "numeric", month: "short", day: "numeric" })}` : ""), file: f });
+      }
+      toc.push(entry);
+    }
+    const navLi = e => `<li><a href="${e.file}">${esc(e.title)}</a>${e.kids && e.kids.length ? `<ol>${e.kids.map(navLi).join("")}</ol>` : ""}</li>`;
+    files.push({ name: "OEBPS/nav.xhtml", data: page("Contents", L, `<nav epub:type="toc" id="toc"><h1>Contents</h1><ol>${toc.map(navLi).join("")}</ol></nav>`) });
+    let po = 0, ni = 0; const ord = new Map(); const np = e => { ni++; if (!ord.has(e.file)) ord.set(e.file, ++po); return `<navPoint id="n${ni}" playOrder="${ord.get(e.file)}"><navLabel><text>${esc(e.title)}</text></navLabel><content src="${e.file}"/>${(e.kids || []).map(np).join("")}</navPoint>`; };
+    const uid = "urn:uuid:" + (globalThis.crypto && crypto.randomUUID ? crypto.randomUUID() : "00000000-0000-4000-8000-" + Date.now().toString(16).padStart(12, "0").slice(-12));
+    // NCX playOrder must follow spine order: the first file of each chapter comes before its parts.
+    const ncxMap = toc.map(e => { const kids = e.kids.length > 1 ? e.kids : []; return np({ ...e, kids }); }).join("");
+    files.push({ name: "OEBPS/toc.ncx", data: `<?xml version="1.0" encoding="UTF-8"?>\n<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1"><head><meta name="dtb:uid" content="${uid}"/><meta name="dtb:depth" content="2"/><meta name="dtb:totalPageCount" content="0"/><meta name="dtb:maxPageNumber" content="0"/></head><docTitle><text>${esc(book.title)}</text></docTitle><navMap>${ncxMap}</navMap></ncx>` });
+    files.push({ name: "OEBPS/style.css", data: BOOK_CSS });
+    const mod = new Date().toISOString().replace(/\.\d+Z$/, "Z");
+    const opf = `<?xml version="1.0" encoding="UTF-8"?>\n<package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="bookid" xml:lang="${L}">\n<metadata xmlns:dc="http://purl.org/dc/elements/1.1/"><dc:identifier id="bookid">${uid}</dc:identifier><dc:title>${esc(book.title)}</dc:title>${book.author ? `<dc:creator>${esc(book.author)}</dc:creator>` : ""}<dc:language>${L}</dc:language><meta property="dcterms:modified">${mod}</meta>${book.cover ? '<meta name="cover" content="cover-image"/>' : ""}</metadata>\n<manifest><item id="nav" href="nav.xhtml" media-type="application/xhtml+xml" properties="nav"/><item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml"/><item id="css" href="style.css" media-type="text/css"/>${manifest.join("")}</manifest>\n<spine toc="ncx">${spine.join("")}</spine>\n</package>`;
+    return zip([{ name: "mimetype", data: "application/epub+zip" }, { name: "META-INF/container.xml", data: `<?xml version="1.0" encoding="UTF-8"?>\n<container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container"><rootfiles><rootfile full-path="OEBPS/content.opf" media-type="application/oebps-package+xml"/></rootfiles></container>` }, { name: "OEBPS/content.opf", data: opf }, ...files]);
+  }
+
+  const CRC = (() => { const t = new Uint32Array(256); for (let i = 0; i < 256; i++) { let c = i; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[i] = c >>> 0; } return t; })();
+  const crc32 = b => { let c = 0xFFFFFFFF; for (let i = 0; i < b.length; i++) c = CRC[(c ^ b[i]) & 255] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; };
+  function zip(list) {
+    const enc = new TextEncoder(), parts = [], cen = []; let off = 0;
+    const d = new Date(), tm = (d.getHours() << 11) | (d.getMinutes() << 5) | (d.getSeconds() >> 1), dt = ((d.getFullYear() - 1980) << 9) | ((d.getMonth() + 1) << 5) | d.getDate();
+    for (const f of list) {
+      const nm = enc.encode(f.name), data = typeof f.data === "string" ? enc.encode(f.data) : f.data, crc = crc32(data), fl = /^[\x20-\x7e]*$/.test(f.name) ? 0 : 0x0800;
+      const h = new DataView(new ArrayBuffer(30));
+      h.setUint32(0, 0x04034b50, true); h.setUint16(4, 10, true); h.setUint16(6, fl, true); h.setUint16(10, tm, true); h.setUint16(12, dt, true); h.setUint32(14, crc, true); h.setUint32(18, data.length, true); h.setUint32(22, data.length, true); h.setUint16(26, nm.length, true);
+      parts.push(new Uint8Array(h.buffer), nm, data);
+      const c = new DataView(new ArrayBuffer(46));
+      c.setUint32(0, 0x02014b50, true); c.setUint16(4, 20, true); c.setUint16(6, 10, true); c.setUint16(8, fl, true); c.setUint16(12, tm, true); c.setUint16(14, dt, true); c.setUint32(16, crc, true); c.setUint32(20, data.length, true); c.setUint32(24, data.length, true); c.setUint16(28, nm.length, true); c.setUint32(42, off, true);
+      cen.push(new Uint8Array(c.buffer), nm); off += 30 + nm.length + data.length;
+    }
+    const cs = cen.reduce((a, b) => a + b.length, 0), e = new DataView(new ArrayBuffer(22));
+    e.setUint32(0, 0x06054b50, true); e.setUint16(8, list.length, true); e.setUint16(10, list.length, true); e.setUint32(12, cs, true); e.setUint32(16, off, true);
+    const all = [...parts, ...cen, new Uint8Array(e.buffer)], out = new Uint8Array(all.reduce((a, b) => a + b.length, 0)); let p = 0; for (const a of all) { out.set(a, p); p += a.length; } return out;
+  }
+  return { timeOf, messageOf, parseJsonish, parseExport, guessOffset, roleAt, mdParas, chatBlocks, txtOf, printHtml, readHtml, buildEpub, chapterTitle, names, range, esc };
+})();
+/*CORE-END*/
+
+const $ = id => document.getElementById(id);
+const PRODUCT_ID = "__PRODUCT_ID__";
+const SITE = location.origin + location.pathname;
+const BUY_URL = PRODUCT_ID.startsWith("pdt_") ? `https://checkout.dodopayments.com/buy/${PRODUCT_ID}?quantity=1&redirect_url=${encodeURIComponent(SITE + "?unlock=1")}` : "";
+const LKEY = "bottobook.licence";
+const st = { chats: [], characters: [], userName: "", sel: 0, sample: true, pro: false, pending: null };
+let dl = null;
+try { if (window.claude && window.claude.use) window.claude.use("downloads").then(n => { dl = n; }).catch(() => {}); } catch (e) {}
+
+const store = { get() { try { return JSON.parse(localStorage.getItem(LKEY) || "null"); } catch (e) { return null; } }, set(v) { try { localStorage.setItem(LKEY, JSON.stringify(v)); } catch (e) {} } };
+function setPro(on) {
+  st.pro = !!on;
+  document.querySelectorAll("[data-lock]").forEach(el => el.hidden = st.pro || st.sample);
+  $("proBox").hidden = st.pro;
+}
+const cur = () => st.chats[st.sel];
+const opt = () => ({ times: $("oTime").checked, days: $("oDays").checked, lang: (navigator.language || "en"), defUser: st.userName });
+
+function load(parsed, sample) {
+  st.chats = parsed.chats.map(c => ({ ...c, include: true })); st.characters = parsed.characters; st.userName = parsed.userName; st.sel = 0; st.sample = sample;
+  $("charList").innerHTML = st.characters.map(n => `<option value="${CORE.esc(n)}">`).join("");
+  $("bTitle").value = sample ? "The Lighthouse Letters" : st.chats.length === 1 ? CORE.chapterTitle(st.chats[0], st.userName) : (st.userName ? `${st.userName}'s Character.AI chats` : "My Character.AI chats");
+  $("sampleNote").hidden = !sample; $("out").innerHTML = ""; $("msg").textContent = "";
+  setPro(st.pro); render();
+}
+function render() {
+  const c = cur();
+  $("listTitle").textContent = st.chats.length ? `${st.chats.length} chat${st.chats.length > 1 ? "s" : ""}` : "Chats";
+  $("chats").innerHTML = st.chats.map((ch, i) => {
+    const first = (ch.messages[0]?.text || "").replace(/\*+|_{2,}/g, "").trim();
+    return `<li data-i="${i}" class="${i === st.sel ? "sel" : ""}"><input type="checkbox" data-i="${i}" ${ch.include ? "checked" : ""} aria-label="Include in book"><div><div class="t">${CORE.esc(CORE.chapterTitle(ch, st.userName))}</div><div class="m">${ch.messages.length} messages · ${CORE.esc(CORE.range(ch.messages))}</div><div class="q">“${CORE.esc(first.slice(0, 90))}”</div></div></li>`;
+  }).join("");
+  $("nSel").textContent = st.chats.filter(x => x.include).length;
+  const has = !!c;
+  ["cName", "uName", "cTitle", "swap", "mkPdf", "mkEpub", "mkHtml", "mkTxt"].forEach(id => $(id).disabled = !has);
+  if (!has) { $("page").innerHTML = `<p class="more">Drop your export on the left to see your chats here.</p>`; $("guess").textContent = ""; return; }
+  $("cName").value = c.charName; $("uName").value = c.userName || st.userName; $("cTitle").value = c.title;
+  $("cName").placeholder = "e.g. the character you talked to"; $("uName").placeholder = "You"; $("cTitle").placeholder = CORE.chapterTitle({ ...c, title: "" }, st.userName);
+  $("guess").textContent = c.known ? "This file says who wrote each message." : "Who said what is worked out from turn order and timing — swap if it's backwards.";
+  renderPage();
+}
+function renderPage() {
+  const c = cur(); if (!c) return;
+  const LIMIT = 60, n = Math.min(c.messages.length, LIMIT);
+  $("page").innerHTML = `<h3>${CORE.esc(CORE.chapterTitle(c, st.userName))}</h3><p class="sub">${CORE.esc(CORE.range(c.messages))} · ${c.messages.length} messages</p>` +
+    CORE.chatBlocks(c, opt(), 0, n) + (c.messages.length > n ? `<p class="more">… ${c.messages.length - n} more messages in the book</p>` : "");
+}
+
+// ── Files ─────────────────────────────────────────────────────────────
+const isZipBytes = b => b.length > 3 && b[0] === 0x50 && b[1] === 0x4b && b[2] === 3 && b[3] === 4;
+async function readZip(file, password) {
+  if (!window.zip) throw new Error("The ZIP reader is still loading — try again in a second.");
+  zip.configure({ useWebWorkers: false });
+  const reader = new zip.ZipReader(new zip.BlobReader(file));
+  const entries = (await reader.getEntries()).filter(e => !e.directory && /\.(json|jsonl|txt)$/i.test(e.filename) && !/(^|\/)__MACOSX\//i.test(e.filename) && !/(^|\/)\._/.test(e.filename));
+  const needs = entries.some(e => e.encrypted);
+  if (needs && !password) { await reader.close(); const err = new Error("password"); err.code = "password"; throw err; }
+  const out = [];
+  for (const e of entries) {
+    if (e.uncompressedSize > 600 * 1024 * 1024) continue;
+    try { out.push({ name: file.name + "/" + e.filename, text: await e.getData(new zip.TextWriter(), e.encrypted ? { password } : {}) }); }
+    catch (err) { await reader.close(); if (/password/i.test(err.message)) { const e2 = new Error("badpassword"); e2.code = "badpassword"; throw e2; } throw err; }
+  }
+  await reader.close();
+  return out;
+}
+async function openFiles(files, password) {
+  $("loadMsg").textContent = "Reading…"; $("loadMsg").classList.remove("ok");
+  const texts = [];
+  try {
+    for (const f of files) {
+      const head = new Uint8Array(await f.slice(0, 4).arrayBuffer());
+      if (isZipBytes(head)) texts.push(...await readZip(f, password));
+      else if (f.size < 600 * 1024 * 1024) texts.push({ name: f.name, text: await f.text() });
+    }
+  } catch (e) {
+    if (e.code === "password" || e.code === "badpassword") {
+      st.pending = files; $("pwBox").hidden = false; $("pw").value = ""; $("pw").focus();
+      $("loadMsg").textContent = e.code === "badpassword" ? "That password didn't open the ZIP. Copy it from Character.AI's email and try again." : "";
+      return;
+    }
+    $("loadMsg").textContent = "Couldn't open that file: " + (e && e.message || e); return;
+  }
+  $("pwBox").hidden = true; st.pending = null;
+  const parsed = CORE.parseExport(texts);
+  if (!parsed.chats.length) {
+    $("loadMsg").textContent = texts.length ? "No chats found in that file. Drop the ZIP from Character.AI's email, or message.json from inside it." : "Please drop the .zip or .json file from your Character.AI export.";
+    return;
+  }
+  const n = parsed.chats.reduce((a, c) => a + c.messages.length, 0);
+  $("loadMsg").textContent = `Opened ${parsed.chats.length} chat${parsed.chats.length > 1 ? "s" : ""} · ${n.toLocaleString("en")} messages.`; $("loadMsg").classList.add("ok");
+  load(parsed, false);
+}
+
+// ── Output ────────────────────────────────────────────────────────────
+const safe = s => (s || "book").replace(/[\\/:*?"<>|\u0000-\u001f]+/g, " ").replace(/\s+/g, " ").trim().slice(0, 100) || "book";
+function offer(name, blob) {
+  const url = URL.createObjectURL(blob);
+  const r = document.createElement("div"); r.className = "r";
+  const s = document.createElement("span"); s.textContent = name; const sm = document.createElement("small"); sm.textContent = blob.size > 1048576 ? (blob.size / 1048576).toFixed(1) + " MB" : Math.max(1, Math.round(blob.size / 1024)) + " KB"; s.appendChild(sm);
+  const a = document.createElement("a"); a.className = "btn"; a.href = url; a.download = name; a.textContent = "Save";
+  a.addEventListener("click", async e => {
+    if (!dl) return; e.preventDefault();
+    try { await dl.save({ filename: name, data: blob }); sm.textContent = "Saved"; } catch (err) { sm.textContent = "Saving isn't available in this view"; }
+  });
+  r.append(s, a); $("out").prepend(r);
+}
+const picked = () => document.querySelector('input[name=scope]:checked').value === "cur" ? [cur()] : st.chats.filter(c => c.include);
+function book() {
+  const chats = picked().filter(Boolean);
+  const title = $("bTitle").value.trim() || (chats.length === 1 ? CORE.chapterTitle(chats[0], st.userName) : "My Character.AI chats");
+  return { title, chats, opt: opt(), size: $("bSize").value, lang: (navigator.language || "en").slice(0, 2), author: st.userName };
+}
+function gate() {
+  if (st.pro || st.sample) return true;
+  $("msg").textContent = "Books are part of Pro ($4.99 once). Reading and text files are free.";
+  $("proBox").scrollIntoView({ behavior: "smooth", block: "center" }); $("buy").focus({ preventScroll: true });
+  return false;
+}
+function ready(b) { if (!b.chats.length) { $("msg").textContent = "Tick at least one chat on the left, or choose “Only this chat”."; return false; } return true; }
+function drawCover(title, sub) {
+  const cv = document.createElement("canvas"); cv.width = 600; cv.height = 900; const x = cv.getContext("2d");
+  x.fillStyle = "#3b2350"; x.fillRect(0, 0, 600, 900);
+  const g = x.createLinearGradient(0, 0, 600, 0); g.addColorStop(0, "rgba(0,0,0,.3)"); g.addColorStop(.06, "rgba(255,255,255,.07)"); g.addColorStop(.1, "rgba(0,0,0,0)"); x.fillStyle = g; x.fillRect(0, 0, 600, 900);
+  x.fillStyle = "#f2b33d"; x.fillRect(470, 0, 26, 230); x.beginPath(); x.moveTo(470, 230); x.lineTo(483, 212); x.lineTo(496, 230); x.fill();
+  x.fillStyle = "#fff"; x.textAlign = "center";
+  const words = s => Array.from(s.matchAll(/[぀-ヿ㐀-鿿가-힯]|[^\s぀-ヿ㐀-鿿가-힯]+|\s+/g), m => m[0]);
+  const wrap = (s, max) => { const L = []; let c = ""; for (const w of words(s)) { const t = c + w; if (x.measureText(t.trim()).width > max && c.trim()) { L.push(c.trim()); c = w.trim() ? w : ""; } else c = t; } if (c.trim()) L.push(c.trim()); return L; };
+  let size = 66, lines = [];
+  for (; size >= 28; size -= 4) { x.font = `700 ${size}px Fraunces, Georgia, serif`; lines = wrap(title, 440); if (lines.length * size * 1.12 <= 380) break; }
+  const lh = size * 1.12, y0 = 430 - lines.length * lh / 2 + size * .8;
+  lines.forEach((l, i) => x.fillText(l, 306, y0 + i * lh));
+  const yr = y0 + lines.length * lh + 14; x.fillStyle = "#f2b33d"; x.fillRect(266, yr, 80, 4);
+  x.fillStyle = "rgba(255,255,255,.9)"; x.font = `500 28px "Instrument Sans", system-ui, sans-serif`;
+  wrap(sub, 440).slice(0, 2).forEach((l, i) => x.fillText(l, 306, yr + 56 + i * 38));
+  return new Promise(r => cv.toBlob(b => r(b), "image/png"));
+}
+async function makeEpub() {
+  if (!gate()) return; const b = book(); if (!ready(b)) return;
+  const sub = [...new Set(b.chats.map(c => CORE.names(c, st.userName).char))].slice(0, 3).join(", ");
+  const cover = await drawCover(b.title, sub);
+  const bytes = CORE.buildEpub({ ...b, cover: cover ? new Uint8Array(await cover.arrayBuffer()) : null });
+  offer(safe(b.title) + ".epub", new Blob([bytes], { type: "application/epub+zip" }));
+  $("msg").textContent = "Your EPUB is ready.";
+}
+function makePdf() {
+  if (!gate()) return; const b = book(); if (!ready(b)) return;
+  const html = CORE.printHtml({ ...b, autoPrint: true });
+  const url = URL.createObjectURL(new Blob([html], { type: "text/html" }));
+  const w = window.open(url, "_blank");
+  offer(safe(b.title) + " (print).html", new Blob([html], { type: "text/html" }));
+  $("msg").textContent = w ? "Your book opened in a new tab — choose “Save as PDF” in the print dialog." : "Your browser blocked the new tab. Save the print file below, open it, and choose Print → Save as PDF.";
+}
+function makeHtml() {
+  if (!gate()) return; const b = book(); if (!ready(b)) return;
+  offer(safe(b.title) + ".html", new Blob([CORE.readHtml(b)], { type: "text/html" }));
+  $("msg").textContent = "Your HTML book is ready. It opens in any browser, on any device.";
+}
+function makeTxt() {
+  const c = cur(); if (!c) return;
+  offer(safe(CORE.chapterTitle(c, st.userName)) + ".txt", new Blob([CORE.txtOf(c, st.userName)], { type: "text/plain;charset=utf-8" }));
+  $("msg").textContent = "Text file ready.";
+}
+
+// ── Licence ───────────────────────────────────────────────────────────
+async function licence(action, key, instance) {
+  const r = await fetch("/api/license", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ action, license_key: key, name: "web " + new Date().toISOString().slice(0, 10), instance_id: instance }) });
+  return { status: r.status, ...(await r.json().catch(() => ({}))) };
+}
+async function activate(key, where) {
+  key = (key || "").trim(); if (!key) return;
+  where.textContent = "Checking your key…"; where.classList.remove("ok");
+  try {
+    const r = await licence("activate", key);
+    if (r.ok) { store.set({ key, id: r.id, at: Date.now() }); setPro(true); where.textContent = "Pro is unlocked on this browser. Thank you!"; where.classList.add("ok"); return true; }
+    where.textContent = { not_found: "That key wasn't found. Check it against the email from Dodo Payments.", inactive: "That key isn't active. If you were refunded, it has been switched off.", limit: "This key is already active on 3 browsers. Email hello@yansquared.com and we'll reset it.", wrong_product: "That key is for a different product." }[r.error] || "Couldn't check the key right now. Please try again in a minute.";
+  } catch (e) { where.textContent = "Couldn't reach the licence check. Are you online?"; }
+  return false;
+}
+
+// ── Wiring ────────────────────────────────────────────────────────────
+if (BUY_URL) $("buy").href = BUY_URL; else { $("buy").removeAttribute("href"); $("buy").textContent = "Pro is coming soon"; }
+const saved = store.get();
+if (saved && saved.key) setPro(true);
+const qs = new URLSearchParams(location.search);
+if (qs.get("license_key")) {
+  const key = qs.get("license_key").split(",")[0];
+  history.replaceState(null, "", location.pathname);
+  $("paidBanner").hidden = false; $("paidText").textContent = "Payment received — unlocking Pro…";
+  activate(key, $("paidText")).then(ok => { if (ok) $("paidText").innerHTML = `Pro is unlocked. If your chats are open in another tab, it has unlocked there too. Your key (also emailed to you): <code>${CORE.esc(key)}</code>`; });
+} else if (qs.get("unlock")) history.replaceState(null, "", location.pathname);
+window.addEventListener("storage", e => { if (e.key === LKEY && e.newValue) { setPro(true); $("keyMsg").textContent = "Pro is unlocked. Thank you!"; $("keyMsg").classList.add("ok"); } });
+
+$("pick").addEventListener("change", e => { const f = Array.from(e.target.files); e.target.value = ""; if (f.length) openFiles(f); });
+$("drop").addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); $("pick").click(); } });
+["dragenter", "dragover"].forEach(t => document.addEventListener(t, e => { e.preventDefault(); $("drop").classList.add("over"); }));
+["dragleave", "drop"].forEach(t => document.addEventListener(t, e => { e.preventDefault(); if (t === "drop" || !e.relatedTarget) $("drop").classList.remove("over"); }));
+document.addEventListener("drop", e => { if (e.dataTransfer && e.dataTransfer.files.length) openFiles(Array.from(e.dataTransfer.files)); });
+$("pwGo").addEventListener("click", () => { if (st.pending && $("pw").value) openFiles(st.pending, $("pw").value); });
+$("pw").addEventListener("keydown", e => { if (e.key === "Enter") $("pwGo").click(); });
+$("chats").addEventListener("click", e => {
+  const li = e.target.closest("li"); if (!li) return; const i = +li.dataset.i;
+  if (e.target.matches("input[type=checkbox]")) { st.chats[i].include = e.target.checked; $("nSel").textContent = st.chats.filter(x => x.include).length; return; }
+  st.sel = i; render();
+});
+$("allOn").addEventListener("click", () => { st.chats.forEach(c => c.include = true); render(); });
+$("allOff").addEventListener("click", () => { st.chats.forEach(c => c.include = false); render(); });
+const relist = () => { const li = $("chats").querySelector(".sel .t"); if (li) li.textContent = CORE.chapterTitle(cur(), st.userName); };
+$("cName").addEventListener("input", e => { const c = cur(); if (c) { c.charName = e.target.value; relist(); renderPage(); } });
+$("uName").addEventListener("input", e => { const c = cur(); if (c) { c.userName = e.target.value; renderPage(); } });
+$("cTitle").addEventListener("input", e => { const c = cur(); if (c) { c.title = e.target.value; relist(); renderPage(); } });
+$("swap").addEventListener("click", () => { const c = cur(); if (c) { c.swapped = !c.swapped; renderPage(); } });
+["oTime", "oDays"].forEach(id => $(id).addEventListener("change", renderPage));
+$("mkPdf").addEventListener("click", makePdf); $("mkEpub").addEventListener("click", makeEpub); $("mkHtml").addEventListener("click", makeHtml); $("mkTxt").addEventListener("click", makeTxt);
+$("keyGo").addEventListener("click", () => activate($("key").value, $("keyMsg")));
+$("key").addEventListener("keydown", e => { if (e.key === "Enter") $("keyGo").click(); });
+
+const sample = CORE.parseExport([{ name: "sample/message.json", text: $("sample").textContent }]);
+sample.chats.forEach(c => { if (c.id === "c:sample-lighthouse") { c.charName = "Wren"; c.title = "The Lighthouse"; } if (c.id === "c:sample-garden") { c.charName = "Professor Bramble"; c.title = "The Garden"; } });
+sample.userName = "Sam";
+load(sample, true);
+}
+</script>
+</body>
+</html>
