@@ -516,7 +516,7 @@ function setPro(on) {
   $("proBox").hidden = st.pro;
 }
 const cur = () => st.chats[st.sel];
-const opt = () => ({ times: $("oTime").checked, days: $("oDays").checked, lang: (navigator.language || "en"), defUser: st.userName });
+const opt = () => ({ times: $("oTime").checked, days: $("oDays").checked, lang: "en-US", defUser: st.userName });
 
 function load(parsed, sample) {
   st.chats = parsed.chats.map(c => ({ ...c, include: true })); st.characters = parsed.characters; st.userName = parsed.userName; st.sel = 0; st.sample = sample;
@@ -611,7 +611,7 @@ const picked = () => document.querySelector('input[name=scope]:checked').value =
 function book() {
   const chats = picked().filter(Boolean);
   const title = $("bTitle").value.trim() || (chats.length === 1 ? CORE.chapterTitle(chats[0], st.userName) : "My Character.AI chats");
-  return { title, chats, opt: opt(), size: $("bSize").value, lang: (navigator.language || "en").slice(0, 2), author: st.userName };
+  return { title, chats, opt: opt(), size: $("bSize").value, lang: "en", author: st.userName };
 }
 function gate() {
   if (st.pro || st.sample) return true;
