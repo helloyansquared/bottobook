@@ -32,7 +32,7 @@ def ld(nodes):
     return '<script type="application/ld+json">\n' + json.dumps(nodes, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/') + '\n</script>'
 
 PAGES = {p['slug']: p for p in C.PAGES}
-FOOTLINKS = '<nav class="foot" aria-label="Guides">' + ''.join(f'<a href="/{p["slug"]}/">{esc(p["crumb"])}</a>' for p in C.PAGES) + '<a href="/privacy/">Privacy &amp; refunds</a><a href="https://fictoepub.pages.dev/">FicToEpub</a><a href="https://ficwrapped.yansquared.com/">FicWrapped</a></nav>'
+FOOTLINKS = '<nav class="foot" aria-label="Guides">' + ''.join(f'<a href="/{p["slug"]}/">{esc(p["crumb"])}</a>' for p in C.PAGES) + '<a href="/privacy/">Privacy &amp; refunds</a><a href="https://fictoepub.yansquared.com/">FicToEpub</a><a href="https://ficwrapped.yansquared.com/">FicWrapped</a></nav>'
 
 # ── Home ──────────────────────────────────────────────────────────────────────
 s = (root / 'src/index.html').read_text()
@@ -187,5 +187,5 @@ facts_txt = '\n'.join(f'- {re.sub("<[^>]+>", "", a)}: {re.sub("<[^>]+>", "", b)}
 ## Questions and answers
 """ + ''.join(f"### {q}\n{a}\n\n" for q, a in C.QA.values()) + f"""## Pages
 - [Tool: Character.AI chat to PDF and EPUB]({U()})
-""" + ''.join(f"- [{p['crumb']}]({U(p['slug'])}): {p['description']}\n" for p in C.PAGES) + f"- [Privacy and refunds]({U('privacy')})\n\n## Also by the same maker\n- [FicToEpub](https://fictoepub.pages.dev/): AO3 HTML to EPUB converter\n- [FicWrapped](https://ficwrapped.yansquared.com/): AO3 Wrapped from your own reading history\n\nLast updated: {C.LAST_UPDATED}. Contact: {C.EMAIL}\n")
+""" + ''.join(f"- [{p['crumb']}]({U(p['slug'])}): {p['description']}\n" for p in C.PAGES) + f"- [Privacy and refunds]({U('privacy')})\n\n## Also by the same maker\n- [FicToEpub](https://fictoepub.yansquared.com/): AO3 HTML to EPUB converter\n- [FicWrapped](https://ficwrapped.yansquared.com/): AO3 Wrapped from your own reading history\n\nLast updated: {C.LAST_UPDATED}. Contact: {C.EMAIL}\n")
 print('built for', site, 'product', product or '(none yet)', '·', len(urls), 'urls')

@@ -102,7 +102,7 @@ Each entry in message.json has a chat_id that groups it into a conversation, a c
 - [Privacy and refunds](https://bottobook.yansquared.com/privacy/)
 
 ## Also by the same maker
-- [FicToEpub](https://fictoepub.pages.dev/): AO3 HTML to EPUB converter
+- [FicToEpub](https://fictoepub.yansquared.com/): AO3 HTML to EPUB converter
 - [FicWrapped](https://ficwrapped.yansquared.com/): AO3 Wrapped from your own reading history
 
 Last updated: 2026-11-25. Contact: hello@yansquared.com

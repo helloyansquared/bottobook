@@ -70,5 +70,5 @@ Not affiliated with Character Technologies, Inc. or Character.AI.
 
 ## Also by YanSquared
 
-- [FicToEpub](https://fictoepub.pages.dev/) — AO3 HTML downloads to EPUB
+- [FicToEpub](https://fictoepub.yansquared.com/) — AO3 HTML downloads to EPUB
 - [FicWrapped](https://ficwrapped.pages.dev/) — your AO3 year in review
