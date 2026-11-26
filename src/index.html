@@ -223,7 +223,7 @@ footer{background:var(--cloth2);color:#dccfe8;font-size:14px;padding:28px 0}foot
 
 <section class="band" id="about"><div class="faq">
   <h2>About BotToBook</h2>
-  <p class="lede">BotToBook is a free browser-based viewer for Character.AI data exports that can also turn the chats into a PDF, EPUB or HTML book. It is an independent tool by YanSquared, first published on November 25, 2026; payments are handled by Dodo Payments. The code is <a href="{GITHUB}">on GitHub</a>. Also by YanSquared: <a href="https://fictoepub.pages.dev/">FicToEpub</a>, a free AO3 HTML to EPUB converter, and <a href="https://ficwrapped.pages.dev/">FicWrapped</a>, an AO3 Wrapped made from your own reading history. It is not affiliated with Character Technologies, Inc. or Character.AI. Contact: <a href="mailto:{EMAIL}">{EMAIL}</a>.</p>
+  <p class="lede">BotToBook is a free browser-based viewer for Character.AI data exports that can also turn the chats into a PDF, EPUB or HTML book. It is an independent tool by YanSquared, first published on November 25, 2026; payments are handled by Dodo Payments. The code is <a href="{GITHUB}">on GitHub</a>. Also by YanSquared: <a href="https://fictoepub.pages.dev/">FicToEpub</a>, a free AO3 HTML to EPUB converter, and <a href="https://ficwrapped.yansquared.com/">FicWrapped</a>, an AO3 Wrapped made from your own reading history. It is not affiliated with Character Technologies, Inc. or Character.AI. Contact: <a href="mailto:{EMAIL}">{EMAIL}</a>.</p>
   <p class="lede">Guides: <a href="/character-ai-export-zip-password/">export ZIP password</a> · <a href="/how-to-open-character-ai-export/">how to open the export</a> · <a href="/character-ai-chat-to-pdf/">chat to PDF</a> · <a href="/character-ai-to-kindle/">chats to Kindle (EPUB)</a> · <a href="/character-ai-message-json/">message.json format</a></p>
 </div></section>
 </main>
@@ -243,6 +243,7 @@ footer{background:var(--cloth2);color:#dccfe8;font-size:14px;padding:28px 0}foot
 {"chat_id":"sample-garden","candidate_id":"g3","raw_content":"Let it win a little. A plant that climbs is a plant that's happy. We'll give it a taller stake and pretend that was the plan.","create_time":"2026-11-02 08:31:17.000000+00:00"}]
 </script>
 <script src="vendor/zip.min.js" defer></script>
+<script src="/found.js?v=1" defer></script>
 <script>
 {
 /*CORE-START*/
@@ -617,6 +618,7 @@ function offer(name, blob) {
     try { await dl.save({ filename: name, data: blob }); sm.textContent = "Saved"; } catch (err) { sm.textContent = "Saving isn't available in this view"; }
   });
   r.append(s, a); $("out").prepend(r);
+  if (window.Found) Found.ask();
 }
 const picked = () => document.querySelector('input[name=scope]:checked').value === "cur" ? [cur()] : st.chats.filter(c => c.include);
 const PREVIEW_N = 30;

@@ -28,7 +28,7 @@ QA = {
  "who_wrote": ("Why doesn't the Character AI export say who wrote each message?",
   "Character.AI's official export lists each message's text, chat ID and time, but not whether you or the character wrote it, and not the character's name. BotToBook works out the sides from turn order and reply timing, since characters answer within seconds, and you can swap the sides or type the names yourself."),
  "safe": ("Is it safe to open my Character AI export in BotToBook?",
-  "BotToBook opens the ZIP and builds the book with JavaScript running in your own browser, so your chats are never uploaded to a server. The page has no ads and no trackers. The only thing sent anywhere is a Pro license key, when you activate one, so the payment provider can confirm it."),
+  "BotToBook opens the ZIP and builds the book with JavaScript running in your own browser, so your chats are never uploaded to a server. The page has no ads, cookies or third-party trackers. The only thing sent anywhere is a Pro license key, when you activate one, so the payment provider can confirm it."),
  "transfer": ("Can I move Character AI chats to another account or app?",
   "As far as we know, Character.AI offers no way to import an export into another account or back into the app. What you can do is keep the chats readable: open the export in a viewer and save them as a PDF, EPUB or text file you control. Some other chat apps also accept SillyTavern-style files."),
  "free": ("Is BotToBook free?",
@@ -51,11 +51,17 @@ QA = {
   "Yes. BotToBook splits long chats into parts of about 350 messages inside the EPUB, each listed in the table of contents, so pages turn quickly even on older Kindles and Kobos. A chat with thousands of messages becomes one chapter with several parts rather than one huge file."),
  "json_open": ("How do I read message.json from a Character AI export?",
   "Open it in a viewer rather than a text editor. message.json holds every message from all your chats in one list, so a viewer has to group messages by chat_id, sort them by create_time and work out who spoke. Drop the file on BotToBook to see each conversation in order."),
+ "best_way": ("What is the best way to back up Character AI chats?",
+  "Request the official export now: it is the only copy that holds every message from every chat on your account. It can take 3 to 4 weeks, so while you wait, save the chats you care about most from the chat page itself, with your browser's Print and Save as PDF or a chat-saving browser extension. When the export arrives, keep the ZIP and a readable copy, such as a PDF or EPUB."),
+ "save_now": ("How can I save a Character AI chat right now without waiting for the export?",
+  "Open the chat on character.ai in a computer browser, scroll up until the whole conversation has loaded, then use Print and Save as PDF, or copy the text into a document. Browser extensions such as CAI Tools can also save a chat from the open page; they work with your logged-in session, so check the permissions and install only ones you trust. These save one chat at a time, so still request the full export."),
+ "forwho": ("Who is BotToBook for, and when should I use something else?",
+  "BotToBook is for people who have, or have requested, their official Character.AI data export and want to read the chats as conversations or keep them as a PDF or EPUB book. It doesn't get your chats any faster: it needs the export, which can take 3 to 4 weeks, so to save a chat today use Print and Save as PDF or a browser extension. It can't put chats back into Character.AI or another account, and it never connects to Character.AI itself."),
  "json_fields": ("What fields are in Character AI message.json?",
   "Each entry in message.json has a chat_id that groups it into a conversation, a candidate_id for the reply, raw_content with the message text, and create_time, a timestamp with microsecond precision. There is no field for who wrote the message and no character name, so those have to be inferred or typed in."),
 }
 
-HOME_FAQ = ["password", "can_export", "open", "how_long", "pdf", "kindle", "who_wrote", "safe", "free", "shutdown", "files", "pro"]
+HOME_FAQ = ["password", "can_export", "open", "how_long", "pdf", "kindle", "who_wrote", "safe", "free", "forwho", "shutdown", "files", "pro"]
 
 # ── Facts table (home + message.json page) ────────────────────────────────────
 FACTS_ROWS = [
@@ -75,6 +81,39 @@ def facts_table():
 # ── Guide pages ───────────────────────────────────────────────────────────────
 # body: HTML after the direct answer and the CTA. {FACTS} is replaced by the facts table.
 PAGES = [
+ {
+  "slug": "save-character-ai-chats",
+  "crumb": "How to save Character.AI chats",
+  "title": "How to Save Character.AI Chats: Every Method Compared",
+  "description": "Back up Character.AI chats before they're gone: the official export, Print to PDF, browser extensions and copy-paste compared by what they keep, how long they take and when to use each.",
+  "h1": "How to save your Character.AI chats",
+  "answer": "The only way to save every Character.AI chat at once is the official Export Data option in settings, which emails you a ZIP of all your messages but can take 3 to 4 weeks. To keep a chat today, open it in a computer browser and use Print and Save as PDF, copy the text, or use a chat-saving browser extension. Do both: request the export now and save your favourite chats by hand while you wait.",
+  "body": """
+<h2>The methods compared</h2>
+<table class="facts"><caption>Ways to save Character.AI chats (checked November 2026)</caption>
+<thead><tr><th scope="col">Method</th><th scope="col">What it saves</th><th scope="col">How long</th><th scope="col">Good for</th></tr></thead>
+<tbody>
+<tr><th scope="row">Official Export Data</th><td>Every message from every chat on the account, as data (<code>message.json</code>) without speaker or character names</td><td>Up to 3–4 weeks; the download link works for 7 days</td><td>A complete backup. Request it first.</td></tr>
+<tr><th scope="row">Print → Save as PDF</th><td>One chat, as it looks on screen, if you scroll until it has all loaded</td><td>Minutes</td><td>A few important chats, today</td></tr>
+<tr><th scope="row">Browser extension</th><td>Usually one chat at a time from the open chat page; format depends on the extension</td><td>Minutes</td><td>Saving several chats today on a computer</td></tr>
+<tr><th scope="row">Copy and paste</th><td>The text you select, into a document</td><td>Minutes</td><td>Short chats</td></tr>
+<tr><th scope="row">Screenshots</th><td>Only what fits on screen</td><td>Minutes</td><td>A memorable moment, not a whole chat</td></tr>
+</tbody></table>
+<h2>Which to use</h2>
+<ol class="steps">
+<li><b>Request the official export now.</b> On character.ai: <em>Profile Settings → Account → Manage Account &amp; Data → Export Data</em>; in the app: <em>Settings → Legal &amp; Privacy → Export Data</em>. It's the only method that covers everything, and the wait is the long part.</li>
+<li><b>Save your favourite chats by hand while you wait.</b> Print and Save as PDF works in any computer browser with nothing to install. Scroll to the very top first, because long chats load in pieces.</li>
+<li><b>When the export email arrives, download the ZIP within 7 days</b> and keep two copies. Its password is your account email in lowercase.</li>
+<li><b>Make it readable.</b> The export is raw data with no names. A viewer such as <a href="/">BotToBook</a> rebuilds each conversation and can save it as a PDF or EPUB book.</li>
+</ol>
+<h2>A word on browser extensions</h2>
+<p>Chat-saving extensions, such as CAI Tools, read chats from your logged-in Character.AI session, so they can see your account while they run. Check what each one asks permission for, and install only ones with a public track record. BotToBook can open CAI Tools exports too.</p>
+<h2>What BotToBook does and doesn't do</h2>
+<p>BotToBook doesn't connect to Character.AI or fetch anything: it opens the export you download yourself, in your browser, without uploading it. So it can't speed up the export. Once you have the ZIP, reading every chat and saving text files is free; full PDF and EPUB books are $4.99 once.</p>
+""",
+  "faq": ["best_way", "save_now", "how_long", "pdf_noexport", "shutdown", "transfer"],
+  "links": ["how-to-open-character-ai-export", "character-ai-chat-to-pdf", "character-ai-export-zip-password"],
+ },
  {
   "slug": "character-ai-export-zip-password",
   "crumb": "Character.AI export ZIP password",

@@ -32,7 +32,7 @@ def ld(nodes):
     return '<script type="application/ld+json">\n' + json.dumps(nodes, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/') + '\n</script>'
 
 PAGES = {p['slug']: p for p in C.PAGES}
-FOOTLINKS = '<nav class="foot" aria-label="Guides">' + ''.join(f'<a href="/{p["slug"]}/">{esc(p["crumb"])}</a>' for p in C.PAGES) + '<a href="/privacy/">Privacy &amp; refunds</a><a href="https://fictoepub.pages.dev/">FicToEpub</a><a href="https://ficwrapped.pages.dev/">FicWrapped</a></nav>'
+FOOTLINKS = '<nav class="foot" aria-label="Guides">' + ''.join(f'<a href="/{p["slug"]}/">{esc(p["crumb"])}</a>' for p in C.PAGES) + '<a href="/privacy/">Privacy &amp; refunds</a><a href="https://fictoepub.pages.dev/">FicToEpub</a><a href="https://ficwrapped.yansquared.com/">FicWrapped</a></nav>'
 
 # ── Home ──────────────────────────────────────────────────────────────────────
 s = (root / 'src/index.html').read_text()
@@ -103,6 +103,7 @@ def shell(title, desc, canon, h1, crumb, body_html, ldnodes):
 <link rel="preload" href="/fonts/fraunces-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 {ld(ldnodes)}
 <style>{PAGE_CSS}</style>
+<script src="/found.js" defer></script>
 </head>
 <body>
 <header class="top"><div class="wrap">
@@ -143,7 +144,7 @@ priv = f"""<p class="answer">BotToBook opens your Character.AI export and makes 
 <h2>Your chats</h2><p>The ZIP or JSON files you open are read by JavaScript on the page. Decryption, reading and book-making all happen on your device. Nothing from your export is sent to a server.</p>
 <h2>License keys</h2><p>When you activate BotToBook Pro, your license key is sent to our small checking service (a Cloudflare Pages Function), which asks Dodo Payments whether the key is valid for BotToBook. The key and an activation ID are saved in your browser's local storage so Pro stays unlocked. We don't receive your chats, and the checking service doesn't keep the key.</p>
 <h2>Payments</h2><p>Payments are processed by Dodo Payments, the merchant of record, which handles your card details, sales tax and receipts under its own privacy policy. We never see your card number.</p>
-<h2>Hosting and logs</h2><p>The site is hosted on Cloudflare Pages. Like any web host, Cloudflare processes standard request data such as IP addresses to deliver and protect the site. BotToBook uses no cookies, analytics or ads.</p>
+<h2>Hosting and logs</h2><p>The site is hosted on Cloudflare Pages. Like any web host, Cloudflare processes standard request data such as IP addresses to deliver and protect the site. BotToBook uses no cookies, ads or third-party analytics. To learn which sites and AI assistants send visitors, the first page you open sends one anonymous note to our own server: the name of the site you came from (such as “google” or “chatgpt”, never the full address), the page and your country. After you save a book or file, a small optional card asks how you found the site; if you answer, your choice and anything you type in the optional box are stored the same way. None of this includes your chats, your export, your IP address or any ID.</p>
 <h2>Refunds</h2><p>If BotToBook doesn't work with your export, email <a href="mailto:{C.EMAIL}">{C.EMAIL}</a> within 14 days of buying and we'll refund you.</p>
 <h2>Contact</h2><p>BotToBook is an independent tool by YanSquared. Email <a href="mailto:{C.EMAIL}">{C.EMAIL}</a>.</p>"""
 (pub / 'privacy').mkdir(exist_ok=True)
@@ -180,7 +181,11 @@ facts_txt = '\n'.join(f'- {re.sub("<[^>]+>", "", a)}: {re.sub("<[^>]+>", "", b)}
 ## Key facts about the Character.AI data export (checked November 2026)
 {facts_txt}
 
-## Pages
+## Who it's for
+{C.QA["forwho"][1]}
+
+## Questions and answers
+""" + ''.join(f"### {q}\n{a}\n\n" for q, a in C.QA.values()) + f"""## Pages
 - [Tool: Character.AI chat to PDF and EPUB]({U()})
-""" + ''.join(f"- [{p['crumb']}]({U(p['slug'])}): {p['description']}\n" for p in C.PAGES) + f"- [Privacy and refunds]({U('privacy')})\n\n## Also by the same maker\n- [FicToEpub](https://fictoepub.pages.dev/): AO3 HTML to EPUB converter\n- [FicWrapped](https://ficwrapped.pages.dev/): AO3 Wrapped from your own reading history\n\nLast updated: {C.LAST_UPDATED}. Contact: {C.EMAIL}\n")
+""" + ''.join(f"- [{p['crumb']}]({U(p['slug'])}): {p['description']}\n" for p in C.PAGES) + f"- [Privacy and refunds]({U('privacy')})\n\n## Also by the same maker\n- [FicToEpub](https://fictoepub.pages.dev/): AO3 HTML to EPUB converter\n- [FicWrapped](https://ficwrapped.yansquared.com/): AO3 Wrapped from your own reading history\n\nLast updated: {C.LAST_UPDATED}. Contact: {C.EMAIL}\n")
 print('built for', site, 'product', product or '(none yet)', '·', len(urls), 'urls')

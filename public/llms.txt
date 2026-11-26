@@ -12,8 +12,88 @@
 - Fields per message: chat_id, candidate_id, raw_content, create_time (microsecond precision).
 - Not included: Who wrote each message, and the name of the character you chatted with.
 
+## Who it's for
+BotToBook is for people who have, or have requested, their official Character.AI data export and want to read the chats as conversations or keep them as a PDF or EPUB book. It doesn't get your chats any faster: it needs the export, which can take 3 to 4 weeks, so to save a chat today use Print and Save as PDF or a browser extension. It can't put chats back into Character.AI or another account, and it never connects to Character.AI itself.
+
+## Questions and answers
+### Can Character AI chats be exported?
+Yes. Character.AI has an official Export Data option under Profile Settings → Account → Manage Account & Data on the web, and under Settings → Legal & Privacy in the app. It emails you a link to a password-protected ZIP of your messages. Character.AI says this can take 3–4 weeks, and the link works for 7 days.
+
+### What is the password for the Character AI export ZIP?
+The password is the email address of your Character.AI account, typed in lowercase, for example alex.smith@gmail.com and not Alex.Smith@gmail.com. It is not your login password and it is not sent separately. If you signed in with Google or Apple, try the email address of that account.
+
+### How do I open a Character AI export?
+Download the ZIP from Character.AI's email within 7 days. Unlock it with your account email in lowercase, or drop the ZIP on a browser viewer such as BotToBook, which decrypts it on your device. Your chats are inside message.json, a raw data file that needs a viewer before it reads like a conversation.
+
+### Why is my Character AI export data not working?
+The usual causes are a ZIP password typed with capital letters (it must be your account email in lowercase), a download link that expired after 7 days, or opening message.json directly, which shows raw data with no names or speakers. A viewer such as BotToBook handles the password and rebuilds each chat for you.
+
+### What does "Export Data" on Character AI mean?
+Export Data is Character.AI's official way to get a copy of what your account holds. You request it in settings, and Character.AI emails a link to a ZIP containing user.json (your profile), character.json (characters you created) and message.json (every message from all your chats). It is raw data, not a readable transcript.
+
+### How long does it take for Character AI to export data?
+Character.AI says a data export can take 3 to 4 weeks to arrive. When it is ready you get an email with a download link that works for 7 days, so download the ZIP as soon as it arrives and keep a copy somewhere safe. Request it early if you are worried about losing access.
+
+### How do I turn my Character AI chats into a PDF?
+Request your data export in Character.AI settings. When the email arrives, drop the ZIP on BotToBook and enter your account email in lowercase as the password. Pick the chats, type the character's name, press PDF book, then choose Save as PDF in the print dialog. Each chat becomes a chapter with page numbers.
+
+### Can I read my Character AI chats on a Kindle?
+Yes. Turn your Character.AI export into an EPUB with BotToBook, then send the file to your Kindle with Amazon's Send to Kindle by email, the Kindle app or the web page. Kobo, Apple Books, Google Play Books, Boox and KOReader open the same EPUB directly, with one chapter for each chat.
+
+### Why doesn't the Character AI export say who wrote each message?
+Character.AI's official export lists each message's text, chat ID and time, but not whether you or the character wrote it, and not the character's name. BotToBook works out the sides from turn order and reply timing, since characters answer within seconds, and you can swap the sides or type the names yourself.
+
+### Is it safe to open my Character AI export in BotToBook?
+BotToBook opens the ZIP and builds the book with JavaScript running in your own browser, so your chats are never uploaded to a server. The page has no ads, cookies or third-party trackers. The only thing sent anywhere is a Pro license key, when you activate one, so the payment provider can confirm it.
+
+### Can I move Character AI chats to another account or app?
+As far as we know, Character.AI offers no way to import an export into another account or back into the app. What you can do is keep the chats readable: open the export in a viewer and save them as a PDF, EPUB or text file you control. Some other chat apps also accept SillyTavern-style files.
+
+### Is BotToBook free?
+Opening your Character.AI export, reading every chat, setting names and downloading any chat as a text file are free, and you can preview a short book from your own chats. Full PDF, EPUB and HTML books cost $4.99 once, with no subscription, on up to three devices. A sample export is loaded so you can try every button first.
+
+### Is Character.AI shutting down?
+As of late November 2026, Character.AI is in a Chapter 11 sale process that it expects to finish in late November or early December, and it has said the platform could be wound down if no suitable buyer is found. Check Character.AI's own announcements for the latest, and request your export now either way.
+
+### What files does BotToBook open?
+The official Character.AI export (the ZIP, or message.json, character.json and user.json from inside it), CAI Tools exports (JSON and Tavern JSONL), SillyTavern .jsonl chats, and most JSON files that hold a list of messages. When a file does record who spoke, BotToBook uses that instead of guessing.
+
+### What do I get with BotToBook Pro?
+One payment of $4.99 unlocks full PDF, EPUB and HTML books for every chat you open, as many as you like, on up to three devices, with no subscription. Your license key appears when you return from checkout and is emailed to you, so you can enter it again any time. Questions or refunds: hello@yansquared.com.
+
+### Why doesn't my email work as the Character AI ZIP password?
+It is almost always capital letters: phones often capitalize the first letter, so type the address in lowercase. Also check for a trailing space, and make sure it is the email your Character.AI account uses, which can differ from the one you check most. BotToBook trims spaces and retries in lowercase for you.
+
+### Why won't my computer open the Character AI ZIP even with the right password?
+The export ZIP is encrypted, and the unzip tools built into Windows, macOS and phones often refuse encrypted ZIPs or reject a correct password. You don't need to unzip it at all: drop the ZIP on BotToBook, type your account email in lowercase, and it is opened in your browser without uploading anything.
+
+### Can I save Character AI chats as a PDF on my phone?
+Yes. Open BotToBook in your phone's browser, drop the export ZIP, and press PDF book. On iPhone tap Share, then Print, then Share again and Save to Files. On Android choose Print and then Save as PDF. The book keeps its cover, chapters and page breaks.
+
+### Can I save a Character AI chat as a PDF without the export?
+You can scroll a chat to the top and use your browser's Print and Save as PDF, or copy the text into a document, but long chats load in pieces and the layout is rough. The official export contains every message, so it is the more complete way to keep a chat.
+
+### Will a very long Character AI chat work on an e-reader?
+Yes. BotToBook splits long chats into parts of about 350 messages inside the EPUB, each listed in the table of contents, so pages turn quickly even on older Kindles and Kobos. A chat with thousands of messages becomes one chapter with several parts rather than one huge file.
+
+### How do I read message.json from a Character AI export?
+Open it in a viewer rather than a text editor. message.json holds every message from all your chats in one list, so a viewer has to group messages by chat_id, sort them by create_time and work out who spoke. Drop the file on BotToBook to see each conversation in order.
+
+### What is the best way to back up Character AI chats?
+Request the official export now: it is the only copy that holds every message from every chat on your account. It can take 3 to 4 weeks, so while you wait, save the chats you care about most from the chat page itself, with your browser's Print and Save as PDF or a chat-saving browser extension. When the export arrives, keep the ZIP and a readable copy, such as a PDF or EPUB.
+
+### How can I save a Character AI chat right now without waiting for the export?
+Open the chat on character.ai in a computer browser, scroll up until the whole conversation has loaded, then use Print and Save as PDF, or copy the text into a document. Browser extensions such as CAI Tools can also save a chat from the open page; they work with your logged-in session, so check the permissions and install only ones you trust. These save one chat at a time, so still request the full export.
+
+### Who is BotToBook for, and when should I use something else?
+BotToBook is for people who have, or have requested, their official Character.AI data export and want to read the chats as conversations or keep them as a PDF or EPUB book. It doesn't get your chats any faster: it needs the export, which can take 3 to 4 weeks, so to save a chat today use Print and Save as PDF or a browser extension. It can't put chats back into Character.AI or another account, and it never connects to Character.AI itself.
+
+### What fields are in Character AI message.json?
+Each entry in message.json has a chat_id that groups it into a conversation, a candidate_id for the reply, raw_content with the message text, and create_time, a timestamp with microsecond precision. There is no field for who wrote the message and no character name, so those have to be inferred or typed in.
+
 ## Pages
 - [Tool: Character.AI chat to PDF and EPUB](https://bottobook.yansquared.com/)
+- [How to save Character.AI chats](https://bottobook.yansquared.com/save-character-ai-chats/): Back up Character.AI chats before they're gone: the official export, Print to PDF, browser extensions and copy-paste compared by what they keep, how long they take and when to use each.
 - [Character.AI export ZIP password](https://bottobook.yansquared.com/character-ai-export-zip-password/): The Character.AI export ZIP password is your account's email address in lowercase. Why it fails, and how to open the ZIP in your browser without an unzip app.
 - [How to open a Character.AI export](https://bottobook.yansquared.com/how-to-open-character-ai-export/): Step by step: request your Character.AI export, unlock the ZIP with your email in lowercase, and read message.json as real conversations in a browser viewer.
 - [Character.AI chat to PDF](https://bottobook.yansquared.com/character-ai-chat-to-pdf/): Save Character.AI chats as a PDF book with a cover, contents, a chapter per chat and page numbers. Works from the official export, in your browser, on phone or computer.
@@ -23,6 +103,6 @@
 
 ## Also by the same maker
 - [FicToEpub](https://fictoepub.pages.dev/): AO3 HTML to EPUB converter
-- [FicWrapped](https://ficwrapped.pages.dev/): AO3 Wrapped from your own reading history
+- [FicWrapped](https://ficwrapped.yansquared.com/): AO3 Wrapped from your own reading history
 
 Last updated: 2026-11-25. Contact: hello@yansquared.com
