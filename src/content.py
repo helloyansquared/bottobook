@@ -10,7 +10,7 @@ GITHUB = "https://github.com/helloyansquared/bottobook"
 # ── Q&A bank ──────────────────────────────────────────────────────────────────
 QA = {
  "can_export": ("Can Character AI chats be exported?",
-  "Yes. Character.AI has an official Export Data option under Profile Settings → Account → Manage Account & Data on the web, and under Settings → Legal & Privacy in the app. It emails you a link to a password-protected ZIP of your messages. Character.AI says this can take 3–4 weeks, and the link works for 7 days."),
+  "Yes. Character.AI has an official Export Data option under Profile Settings → Account → Manage Account & Data on the web, and under Profile → Settings icon → Legal & Privacy in the app. It emails you a link to a password-protected ZIP of your messages. Character.AI says this can take 3–4 weeks, and the link works for 7 days."),
  "password": ("What is the password for the Character AI export ZIP?",
   "The password is the email address of your Character.AI account, typed in lowercase, for example alex.smith@gmail.com and not Alex.Smith@gmail.com. It is not your login password and it is not sent separately. If you signed in with Google or Apple, try the email address of that account."),
  "open": ("How do I open a Character AI export?",
@@ -22,7 +22,7 @@ QA = {
  "how_long": ("How long does it take for Character AI to export data?",
   "Character.AI says a data export can take 3 to 4 weeks to arrive. When it is ready you get an email with a download link that works for 7 days, so download the ZIP as soon as it arrives and keep a copy somewhere safe. Request it early if you are worried about losing access."),
  "no_email": ("I requested my Character AI export but never got the email. What now?",
-  "Wait first, then check the right inbox. Character.AI says an export can take 3 to 4 weeks, so no email in the first few weeks is normal. Look in the inbox of the email you use to sign in to Character.AI, including spam and other folders. If the email came but the link has expired (it works for 7 days), try requesting the export again from the same settings page."),
+  "Wait first, then check the right inbox. Character.AI says an export can take 3 to 4 weeks, so no email in the first few weeks is normal. Character.AI sends the download link to the email address associated with your account, so check that inbox, including spam and other folders. If the email came but the link has expired (it works for 7 days from when the email was sent), try requesting the export again from the same settings page."),
  "deleted": ("Can I get back deleted Character AI chats?",
   "Probably not. Character.AI's help center doesn't describe any way to restore a deleted chat (checked 27 November 2026), and it says account deletion is permanent and cannot be reversed. BotToBook can't recover them either: it only reads the export file you give it. To keep the chats you still have, request your export now."),
  "pdf": ("How do I turn my Character AI chats into a PDF?",
@@ -105,7 +105,7 @@ PAGES = [
 </tbody></table>
 <h2>Which to use</h2>
 <ol class="steps">
-<li><b>Request the official export now.</b> On character.ai: <em>Profile Settings → Account → Manage Account &amp; Data → Export Data</em>; in the app: <em>Settings → Legal &amp; Privacy → Export Data</em>. It's the only method that covers everything, and the wait is the long part.</li>
+<li><b>Request the official export now.</b> On character.ai: <em>Profile Settings → Account → Manage Account &amp; Data → Export Data</em>; in the app: <em>Profile → Settings icon → Legal &amp; Privacy → Export Data</em>. It's the only method that covers everything, and the wait is the long part.</li>
 <li><b>Save your favourite chats by hand while you wait.</b> Print and Save as PDF works in any computer browser with nothing to install. Scroll to the very top first, because long chats load in pieces.</li>
 <li><b>When the export email arrives, download the ZIP within 7 days</b> and keep two copies. Its password is your account email in lowercase.</li>
 <li><b>Make it readable.</b> The export is raw data with no names. A viewer such as <a href="/">BotToBook</a> rebuilds each conversation and can save it as a PDF or EPUB book.</li>
@@ -150,7 +150,7 @@ PAGES = [
   "answer": "To open a Character.AI export, download the ZIP from the email within 7 days and unlock it with your account email in lowercase. Your chats are in message.json, a raw data file with no names, so load the ZIP or that file into a browser viewer such as BotToBook to read them as conversations.",
   "body": """
 <h2>Step 1: request the export</h2>
-<p>On character.ai go to <em>Profile Settings → Account → Manage Account &amp; Data → Export Data</em>. In the app it's <em>Settings → Legal &amp; Privacy → Export Data</em>. Character.AI says the export can take 3–4 weeks; the email's download link works for 7 days, so save the ZIP as soon as it arrives.</p>
+<p>On character.ai go to <em>Profile Settings → Account → Manage Account &amp; Data → Export Data</em>. In the app it's <em>Profile → Settings icon → Legal &amp; Privacy → Export Data</em>. Character.AI says the export can take 3–4 weeks; the email's download link works for 7 days, so save the ZIP as soon as it arrives. (Steps from Character.AI's help article <a href="https://support.character.ai/hc/en-us/articles/56967715028891-How-do-I-download-my-data">“How do I download my data?”</a>, updated October 8, 2026.)</p>
 <h2>Step 2: unlock the ZIP</h2>
 <p>The ZIP is password-protected. The password is your account email in lowercase — <a href="/character-ai-export-zip-password/">more on the password</a>. Built-in unzip tools often refuse it; a browser viewer can open it directly.</p>
 <h2>Step 3: read the chats in a viewer</h2>

@@ -17,7 +17,7 @@ BotToBook is for people who have, or have requested, their official Character.AI
 
 ## Questions and answers
 ### Can Character AI chats be exported?
-Yes. Character.AI has an official Export Data option under Profile Settings → Account → Manage Account & Data on the web, and under Settings → Legal & Privacy in the app. It emails you a link to a password-protected ZIP of your messages. Character.AI says this can take 3–4 weeks, and the link works for 7 days.
+Yes. Character.AI has an official Export Data option under Profile Settings → Account → Manage Account & Data on the web, and under Profile → Settings icon → Legal & Privacy in the app. It emails you a link to a password-protected ZIP of your messages. Character.AI says this can take 3–4 weeks, and the link works for 7 days.
 
 ### What is the password for the Character AI export ZIP?
 The password is the email address of your Character.AI account, typed in lowercase, for example alex.smith@gmail.com and not Alex.Smith@gmail.com. It is not your login password and it is not sent separately. If you signed in with Google or Apple, try the email address of that account.
@@ -35,7 +35,7 @@ Export Data is Character.AI's official way to get a copy of what your account ho
 Character.AI says a data export can take 3 to 4 weeks to arrive. When it is ready you get an email with a download link that works for 7 days, so download the ZIP as soon as it arrives and keep a copy somewhere safe. Request it early if you are worried about losing access.
 
 ### I requested my Character AI export but never got the email. What now?
-Wait first, then check the right inbox. Character.AI says an export can take 3 to 4 weeks, so no email in the first few weeks is normal. Look in the inbox of the email you use to sign in to Character.AI, including spam and other folders. If the email came but the link has expired (it works for 7 days), try requesting the export again from the same settings page.
+Wait first, then check the right inbox. Character.AI says an export can take 3 to 4 weeks, so no email in the first few weeks is normal. Character.AI sends the download link to the email address associated with your account, so check that inbox, including spam and other folders. If the email came but the link has expired (it works for 7 days from when the email was sent), try requesting the export again from the same settings page.
 
 ### Can I get back deleted Character AI chats?
 Probably not. Character.AI's help center doesn't describe any way to restore a deleted chat (checked 27 November 2026), and it says account deletion is permanent and cannot be reversed. BotToBook can't recover them either: it only reads the export file you give it. To keep the chats you still have, request your export now.
