@@ -34,6 +34,12 @@ Export Data is Character.AI's official way to get a copy of what your account ho
 ### How long does it take for Character AI to export data?
 Character.AI says a data export can take 3 to 4 weeks to arrive. When it is ready you get an email with a download link that works for 7 days, so download the ZIP as soon as it arrives and keep a copy somewhere safe. Request it early if you are worried about losing access.
 
+### I requested my Character AI export but never got the email. What now?
+Wait first, then check the right inbox. Character.AI says an export can take 3 to 4 weeks, so no email in the first few weeks is normal. Look in the inbox of the email you use to sign in to Character.AI, including spam and other folders. If the email came but the link has expired (it works for 7 days), try requesting the export again from the same settings page.
+
+### Can I get back deleted Character AI chats?
+Probably not. Character.AI's help center doesn't describe any way to restore a deleted chat (checked 27 November 2026), and it says account deletion is permanent and cannot be reversed. BotToBook can't recover them either: it only reads the export file you give it. To keep the chats you still have, request your export now.
+
 ### How do I turn my Character AI chats into a PDF?
 Request your data export in Character.AI settings. When the email arrives, drop the ZIP on BotToBook and enter your account email in lowercase as the password. Pick the chats, type the character's name, press PDF book, then choose Save as PDF in the print dialog. Each chat becomes a chapter with page numbers.
 

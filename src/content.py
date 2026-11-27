@@ -21,6 +21,10 @@ QA = {
   "Export Data is Character.AI's official way to get a copy of what your account holds. You request it in settings, and Character.AI emails a link to a ZIP containing user.json (your profile), character.json (characters you created) and message.json (every message from all your chats). It is raw data, not a readable transcript."),
  "how_long": ("How long does it take for Character AI to export data?",
   "Character.AI says a data export can take 3 to 4 weeks to arrive. When it is ready you get an email with a download link that works for 7 days, so download the ZIP as soon as it arrives and keep a copy somewhere safe. Request it early if you are worried about losing access."),
+ "no_email": ("I requested my Character AI export but never got the email. What now?",
+  "Wait first, then check the right inbox. Character.AI says an export can take 3 to 4 weeks, so no email in the first few weeks is normal. Look in the inbox of the email you use to sign in to Character.AI, including spam and other folders. If the email came but the link has expired (it works for 7 days), try requesting the export again from the same settings page."),
+ "deleted": ("Can I get back deleted Character AI chats?",
+  "Probably not. Character.AI's help center doesn't describe any way to restore a deleted chat (checked 27 November 2026), and it says account deletion is permanent and cannot be reversed. BotToBook can't recover them either: it only reads the export file you give it. To keep the chats you still have, request your export now."),
  "pdf": ("How do I turn my Character AI chats into a PDF?",
   "Request your data export in Character.AI settings. When the email arrives, drop the ZIP on BotToBook and enter your account email in lowercase as the password. Pick the chats, type the character's name, press PDF book, then choose Save as PDF in the print dialog. Each chat becomes a chapter with page numbers."),
  "kindle": ("Can I read my Character AI chats on a Kindle?",
@@ -111,7 +115,7 @@ PAGES = [
 <h2>What BotToBook does and doesn't do</h2>
 <p>BotToBook doesn't connect to Character.AI or fetch anything: it opens the export you download yourself, in your browser, without uploading it. So it can't speed up the export. Once you have the ZIP, reading every chat and saving text files is free; full PDF and EPUB books are $4.99 once.</p>
 """,
-  "faq": ["best_way", "save_now", "how_long", "pdf_noexport", "shutdown", "transfer"],
+  "faq": ["best_way", "save_now", "how_long", "no_email", "deleted", "pdf_noexport", "shutdown", "transfer"],
   "links": ["how-to-open-character-ai-export", "character-ai-chat-to-pdf", "character-ai-export-zip-password"],
  },
  {
@@ -157,7 +161,7 @@ PAGES = [
 <h2>Other free viewers</h2>
 <p>Several free tools also open the export in the browser, including the open-source viewer by anima-universe on GitHub, Amavie, Yanmate, Neon Bay and chatbotbackup.com. BotToBook's focus is turning the chats into a proper book — a typeset PDF and an EPUB for e-readers.</p>
 """,
-  "faq": ["can_export", "open", "not_working", "what_means", "how_long", "transfer"],
+  "faq": ["can_export", "open", "not_working", "no_email", "what_means", "how_long", "transfer"],
   "links": ["character-ai-export-zip-password", "character-ai-chat-to-pdf", "character-ai-message-json"],
  },
  {
