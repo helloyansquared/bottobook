@@ -55,7 +55,7 @@ home_ld = ld([{"@context": "https://schema.org", **ORG},
               {"@context": "https://schema.org", "@type": "WebSite", "@id": U() + "#site", "name": "BotToBook", "url": U(), "inLanguage": "en-US", "publisher": {"@id": U() + "#org"}},
               {"@context": "https://schema.org", **app}, faq_ld(C.HOME_FAQ)])
 for k, v in {'<!--SEO-HEAD-->': head, '<!--LDJSON-->': home_ld, '<!--HOME-FAQ-->': faq_html(C.HOME_FAQ), '<!--FACTS-->': C.facts_table(),
-             '<!--FOOTLINKS-->': FOOTLINKS, '<!--UPDATED-->': upd_human, '{GITHUB}': C.GITHUB, '{EMAIL}': C.EMAIL}.items():
+             '<!--FOOTLINKS-->': FOOTLINKS, '<!--NOTICE-->': (f'<p class="notice">{C.NOTICE}</p>' if C.NOTICE else ''), '<!--UPDATED-->': upd_human, '{GITHUB}': C.GITHUB, '{EMAIL}': C.EMAIL}.items():
     assert k in s, k
     s = s.replace(k, v)
 if product:
@@ -127,7 +127,7 @@ def crumbs_ld(name, url):
 for p in C.PAGES:
     url = U(p['slug'])
     body = (f'<p class="answer">{tx(p["answer"])}</p>\n<a class="cta" href="/">Open my export in BotToBook</a>\n'
-            f'<p class="meta">Last updated: <time datetime="{C.LAST_UPDATED}">{upd_human}</time> · Free to read, nothing uploaded</p>\n'
+            f'<p class="meta">Last updated: <time datetime="{C.LAST_UPDATED}">{upd_human}</time>{"" if p.get("news") else " · Free to read, nothing uploaded"}</p>\n'
             + p['body'].replace('{FACTS}', C.facts_table())
             + f'\n<h2>Questions</h2>\n{faq_html(p["faq"])}\n'
             + '<aside class="related"><b>Related guides</b><ul>' + ''.join(f'<li><a href="/{s}/">{tx(PAGES[s]["title"])}</a></li>' for s in p['links'])

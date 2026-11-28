@@ -2,10 +2,14 @@
 # from the same strings, so they can't drift), the export facts table, and the guide pages.
 # Plain text in Q&A answers (no HTML) so the JSON-LD and the page say exactly the same thing.
 
-LAST_UPDATED = "2026-11-25"      # visible "Last updated" + dateModified
+LAST_UPDATED = "2026-11-28"      # visible "Last updated" + dateModified
 PUBLISHED = "2026-11-25"
 EMAIL = "hello@yansquared.com"
 GITHUB = "https://github.com/helloyansquared/bottobook"
+CASE_SITE = "https://cases.stretto.com/chartech"   # court-approved claims agent: every filing, free
+# One-line notice under the home page intro. Keep it dated and factual; empty string hides it.
+NOTICE = ('Character.AI is being sold in bankruptcy: an auction is scheduled for December 1 and a sale hearing for December 3–4, 2026. '
+          '<a href="/is-character-ai-shutting-down/">What it means for your chats</a>')
 
 # ── Q&A bank ──────────────────────────────────────────────────────────────────
 QA = {
@@ -38,7 +42,17 @@ QA = {
  "free": ("Is BotToBook free?",
   "Opening your Character.AI export, reading every chat, setting names and downloading any chat as a text file are free, and you can preview a short book from your own chats. Full PDF, EPUB and HTML books cost $4.99 once, with no subscription, on up to three devices. A sample export is loaded so you can try every button first."),
  "shutdown": ("Is Character.AI shutting down?",
-  "As of late November 2026, Character.AI is in a Chapter 11 sale process that it expects to finish in late November or early December, and it has said the platform could be wound down if no suitable buyer is found. Check Character.AI's own announcements for the latest, and request your export now either way."),
+  "Not yet. Character.AI filed for Chapter 11 on October 12, 2026 and is being sold under court supervision, and the app still works. Smirks and Pangs Acquisition LLC is the lead bidder at $10 million for the app, user accounts and chats; an auction is scheduled for December 1 and a sale hearing for December 3 and 4. Character.AI has said the platform could be wound down if no suitable buyer is found. Request your export now either way."),
+ "who_buying": ("Who is buying Character.AI?",
+  "Two separate deals are on the table as of November 28, 2026. Disney offered $20 million for a non-exclusive license to some of Character.AI's technology, which does not include the app or users' chats. Smirks and Pangs Acquisition LLC, a company formed in Delaware on November 13, 2026, is the lead bidder at $10 million for the app, its AI models, user accounts and chats. Rival bids were due November 24."),
+ "chats_sold": ("Will my Character AI chats be sold?",
+  "They are part of the proposed sale. Smirks and Pangs' $10 million bid covers the consumer app, user accounts and chats, so if the court approves it, your account and chats would pass to the new owner. A court-appointed consumer privacy ombudsman is reviewing the sale, and attorneys general from dozens of states and D.C. have objected, asking for minors' chats to be left out and for deletion rights to survive the sale."),
+ "export_in_time": ("Will my Character AI export arrive before the sale?",
+  "Probably not before the December 3 and 4 hearing. Character.AI says an export takes 3 to 4 weeks, so one requested in late November would arrive around mid to late December. The app keeps running during the sale, so request it anyway, save your most important chats by hand today, and download the ZIP within 7 days of the email."),
+ "delete_account": ("Should I delete my Character AI account before the sale?",
+  "That is your decision. Character.AI says you can delete your account or export your data, and that deletion is permanent. If you want both a copy and a deleted account, request the export first and delete only after you have downloaded and opened the ZIP, because deleting first may cost you the export. Since the export takes 3 to 4 weeks, waiting for it also means your data will probably still be in the account during the hearing; which matters more is up to you."),
+ "bankrupt": ("Did Character.AI go bankrupt?",
+  "Character Technologies, the company behind Character.AI, filed for Chapter 11 bankruptcy in Delaware on October 12, 2026. It is using the case to sell the company under court supervision rather than to close it straight away, and the app keeps running during the sale. A sale hearing is scheduled for December 3 and 4, 2026."),
  "files": ("What files does BotToBook open?",
   "The official Character.AI export (the ZIP, or message.json, character.json and user.json from inside it), CAI Tools exports (JSON and Tavern JSONL), SillyTavern .jsonl chats, and most JSON files that hold a list of messages. When a file does record who spoke, BotToBook uses that instead of guessing."),
  "pro": ("What do I get with BotToBook Pro?",
@@ -86,6 +100,48 @@ def facts_table():
 # body: HTML after the direct answer and the CTA. {FACTS} is replaced by the facts table.
 PAGES = [
  {
+  "slug": "is-character-ai-shutting-down",
+  "news": True,
+  "crumb": "Is Character.AI shutting down?",
+  "title": "Is Character.AI Shutting Down? Bankruptcy Sale Dates & Your Chats",
+  "description": "Character.AI is in bankruptcy and up for sale. The bidders, the December auction and hearing dates, and how to keep your chats. Updated Nov 28, 2026.",
+  "h1": "Is Character.AI shutting down?",
+  "answer": "Not yet. Character.AI filed for Chapter 11 on October 12, 2026 and is being sold under court supervision, and the app still works. The lead bid, $10 million from Smirks and Pangs Acquisition LLC, covers the app, user accounts and chats. An auction is scheduled for December 1 and a sale hearing for December 3 and 4. If no suitable buyer is found, Character.AI has said the platform could be wound down. Either way, save your chats now.",
+  "body": """
+<h2>The dates</h2>
+<table class="facts"><caption>Character.AI's Chapter 11 sale, as reported up to November 28, 2026 (case 26-11603, US Bankruptcy Court, District of Delaware)</caption>
+<thead><tr><th scope="col">Date (2026)</th><th scope="col">What happened or is scheduled</th></tr></thead>
+<tbody>
+<tr><th scope="row">October 12</th><td>Character Technologies, Inc. files for Chapter 11 to sell the company under court supervision; the app and paid subscriptions keep running. Disney is the first bidder: $20 million for a non-exclusive license to some of Character.AI's technology, not including the app or users' chats.</td></tr>
+<tr><th scope="row">November 4</th><td>The court approves the bidding rules.</td></tr>
+<tr><th scope="row">November 14</th><td>Smirks and Pangs Acquisition LLC is named lead bidder at $10 million for the app, the AI models, user accounts and chats.</td></tr>
+<tr><th scope="row">November 17</th><td>The court orders a consumer privacy ombudsman to review the sale of users' data.</td></tr>
+<tr><th scope="row">November 24</th><td>Deadline for rival bids. As of November 28 we have not seen a report of whether a rival bid qualified.</td></tr>
+<tr><th scope="row">December 1</th><td>Scheduled: an auction, held only if a qualifying rival bid came in.</td></tr>
+<tr><th scope="row">December 3–4</th><td>Scheduled: the sale hearing, where the judge decides whether to approve the sale.</td></tr>
+</tbody></table>
+<p>Dates can move. Every filing is free to read on the court-approved claims agent's <a href="https://cases.stretto.com/chartech">case website (Stretto)</a>, and Character.AI posts updates on its own blog.</p>
+<h2>What happens to your chats</h2>
+<ul>
+<li><b>Right now:</b> nothing changes. You can chat, export your data or delete your account as before.</li>
+<li><b>If the sale to Smirks and Pangs is approved:</b> the app, your account and your chats pass to the new owner, which may keep the app running.</li>
+<li><b>If no suitable buyer is found:</b> Character.AI has said the platform could be wound down, and your chats could be lost.</li>
+</ul>
+<p>Attorneys general from dozens of states and D.C. have objected to the sale. They want minors' chats left out and want users' right to delete their data to survive the sale. The judge is expected to weigh that at the hearing.</p>
+<h2>What to do this week</h2>
+<ol class="steps">
+<li><b>Request your export today.</b> On character.ai: <em>Profile Settings → Account → Manage Account &amp; Data → Export Data</em>. In the app: <em>Profile → Settings icon → Legal &amp; Privacy → Export Data</em>. Character.AI says it takes 3 to 4 weeks, so a request made now will probably arrive after the hearing, though some arrive sooner. Ask anyway: it is the only way to get every chat in one file.</li>
+<li><b>Save your most important chats by hand now.</b> Open each one in a computer browser, scroll to the very top, then Print and Save as PDF, or copy the text. See <a href="/save-character-ai-chats/">every way to save a chat</a>.</li>
+<li><b>Download the ZIP within 7 days of the email</b> and keep two copies. Its password is your account email in lowercase.</li>
+<li><b>Delete your account only after you have the ZIP,</b> if you want it deleted. Character.AI says deletion is permanent.</li>
+</ol>
+<h2>When your export arrives</h2>
+<p>The export is raw data, with every message from every chat in one list and no names. <a href="/">BotToBook</a> opens the ZIP in your browser, rebuilds each conversation and saves it as text for free, or as a PDF or EPUB book for $4.99 once. Nothing is uploaded, and it doesn't connect to Character.AI, so it keeps working whatever happens to the app.</p>
+""",
+  "faq": ["bankrupt", "who_buying", "chats_sold", "export_in_time", "delete_account", "how_long", "transfer"],
+  "links": ["save-character-ai-chats", "how-to-open-character-ai-export", "character-ai-export-zip-password"],
+ },
+ {
   "slug": "save-character-ai-chats",
   "crumb": "How to save Character.AI chats",
   "title": "How to Save Character.AI Chats: Every Method Compared",
@@ -115,8 +171,8 @@ PAGES = [
 <h2>What BotToBook does and doesn't do</h2>
 <p>BotToBook doesn't connect to Character.AI or fetch anything: it opens the export you download yourself, in your browser, without uploading it. So it can't speed up the export. Once you have the ZIP, reading every chat and saving text files is free; full PDF and EPUB books are $4.99 once.</p>
 """,
-  "faq": ["best_way", "save_now", "how_long", "no_email", "deleted", "pdf_noexport", "shutdown", "transfer"],
-  "links": ["how-to-open-character-ai-export", "character-ai-chat-to-pdf", "character-ai-export-zip-password"],
+  "faq": ["best_way", "save_now", "how_long", "export_in_time", "no_email", "deleted", "pdf_noexport", "shutdown", "transfer"],
+  "links": ["is-character-ai-shutting-down", "how-to-open-character-ai-export", "character-ai-chat-to-pdf", "character-ai-export-zip-password"],
  },
  {
   "slug": "character-ai-export-zip-password",

@@ -59,7 +59,22 @@ As far as we know, Character.AI offers no way to import an export into another a
 Opening your Character.AI export, reading every chat, setting names and downloading any chat as a text file are free, and you can preview a short book from your own chats. Full PDF, EPUB and HTML books cost $4.99 once, with no subscription, on up to three devices. A sample export is loaded so you can try every button first.
 
 ### Is Character.AI shutting down?
-As of late November 2026, Character.AI is in a Chapter 11 sale process that it expects to finish in late November or early December, and it has said the platform could be wound down if no suitable buyer is found. Check Character.AI's own announcements for the latest, and request your export now either way.
+Not yet. Character.AI filed for Chapter 11 on October 12, 2026 and is being sold under court supervision, and the app still works. Smirks and Pangs Acquisition LLC is the lead bidder at $10 million for the app, user accounts and chats; an auction is scheduled for December 1 and a sale hearing for December 3 and 4. Character.AI has said the platform could be wound down if no suitable buyer is found. Request your export now either way.
+
+### Who is buying Character.AI?
+Two separate deals are on the table as of November 28, 2026. Disney offered $20 million for a non-exclusive license to some of Character.AI's technology, which does not include the app or users' chats. Smirks and Pangs Acquisition LLC, a company formed in Delaware on November 13, 2026, is the lead bidder at $10 million for the app, its AI models, user accounts and chats. Rival bids were due November 24.
+
+### Will my Character AI chats be sold?
+They are part of the proposed sale. Smirks and Pangs' $10 million bid covers the consumer app, user accounts and chats, so if the court approves it, your account and chats would pass to the new owner. A court-appointed consumer privacy ombudsman is reviewing the sale, and attorneys general from dozens of states and D.C. have objected, asking for minors' chats to be left out and for deletion rights to survive the sale.
+
+### Will my Character AI export arrive before the sale?
+Probably not before the December 3 and 4 hearing. Character.AI says an export takes 3 to 4 weeks, so one requested in late November would arrive around mid to late December. The app keeps running during the sale, so request it anyway, save your most important chats by hand today, and download the ZIP within 7 days of the email.
+
+### Should I delete my Character AI account before the sale?
+That is your decision. Character.AI says you can delete your account or export your data, and that deletion is permanent. If you want both a copy and a deleted account, request the export first and delete only after you have downloaded and opened the ZIP, because deleting first may cost you the export. Since the export takes 3 to 4 weeks, waiting for it also means your data will probably still be in the account during the hearing; which matters more is up to you.
+
+### Did Character.AI go bankrupt?
+Character Technologies, the company behind Character.AI, filed for Chapter 11 bankruptcy in Delaware on October 12, 2026. It is using the case to sell the company under court supervision rather than to close it straight away, and the app keeps running during the sale. A sale hearing is scheduled for December 3 and 4, 2026.
 
 ### What files does BotToBook open?
 The official Character.AI export (the ZIP, or message.json, character.json and user.json from inside it), CAI Tools exports (JSON and Tavern JSONL), SillyTavern .jsonl chats, and most JSON files that hold a list of messages. When a file does record who spoke, BotToBook uses that instead of guessing.
@@ -99,6 +114,7 @@ Each entry in message.json has a chat_id that groups it into a conversation, a c
 
 ## Pages
 - [Tool: Character.AI chat to PDF and EPUB](https://bottobook.yansquared.com/)
+- [Is Character.AI shutting down?](https://bottobook.yansquared.com/is-character-ai-shutting-down/): Character.AI is in bankruptcy and up for sale. The bidders, the December auction and hearing dates, and how to keep your chats. Updated Nov 28, 2026.
 - [How to save Character.AI chats](https://bottobook.yansquared.com/save-character-ai-chats/): Back up Character.AI chats before they're gone: the official export, Print to PDF, browser extensions and copy-paste compared by what they keep, how long they take and when to use each.
 - [Character.AI export ZIP password](https://bottobook.yansquared.com/character-ai-export-zip-password/): The Character.AI export ZIP password is your account's email address in lowercase. Why it fails, and how to open the ZIP in your browser without an unzip app.
 - [How to open a Character.AI export](https://bottobook.yansquared.com/how-to-open-character-ai-export/): Step by step: request your Character.AI export, unlock the ZIP with your email in lowercase, and read message.json as real conversations in a browser viewer.
@@ -111,4 +127,4 @@ Each entry in message.json has a chat_id that groups it into a conversation, a c
 - [FicToEpub](https://fictoepub.yansquared.com/): AO3 HTML to EPUB converter
 - [FicWrapped](https://ficwrapped.yansquared.com/): AO3 Wrapped from your own reading history
 
-Last updated: 2026-11-25. Contact: hello@yansquared.com
+Last updated: 2026-11-28. Contact: hello@yansquared.com
