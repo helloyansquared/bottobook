@@ -179,11 +179,12 @@ footer{background:var(--cloth2);color:#dccfe8;font-size:14px;padding:28px 0}foot
         <button class="btn" id="mkEpub" type="button">EPUB (Kindle, Kobo…) <span class="lock" data-lock>PREVIEW</span></button>
         <button class="btn" id="mkHtml" type="button">HTML book <span class="lock" data-lock>PREVIEW</span></button>
         <button class="btn plain" id="mkTxt" type="button">Text file (free)</button>
+        <button class="btn plain" id="mkSt" type="button">SillyTavern chat (.jsonl)</button>
       </div>
       <p class="msg" id="msg" role="status"></p>
       <div class="out" id="out"></div>
       <div class="pro" id="proBox">
-        <p><b>BotToBook Pro — $4.99 once.</b> Full PDF, EPUB and HTML books of all your chats, as many as you like, on 3 devices. Reading, text files and a short preview book of your own chats stay free. The sample works without Pro, so you can try every button first.</p>
+        <p><b>BotToBook Pro — $4.99 once.</b> Full PDF, EPUB and HTML books of all your chats, as many as you like, on 3 devices, plus all selected chats as SillyTavern files in one ZIP. Free: read every chat, save any chat as a text or SillyTavern file one at a time, and preview a short book. The sample works without Pro, so you can try every button first.</p>
         <div class="btns"><a class="btn gold" id="buy" href="#" target="_blank" rel="noopener">Unlock Pro for $4.99</a></div>
         <small>Secure checkout by Dodo Payments opens in a new tab; this tab unlocks by itself when you've paid. Tax included. You may be charged in your local currency.</small>
         <div class="keyrow"><input type="text" id="key" placeholder="Already bought? Paste your license key" autocomplete="off" aria-label="License key"><button class="btn plain" id="keyGo" type="button">Activate</button></div>
@@ -213,8 +214,8 @@ footer{background:var(--cloth2);color:#dccfe8;font-size:14px;padding:28px 0}foot
   <h2>Free viewer, $4.99 one-time for books</h2>
   <p class="lede">A typeset book, not a printout: a cover, contents, a chapter per chat, page numbers — and an EPUB that works on Kindle.</p>
   <div class="price">
-    <div><span>Free</span><b>$0</b><ul><li>Open the export ZIP (password is your account email) or message.json</li><li>Read and browse every chat</li><li>Swap sides, add names</li><li>Download any chat as a text file</li><li>Preview a short book from your own chats</li></ul></div>
-    <div class="hi"><span>Pro · one-time</span><b>$4.99</b><ul><li>PDF book: cover, a chapter per chat, page numbers</li><li>EPUB for Kindle, Kobo, Apple Books</li><li>Single-file HTML book that opens anywhere</li><li>All your chats in one book, or one at a time</li><li>Use it on 3 devices · no subscription</li><li>License key emailed to you</li></ul></div>
+    <div><span>Free</span><b>$0</b><ul><li>Open the export ZIP (password is your account email) or message.json</li><li>Read and browse every chat</li><li>Swap sides, add names</li><li>Download any chat as a text file</li><li>Download any chat as a SillyTavern file</li><li>Preview a short book from your own chats</li></ul></div>
+    <div class="hi"><span>Pro · one-time</span><b>$4.99</b><ul><li>PDF book: cover, a chapter per chat, page numbers</li><li>EPUB for Kindle, Kobo, Apple Books</li><li>Single-file HTML book that opens anywhere</li><li>All your chats in one book, or one at a time</li><li>Selected chats as SillyTavern files, in one ZIP</li><li>Use it on 3 devices · no subscription</li><li>License key emailed to you</li></ul></div>
   </div>
 </section>
 
@@ -226,7 +227,7 @@ footer{background:var(--cloth2);color:#dccfe8;font-size:14px;padding:28px 0}foot
 <section class="band" id="about"><div class="faq">
   <h2>About BotToBook</h2>
   <p class="lede">BotToBook is a free browser-based viewer for Character.AI data exports that can also turn the chats into a PDF, EPUB or HTML book. It is an independent tool by YanSquared, first published on November 25, 2026; payments are handled by Dodo Payments. The code is <a href="{GITHUB}">on GitHub</a>. Also by YanSquared: <a href="https://fictoepub.yansquared.com/">FicToEpub</a>, a free AO3 HTML to EPUB converter, and <a href="https://ficwrapped.yansquared.com/">FicWrapped</a>, an AO3 Wrapped made from your own reading history. It is not affiliated with Character Technologies, Inc. or Character.AI. Contact: <a href="mailto:{EMAIL}">{EMAIL}</a>.</p>
-  <p class="lede">Guides: <a href="/character-ai-export-zip-password/">export ZIP password</a> · <a href="/how-to-open-character-ai-export/">how to open the export</a> · <a href="/character-ai-chat-to-pdf/">chat to PDF</a> · <a href="/character-ai-to-kindle/">chats to Kindle (EPUB)</a> · <a href="/character-ai-message-json/">message.json format</a> · <a href="/is-character-ai-shutting-down/">is Character.AI shutting down?</a></p>
+  <p class="lede">Guides: <a href="/character-ai-export-zip-password/">export ZIP password</a> · <a href="/how-to-open-character-ai-export/">how to open the export</a> · <a href="/character-ai-chat-to-pdf/">chat to PDF</a> · <a href="/character-ai-to-kindle/">chats to Kindle (EPUB)</a> · <a href="/character-ai-message-json/">message.json format</a> · <a href="/character-ai-to-sillytavern/">chats to SillyTavern</a> · <a href="/is-character-ai-shutting-down/">is Character.AI shutting down?</a></p>
 </div></section>
 </main>
 
@@ -252,6 +253,8 @@ footer{background:var(--cloth2);color:#dccfe8;font-size:14px;padding:28px 0}foot
 const CORE = (() => {
   const isObj = v => !!v && typeof v === "object" && !Array.isArray(v);
   const str = v => (typeof v === "string" ? v : "");
+  // SillyTavern writes "unused" in its chat header name fields; treat that as no name.
+  const hname = v => { const t = str(v).trim(); return /^unused$/i.test(t) ? "" : t; };
   const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const BADCH = /[\u0000-\u0008\u000B\u000C\u000E-\u001F￾￿]/g;
 
@@ -314,7 +317,7 @@ const CORE = (() => {
         if (v.length && looksLikeMessages(v)) {
           recognised++;
           const m2 = { ...meta };
-          for (const x of v) if (isObj(x) && !messageOf(x) && (x.character_name || x.user_name)) { m2.charName = m2.charName || str(x.character_name); m2.userName = m2.userName || str(x.user_name); }
+          for (const x of v) if (isObj(x) && !messageOf(x) && (hname(x.character_name) || hname(x.user_name))) { m2.charName = m2.charName || hname(x.character_name); m2.userName = m2.userName || hname(x.user_name); }
           for (const x of v) { const m = messageOf(x); if (!m) continue; group(m.chat ? "c:" + m.chat : file + path, m2).msgs.push(m); }
           return;
         }
@@ -325,9 +328,9 @@ const CORE = (() => {
       const c = charOf(v); if (c) characters.add(c);
       if (!userName) { const u = isObj(v.user) ? v.user : v; if (typeof u.email === "string" || typeof u.date_joined === "string" || typeof u.username === "string" && typeof u.first_name === "string") userName = (str(u.first_name) || str(u.name) || str(u.username)).trim(); }
       const m2 = { ...meta };
-      const cn = str(v.character_name) || str(v.char_name) || str(v.participant__name) || (isObj(v.character) ? str(v.character.name) : "");
+      const cn = hname(v.character_name) || str(v.char_name) || str(v.participant__name) || (isObj(v.character) ? str(v.character.name) : "");
       if (cn) m2.charName = cn.trim();
-      if (str(v.user_name)) m2.userName = str(v.user_name).trim();
+      if (hname(v.user_name)) m2.userName = hname(v.user_name);
       if (str(v.title) && (Array.isArray(v.messages) || Array.isArray(v.turns) || Array.isArray(v.history))) m2.title = str(v.title).trim();
       for (const [k, x] of Object.entries(v)) if (isObj(x) || Array.isArray(x)) visit(x, file, path + "/" + k, m2, depth + 1);
     };
@@ -394,6 +397,20 @@ const CORE = (() => {
     chat.messages.forEach((m, i) => { const r = roleAt(chat, i); lines.push(`${r === "user" ? nm.user : nm.char}${m.at ? " (" + new Date(m.at).toLocaleString("en") + ")" : ""}:`, m.text, ""); });
     return lines.join("\n");
   };
+
+  // SillyTavern native chat (.jsonl): a header line, then one message per line. Matches what SillyTavern 1.19 writes
+  // (public/script.js saveChat); its "Import chat" copies a .jsonl as-is and keeps each message's name.
+  const stOf = (chat, defUser) => {
+    const nm = names(chat, defUser), fallback = Date.now();
+    const lines = [JSON.stringify({ chat_metadata: {}, user_name: "unused", character_name: "unused" })];
+    let last = 0;
+    chat.messages.forEach((m, i) => {
+      const u = roleAt(chat, i) === "user", at = m.at || last || fallback; last = at;
+      lines.push(JSON.stringify({ name: u ? nm.user : nm.char, is_user: u, is_system: false, send_date: new Date(at).toISOString(), mes: m.text, extra: {} }));
+    });
+    return lines.join("\n") + "\n";
+  };
+  const stName = (chat, defUser) => { const t = (chat.title || "").trim(), r = range(chat.messages); return [names(chat, defUser).char, t || r].filter(Boolean).join(" - "); };
 
   const BOOK_CSS = `body{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;line-height:1.55;margin:0 4%}
 h1,h2{text-align:center;line-height:1.2;margin:1.4em 0 .3em}h1{font-size:1.7em}h2{font-size:1.35em}.sub{text-align:center;font-size:.9em;opacity:.7;margin:0 0 1.6em}
@@ -505,7 +522,7 @@ ${chats.map((c, i) => `<section id="ch${i + 1}"><h2>${esc(chapterTitle(c, book.o
     e.setUint32(0, 0x06054b50, true); e.setUint16(8, list.length, true); e.setUint16(10, list.length, true); e.setUint32(12, cs, true); e.setUint32(16, off, true);
     const all = [...parts, ...cen, new Uint8Array(e.buffer)], out = new Uint8Array(all.reduce((a, b) => a + b.length, 0)); let p = 0; for (const a of all) { out.set(a, p); p += a.length; } return out;
   }
-  return { timeOf, messageOf, parseJsonish, parseExport, guessOffset, roleAt, mdParas, chatBlocks, txtOf, printHtml, readHtml, buildEpub, chapterTitle, names, range, esc };
+  return { timeOf, messageOf, parseJsonish, parseExport, guessOffset, roleAt, mdParas, chatBlocks, txtOf, stOf, stName, zip, printHtml, readHtml, buildEpub, chapterTitle, names, range, esc };
 })();
 /*CORE-END*/
 
@@ -545,7 +562,7 @@ function render() {
   }).join("");
   $("nSel").textContent = st.chats.filter(x => x.include).length;
   const has = !!c;
-  ["cName", "uName", "cTitle", "swap", "mkPdf", "mkEpub", "mkHtml", "mkTxt"].forEach(id => $(id).disabled = !has);
+  ["cName", "uName", "cTitle", "swap", "mkPdf", "mkEpub", "mkHtml", "mkTxt", "mkSt"].forEach(id => $(id).disabled = !has);
   if (!has) { $("page").innerHTML = `<p class="more">Drop your export on the left to see your chats here.</p>`; $("guess").textContent = ""; return; }
   $("cName").value = c.charName; $("uName").value = c.userName || st.userName; $("cTitle").value = c.title;
   $("cName").placeholder = "e.g. the character you talked to"; $("uName").placeholder = "You"; $("cTitle").placeholder = CORE.chapterTitle({ ...c, title: "" }, st.userName);
@@ -684,6 +701,21 @@ function makeTxt() {
   $("msg").textContent = "Text file ready.";
 }
 
+function makeSt() {
+  const all = picked().filter(Boolean), c = cur();
+  const one = all.length <= 1 ? (all[0] || c) : null;
+  const how = "In SillyTavern, open the character (create or import its card first), then Manage chat files → Import chat.";
+  if (one || !(st.pro || st.sample)) {
+    const x = one || c; if (!x) return;
+    offer(safe(CORE.stName(x, st.userName)) + ".jsonl", new Blob([CORE.stOf(x, st.userName)], { type: "application/jsonl" }));
+    $("msg").textContent = (one ? "SillyTavern chat ready. " : `Saved this chat as a SillyTavern file (one at a time is free). Pro saves all ${all.length} selected chats in one ZIP. `) + how;
+    return;
+  }
+  const used = new Set(), files = all.map(x => { let n = safe(CORE.stName(x, st.userName)), k = n, i = 2; while (used.has(k)) k = `${n} (${i++})`; used.add(k); return { name: k + ".jsonl", data: CORE.stOf(x, st.userName) }; });
+  offer("SillyTavern chats.zip", new Blob([CORE.zip(files)], { type: "application/zip" }));
+  $("msg").textContent = `${files.length} SillyTavern chat files in one ZIP. Unzip it; you can select several files at once when you import. ` + how;
+}
+
 // ── Licence ───────────────────────────────────────────────────────────
 async function licence(action, key, instance) {
   const r = await fetch("/api/license", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ action, license_key: key, name: "web " + new Date().toISOString().slice(0, 10), instance_id: instance }) });
@@ -733,7 +765,7 @@ $("uName").addEventListener("input", e => { const c = cur(); if (c) { c.userName
 $("cTitle").addEventListener("input", e => { const c = cur(); if (c) { c.title = e.target.value; relist(); renderPage(); } });
 $("swap").addEventListener("click", () => { const c = cur(); if (c) { c.swapped = !c.swapped; renderPage(); } });
 ["oTime", "oDays"].forEach(id => $(id).addEventListener("change", renderPage));
-$("mkPdf").addEventListener("click", makePdf); $("mkEpub").addEventListener("click", makeEpub); $("mkHtml").addEventListener("click", makeHtml); $("mkTxt").addEventListener("click", makeTxt);
+$("mkPdf").addEventListener("click", makePdf); $("mkEpub").addEventListener("click", makeEpub); $("mkHtml").addEventListener("click", makeHtml); $("mkTxt").addEventListener("click", makeTxt); $("mkSt").addEventListener("click", makeSt);
 $("keyGo").addEventListener("click", () => activate($("key").value, $("keyMsg")));
 $("key").addEventListener("keydown", e => { if (e.key === "Enter") $("keyGo").click(); });
 

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Move Character.AI Chats to SillyTavern From Your Export</title>
+<meta name="description" content="Turn the chats in your official Character.AI export into SillyTavern chat files, with the dates from your export and speakers you can check, then import them.">
+<link rel="canonical" href="https://bottobook.yansquared.com/character-ai-to-sillytavern/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article"><meta property="og:site_name" content="BotToBook"><meta property="og:title" content="Move Character.AI Chats to SillyTavern From Your Export"><meta property="og:description" content="Turn the chats in your official Character.AI export into SillyTavern chat files, with the dates from your export and speakers you can check, then import them.">
+<meta property="og:url" content="https://bottobook.yansquared.com/character-ai-to-sillytavern/"><meta property="og:image" content="https://bottobook.yansquared.com/og.png"><meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="/fonts/fraunces-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+[{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"BotToBook","item":"https://bottobook.yansquared.com/"},{"@type":"ListItem","position":2,"name":"Character.AI chats to SillyTavern","item":"https://bottobook.yansquared.com/character-ai-to-sillytavern/"}]},{"@context":"https://schema.org","@type":"TechArticle","headline":"Move Character.AI Chats to SillyTavern From Your Export","description":"Turn the chats in your official Character.AI export into SillyTavern chat files, with the dates from your export and speakers you can check, then import them.","url":"https://bottobook.yansquared.com/character-ai-to-sillytavern/","inLanguage":"en-US","datePublished":"2026-11-25","dateModified":"2026-11-28","author":{"@id":"https://bottobook.yansquared.com/#org"},"publisher":{"@context":"https://schema.org","@type":"Organization","@id":"https://bottobook.yansquared.com/#org","name":"BotToBook","url":"https://bottobook.yansquared.com/","logo":"https://bottobook.yansquared.com/icon-512.png","email":"hello@yansquared.com","sameAs":["https://github.com/helloyansquared/bottobook"]},"mainEntityOfPage":"https://bottobook.yansquared.com/character-ai-to-sillytavern/"},{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I move Character AI chats to SillyTavern?","acceptedAnswer":{"@type":"Answer","text":"Drop your Character.AI export ZIP on BotToBook, open a chat, type the character's name and yours as SillyTavern shows them, check who said what, and press SillyTavern chat. In SillyTavern, open that character, go to Manage chat files and choose Import chat. Messages keep the dates recorded in your export. One chat at a time is free; Pro saves all selected chats in one ZIP."}},{"@type":"Question","name":"Does the SillyTavern chat file include the character?","acceptedAnswer":{"@type":"Answer","text":"No. A SillyTavern chat file holds only the conversation, and it has to be imported into a character that already exists in SillyTavern. Create the character there or import its card first. If it is a character you made on Character.AI, its greeting and definition are in character.json in your export, ready to copy."}},{"@type":"Question","name":"Why doesn't the Character AI export say who wrote each message?","acceptedAnswer":{"@type":"Answer","text":"Character.AI's official export lists each message's text, chat ID and time, but not whether you or the character wrote it, and not the character's name. BotToBook works out the sides from turn order and reply timing, since characters answer within seconds, and you can swap the sides or type the names yourself."}},{"@type":"Question","name":"Can I move Character AI chats to another account or app?","acceptedAnswer":{"@type":"Answer","text":"As far as we know, Character.AI offers no way to import an export into another account or back into the app. You can move chats to SillyTavern: BotToBook turns each chat in your export into a SillyTavern chat file that you import into the matching character there. You can also keep them readable as a PDF, EPUB or text file."}},{"@type":"Question","name":"What files does BotToBook open?","acceptedAnswer":{"@type":"Answer","text":"The official Character.AI export (the ZIP, or message.json, character.json and user.json from inside it), CAI Tools exports (JSON and Tavern JSONL), SillyTavern .jsonl chats, and most JSON files that hold a list of messages. When a file does record who spoke, BotToBook uses that instead of guessing. It saves chats as PDF, EPUB, HTML, text or SillyTavern chat files."}}]}]
+</script>
+<style>@font-face{font-family:"Fraunces";src:url(/fonts/fraunces-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Fraunces";src:url(/fonts/fraunces-latin-700-normal.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Instrument Sans";src:url(/fonts/instrument-sans-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Instrument Sans";src:url(/fonts/instrument-sans-latin-500-normal.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Instrument Sans";src:url(/fonts/instrument-sans-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+:root{color-scheme:light dark;--bg:light-dark(#fffdf9,#120c18);--ink:light-dark(#21182b,#f1eaf6);--soft:light-dark(#6a5e74,#b5a8c0);--paper:light-dark(#f7f1e7,#1c1424);--line:light-dark(#e6dccd,#352944);--cloth:#3b2350;--cloth2:light-dark(#2c1a3d,#1a1024);--gold:#f2b33d;--goldink:light-dark(#9a5f00,#f6c76a)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 "Instrument Sans",system-ui,sans-serif}
+a{color:var(--goldink)}h1,h2{font-family:Fraunces,Georgia,serif;line-height:1.12;text-wrap:balance}
+.top{background:var(--cloth);color:#fff;padding:18px 0 34px}.top a{color:#fff;text-decoration:none}
+.wrap{max-width:780px;margin:0 auto;padding:0 max(4vw,18px)}
+.brand{font-weight:600;display:inline-flex;gap:8px;align-items:center}.brand i{width:20px;height:15px;background:#fff;border-radius:3px;box-shadow:inset -5px 0 0 var(--gold)}
+.crumbs{font-size:14px;color:#dccfe8;margin:18px 0 6px}.crumbs a{color:#eadff3;text-decoration:underline}
+.top h1{font-size:clamp(30px,4.6vw,44px);margin:6px 0 0}
+main{padding:28px 0 40px}.answer{font-size:19px;line-height:1.6;border-left:4px solid var(--gold);padding:4px 0 4px 16px;margin:0 0 18px}
+.cta{display:inline-flex;align-items:center;min-height:48px;padding:0 22px;border-radius:12px;background:var(--gold);color:#2a1a00;font-weight:600;text-decoration:none}
+.meta{font-size:14px;color:var(--soft);margin:14px 0 26px}
+h2{font-size:clamp(23px,3vw,29px);margin:34px 0 10px}li{margin:6px 0}
+code{font:.9em ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--paper);padding:1px 5px;border-radius:5px}
+pre{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:14px;overflow:auto}pre code{background:none;padding:0}
+.facts{border-collapse:collapse;width:100%;margin:12px 0;border:1px solid var(--line);font-size:15px}.facts caption{text-align:left;color:var(--soft);font-size:13px;padding-bottom:6px}
+.facts th,.facts td{padding:9px 12px;border-top:1px solid var(--line);text-align:left;vertical-align:top}.facts th{width:30%}
+figure{margin:18px 0}figure img{width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:#888}figcaption{font-size:14px;color:var(--soft);margin-top:6px}
+details{border-bottom:1px solid var(--line);padding:4px 0}summary{cursor:pointer;font-weight:600;min-height:44px;display:flex;align-items:center}details p{margin:2px 0 14px;color:var(--soft)}
+.related{background:var(--paper);border-radius:12px;padding:16px 18px;margin-top:30px}.related ul{margin:6px 0 0;padding-left:20px}
+footer{background:var(--cloth2);color:#dccfe8;font-size:14px;padding:24px 0}footer a{color:#fff}.foot{display:flex;flex-wrap:wrap;gap:6px 16px;margin-bottom:10px}
+a:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:2px}</style>
+<script src="/found.js" defer></script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/"><i></i>BotToBook</a>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">BotToBook</a> › Character.AI chats to SillyTavern</nav>
+  <h1>How to move your Character.AI chats to SillyTavern</h1>
+</div></header>
+<main class="wrap">
+<p class="answer">Drop your official Character.AI export ZIP on BotToBook, open a chat, type the character's name and yours as SillyTavern shows them, check who said what, and press SillyTavern chat. You get a .jsonl chat file. In SillyTavern, open that character, choose Manage chat files, then Import chat. Messages keep the dates and times recorded in your export.</p>
+<a class="cta" href="/">Open my export in BotToBook</a>
+<p class="meta">Last updated: <time datetime="2026-11-28">November 28, 2026</time> · Free to read, nothing uploaded</p>
+
+<h2>Steps</h2>
+<ol class="steps">
+<li><b>Get your export.</b> Request it in Character.AI settings (<em>Profile Settings → Account → Manage Account &amp; Data → Export Data</em>). It can take 3–4 weeks; the ZIP's password is your account email in lowercase.</li>
+<li><b>Open it in <a href="/">BotToBook</a>.</b> Every chat appears on the left, longest first, with its first line so you can tell them apart.</li>
+<li><b>Set the names.</b> Type the character's name exactly as it is (or will be) in SillyTavern, and your own name as your SillyTavern persona. SillyTavern keeps the names in the file as they are.</li>
+<li><b>Check who said what.</b> The export doesn't record the sender, so BotToBook works it out from turn order and reply timing. Read the first few messages and press <em>Swap who said what</em> if a chat came out backwards.</li>
+<li><b>Press SillyTavern chat.</b> One chat at a time is free. With Pro, tick several chats and you get them all as separate files in one ZIP.</li>
+<li><b>Import it.</b> In SillyTavern, create or import the character first, open it, then <em>Manage chat files → Import chat</em> and pick the .jsonl file. You can select several files at once. The imported chat appears in the list with “imported” in its name.</li>
+</ol>
+<h2>What the file contains</h2>
+<p>A SillyTavern chat file (<code>.jsonl</code>) in the format SillyTavern itself saves: a header line, then one line per message with the speaker's name, whether it was you, the date and time from your export, and the text with Character.AI's <code>*actions*</code> and <code>**bold**</code> kept as they are.</p>
+<pre><code>{"chat_metadata":{},"user_name":"unused","character_name":"unused"}
+{"name":"Wren","is_user":false,"is_system":false,"send_date":"2026-10-03T19:02:11.204Z","mes":"*The lamp room hums.* You made it.","extra":{}}
+{"name":"Sam","is_user":true,"is_system":false,"send_date":"2026-10-03T19:03:40.551Z","mes":"I almost did.","extra":{}}</code></pre>
+<h2>What doesn't come across</h2>
+<ul>
+<li><b>The character itself.</b> A chat file is only the conversation. For characters you made on Character.AI, <code>character.json</code> in your export holds the greeting and definition to paste into a new SillyTavern character. As far as we know, characters made by other people aren't in it.</li>
+<li><b>Alternative replies (swipes), memory and persona settings.</b> BotToBook doesn't carry these over.</li>
+</ul>
+<p>BotToBook opens the export in your browser and never uploads it or connects to Character.AI or SillyTavern. The file is generated on your device.</p>
+
+<h2>Questions</h2>
+  <details open><summary>How do I move Character AI chats to SillyTavern?</summary><p>Drop your Character.AI export ZIP on BotToBook, open a chat, type the character's name and yours as SillyTavern shows them, check who said what, and press SillyTavern chat. In SillyTavern, open that character, go to Manage chat files and choose Import chat. Messages keep the dates recorded in your export. One chat at a time is free; Pro saves all selected chats in one ZIP.</p></details>
+  <details><summary>Does the SillyTavern chat file include the character?</summary><p>No. A SillyTavern chat file holds only the conversation, and it has to be imported into a character that already exists in SillyTavern. Create the character there or import its card first. If it is a character you made on Character.AI, its greeting and definition are in character.json in your export, ready to copy.</p></details>
+  <details><summary>Why doesn't the Character AI export say who wrote each message?</summary><p>Character.AI's official export lists each message's text, chat ID and time, but not whether you or the character wrote it, and not the character's name. BotToBook works out the sides from turn order and reply timing, since characters answer within seconds, and you can swap the sides or type the names yourself.</p></details>
+  <details><summary>Can I move Character AI chats to another account or app?</summary><p>As far as we know, Character.AI offers no way to import an export into another account or back into the app. You can move chats to SillyTavern: BotToBook turns each chat in your export into a SillyTavern chat file that you import into the matching character there. You can also keep them readable as a PDF, EPUB or text file.</p></details>
+  <details><summary>What files does BotToBook open?</summary><p>The official Character.AI export (the ZIP, or message.json, character.json and user.json from inside it), CAI Tools exports (JSON and Tavern JSONL), SillyTavern .jsonl chats, and most JSON files that hold a list of messages. When a file does record who spoke, BotToBook uses that instead of guessing. It saves chats as PDF, EPUB, HTML, text or SillyTavern chat files.</p></details>
+<aside class="related"><b>Related guides</b><ul><li><a href="/how-to-open-character-ai-export/">How to Open a Character.AI Export (ZIP or message.json)</a></li><li><a href="/character-ai-message-json/">Character.AI message.json Explained: Export File Format</a></li><li><a href="/is-character-ai-shutting-down/">Is Character.AI Shutting Down? Bankruptcy Sale Dates &amp; Your Chats</a></li><li><a href="/">BotToBook: Character.AI chat to PDF &amp; EPUB</a></li></ul></aside>
+</main>
+<footer><div class="wrap"><nav class="foot" aria-label="Guides"><a href="/is-character-ai-shutting-down/">Is Character.AI shutting down?</a><a href="/save-character-ai-chats/">How to save Character.AI chats</a><a href="/character-ai-export-zip-password/">Character.AI export ZIP password</a><a href="/how-to-open-character-ai-export/">How to open a Character.AI export</a><a href="/character-ai-chat-to-pdf/">Character.AI chat to PDF</a><a href="/character-ai-to-kindle/">Character.AI chats to Kindle</a><a href="/character-ai-message-json/">Character.AI message.json format</a><a href="/character-ai-to-sillytavern/">Character.AI chats to SillyTavern</a><a href="/privacy/">Privacy &amp; refunds</a><a href="https://fictoepub.yansquared.com/">FicToEpub</a><a href="https://ficwrapped.yansquared.com/">FicWrapped</a></nav>BotToBook is an independent tool. It is not affiliated with, endorsed by or connected to Character Technologies, Inc. or Character.AI. Questions: <a href="mailto:hello@yansquared.com">hello@yansquared.com</a> · Last updated: November 28, 2026</div></footer>
+</body>
+</html>

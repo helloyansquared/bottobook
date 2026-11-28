@@ -53,3 +53,27 @@ fs.writeFileSync('/tmp/print.html', pr);
 fs.writeFileSync('/tmp/read.html', CORE.readHtml({ title: 'T', chats: p.chats, opt: { days: true, defUser: 'Sam' } }));
 assert(pr.includes('Conversations with Character') || pr.includes('Conversations with'), 'print html');
 console.log(CORE.txtOf(p.chats[0], 'Sam').slice(0, 300));
+
+// SillyTavern native .jsonl: header line + one message per line, roles follow the swap/offset, names from the chat
+{
+  const p2 = CORE.parseExport([{ name: 'message.json', text: JSON.stringify(sample) }]);
+  const c = { ...p2.chats[0], charName: 'Wren', userName: 'Sam' };
+  const out = CORE.stOf(c, '');
+  const L = out.trim().split('\n').map(l => JSON.parse(l));
+  assert(!out.startsWith('﻿') && out.endsWith('\n'), 'st: no BOM, trailing newline');
+  assert(L[0].chat_metadata && L[0].user_name === 'unused' && L[0].character_name === 'unused' && !('mes' in L[0]), 'st: header line');
+  assert(L.length === c.messages.length + 1, 'st: one line per message');
+  assert(L[1].name === 'Wren' && L[1].is_user === false && L[2].name === 'Sam' && L[2].is_user === true, 'st: names and is_user');
+  assert(L.slice(1).every(m => m.is_system === false && typeof m.mes === 'string' && m.extra && /^\d{4}-\d\d-\d\dT.*Z$/.test(m.send_date)), 'st: fields + ISO dates');
+  assert(L[1].send_date === '2026-10-03T19:02:11.204Z', 'st: keeps original time');
+  const sw = { ...c, offset: (c.offset + 1) % 2 };
+  const L2 = CORE.stOf(sw, '').trim().split('\n').map(l => JSON.parse(l));
+  assert(L2[1].is_user === true && L2[1].name === 'Sam', 'st: swap flips sides');
+  // round trip through our own importer
+  const back = CORE.parseExport([{ name: 'x.jsonl', text: out }]);
+  assert(back.chats.length === 1 && back.chats[0].messages.length === c.messages.length && back.chats[0].messages[0].text === c.messages[0].text, 'st: round trip');
+  assert(back.chats[0].charName !== 'unused' && back.chats[0].userName !== 'unused', 'st: header "unused" is not a name');
+  assert(CORE.stName(c, '') === 'Wren - Oct 3, 2026 – Oct 4, 2026', 'st: file name = character + dates');
+  const z = CORE.zip([{ name: 'a.jsonl', data: out }, { name: 'b.jsonl', data: out }]);
+  assert(z[0] === 0x50 && z[1] === 0x4b, 'st: zip bytes');
+}

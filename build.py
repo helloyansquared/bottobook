@@ -47,7 +47,7 @@ app = {"@type": "WebApplication", "@id": U() + "#app", "name": "BotToBook", "alt
        "image": U() + "og.png", "isAccessibleForFree": True, "inLanguage": "en-US", "datePublished": C.PUBLISHED, "dateModified": C.LAST_UPDATED,
        "publisher": {"@id": U() + "#org"},
        "featureList": ["Opens the password-protected Character.AI export ZIP in the browser", "Reads message.json, character.json and user.json",
-                       "Reads CAI Tools JSON, Tavern JSONL and SillyTavern .jsonl", "PDF book with cover, chapters and page numbers",
+                       "Reads CAI Tools JSON, Tavern JSONL and SillyTavern .jsonl", "PDF book with cover, chapters and page numbers", "SillyTavern chat files (.jsonl) with original dates",
                        "EPUB 3 for Kindle, Kobo and Apple Books", "Single-file HTML book", "Plain text export"],
        "offers": [{"@type": "Offer", "name": "Viewer and text export", "price": "0", "priceCurrency": "USD"},
                   {"@type": "Offer", "name": "BotToBook Pro (PDF, EPUB and HTML books)", "price": "4.99", "priceCurrency": "USD", "url": U()}]}

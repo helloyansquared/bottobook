@@ -38,9 +38,13 @@ QA = {
  "safe": ("Is it safe to open my Character AI export in BotToBook?",
   "BotToBook opens the ZIP and builds the book with JavaScript running in your own browser, so your chats are never uploaded to a server. The page has no ads, cookies or third-party trackers. The only thing sent anywhere is a Pro license key, when you activate one, so the payment provider can confirm it."),
  "transfer": ("Can I move Character AI chats to another account or app?",
-  "As far as we know, Character.AI offers no way to import an export into another account or back into the app. What you can do is keep the chats readable: open the export in a viewer and save them as a PDF, EPUB or text file you control. Some other chat apps also accept SillyTavern-style files."),
+  "As far as we know, Character.AI offers no way to import an export into another account or back into the app. You can move chats to SillyTavern: BotToBook turns each chat in your export into a SillyTavern chat file that you import into the matching character there. You can also keep them readable as a PDF, EPUB or text file."),
+ "sillytavern": ("How do I move Character AI chats to SillyTavern?",
+  "Drop your Character.AI export ZIP on BotToBook, open a chat, type the character's name and yours as SillyTavern shows them, check who said what, and press SillyTavern chat. In SillyTavern, open that character, go to Manage chat files and choose Import chat. Messages keep the dates recorded in your export. One chat at a time is free; Pro saves all selected chats in one ZIP."),
+ "st_character": ("Does the SillyTavern chat file include the character?",
+  "No. A SillyTavern chat file holds only the conversation, and it has to be imported into a character that already exists in SillyTavern. Create the character there or import its card first. If it is a character you made on Character.AI, its greeting and definition are in character.json in your export, ready to copy."),
  "free": ("Is BotToBook free?",
-  "Opening your Character.AI export, reading every chat, setting names and downloading any chat as a text file are free, and you can preview a short book from your own chats. Full PDF, EPUB and HTML books cost $4.99 once, with no subscription, on up to three devices. A sample export is loaded so you can try every button first."),
+  "Opening your Character.AI export, reading every chat, setting names and saving any chat as a text file or a SillyTavern chat file are free, and you can preview a short book from your own chats. Full PDF, EPUB and HTML books cost $4.99 once, with no subscription, on up to three devices. A sample export is loaded so you can try every button first."),
  "shutdown": ("Is Character.AI shutting down?",
   "Not yet. Character.AI filed for Chapter 11 on October 12, 2026 and is being sold under court supervision, and the app still works. Smirks and Pangs Acquisition LLC is the lead bidder at $10 million for the app, user accounts and chats; an auction is scheduled for December 1 and a sale hearing for December 3 and 4. Character.AI has said the platform could be wound down if no suitable buyer is found. Request your export now either way."),
  "who_buying": ("Who is buying Character.AI?",
@@ -54,9 +58,9 @@ QA = {
  "bankrupt": ("Did Character.AI go bankrupt?",
   "Character Technologies, the company behind Character.AI, filed for Chapter 11 bankruptcy in Delaware on October 12, 2026. It is using the case to sell the company under court supervision rather than to close it straight away, and the app keeps running during the sale. A sale hearing is scheduled for December 3 and 4, 2026."),
  "files": ("What files does BotToBook open?",
-  "The official Character.AI export (the ZIP, or message.json, character.json and user.json from inside it), CAI Tools exports (JSON and Tavern JSONL), SillyTavern .jsonl chats, and most JSON files that hold a list of messages. When a file does record who spoke, BotToBook uses that instead of guessing."),
+  "The official Character.AI export (the ZIP, or message.json, character.json and user.json from inside it), CAI Tools exports (JSON and Tavern JSONL), SillyTavern .jsonl chats, and most JSON files that hold a list of messages. When a file does record who spoke, BotToBook uses that instead of guessing. It saves chats as PDF, EPUB, HTML, text or SillyTavern chat files."),
  "pro": ("What do I get with BotToBook Pro?",
-  "One payment of $4.99 unlocks full PDF, EPUB and HTML books for every chat you open, as many as you like, on up to three devices, with no subscription. Your license key appears when you return from checkout and is emailed to you, so you can enter it again any time. Questions or refunds: hello@yansquared.com."),
+  "One payment of $4.99 unlocks full PDF, EPUB and HTML books for every chat you open, and saves all your selected chats as SillyTavern files in one ZIP, as many times as you like, on up to three devices, with no subscription. Your license key appears when you return from checkout and is emailed to you, so you can enter it again any time. Questions or refunds: hello@yansquared.com."),
  "pw_capitals": ("Why doesn't my email work as the Character AI ZIP password?",
   "It is almost always capital letters: phones often capitalize the first letter, so type the address in lowercase. Also check for a trailing space, and make sure it is the email your Character.AI account uses, which can differ from the one you check most. BotToBook trims spaces and retries in lowercase for you."),
  "pw_unzip": ("Why won't my computer open the Character AI ZIP even with the right password?",
@@ -79,7 +83,7 @@ QA = {
   "Each entry in message.json has a chat_id that groups it into a conversation, a candidate_id for the reply, raw_content with the message text, and create_time, a timestamp with microsecond precision. There is no field for who wrote the message and no character name, so those have to be inferred or typed in."),
 }
 
-HOME_FAQ = ["password", "can_export", "open", "how_long", "pdf", "kindle", "who_wrote", "safe", "free", "forwho", "shutdown", "files", "pro"]
+HOME_FAQ = ["password", "can_export", "open", "how_long", "pdf", "kindle", "sillytavern", "who_wrote", "safe", "free", "forwho", "shutdown", "files", "pro"]
 
 # ── Facts table (home + message.json page) ────────────────────────────────────
 FACTS_ROWS = [
@@ -305,5 +309,37 @@ PAGES = [
 """,
   "faq": ["json_open", "json_fields", "who_wrote", "what_means"],
   "links": ["how-to-open-character-ai-export", "character-ai-export-zip-password"],
+ },
+ {
+  "slug": "character-ai-to-sillytavern",
+  "crumb": "Character.AI chats to SillyTavern",
+  "title": "Move Character.AI Chats to SillyTavern From Your Export",
+  "description": "Turn the chats in your official Character.AI export into SillyTavern chat files, with the dates from your export and speakers you can check, then import them.",
+  "h1": "How to move your Character.AI chats to SillyTavern",
+  "answer": "Drop your official Character.AI export ZIP on BotToBook, open a chat, type the character's name and yours as SillyTavern shows them, check who said what, and press SillyTavern chat. You get a .jsonl chat file. In SillyTavern, open that character, choose Manage chat files, then Import chat. Messages keep the dates and times recorded in your export.",
+  "body": """
+<h2>Steps</h2>
+<ol class="steps">
+<li><b>Get your export.</b> Request it in Character.AI settings (<em>Profile Settings → Account → Manage Account &amp; Data → Export Data</em>). It can take 3–4 weeks; the ZIP's password is your account email in lowercase.</li>
+<li><b>Open it in <a href="/">BotToBook</a>.</b> Every chat appears on the left, longest first, with its first line so you can tell them apart.</li>
+<li><b>Set the names.</b> Type the character's name exactly as it is (or will be) in SillyTavern, and your own name as your SillyTavern persona. SillyTavern keeps the names in the file as they are.</li>
+<li><b>Check who said what.</b> The export doesn't record the sender, so BotToBook works it out from turn order and reply timing. Read the first few messages and press <em>Swap who said what</em> if a chat came out backwards.</li>
+<li><b>Press SillyTavern chat.</b> One chat at a time is free. With Pro, tick several chats and you get them all as separate files in one ZIP.</li>
+<li><b>Import it.</b> In SillyTavern, create or import the character first, open it, then <em>Manage chat files → Import chat</em> and pick the .jsonl file. You can select several files at once. The imported chat appears in the list with “imported” in its name.</li>
+</ol>
+<h2>What the file contains</h2>
+<p>A SillyTavern chat file (<code>.jsonl</code>) in the format SillyTavern itself saves: a header line, then one line per message with the speaker's name, whether it was you, the date and time from your export, and the text with Character.AI's <code>*actions*</code> and <code>**bold**</code> kept as they are.</p>
+<pre><code>{"chat_metadata":{},"user_name":"unused","character_name":"unused"}
+{"name":"Wren","is_user":false,"is_system":false,"send_date":"2026-10-03T19:02:11.204Z","mes":"*The lamp room hums.* You made it.","extra":{}}
+{"name":"Sam","is_user":true,"is_system":false,"send_date":"2026-10-03T19:03:40.551Z","mes":"I almost did.","extra":{}}</code></pre>
+<h2>What doesn't come across</h2>
+<ul>
+<li><b>The character itself.</b> A chat file is only the conversation. For characters you made on Character.AI, <code>character.json</code> in your export holds the greeting and definition to paste into a new SillyTavern character. As far as we know, characters made by other people aren't in it.</li>
+<li><b>Alternative replies (swipes), memory and persona settings.</b> BotToBook doesn't carry these over.</li>
+</ul>
+<p>BotToBook opens the export in your browser and never uploads it or connects to Character.AI or SillyTavern. The file is generated on your device.</p>
+""",
+  "faq": ["sillytavern", "st_character", "who_wrote", "transfer", "files"],
+  "links": ["how-to-open-character-ai-export", "character-ai-message-json", "is-character-ai-shutting-down"],
  },
 ]
